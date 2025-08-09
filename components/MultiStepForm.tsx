@@ -218,8 +218,9 @@ export default function MultiStepForm() {
                 form.setError("photo_file", { message: "Only image files are allowed" });
                 return;
               }
-              if (f.size > 10 * 1024 * 1024) {
-                form.setError("photo_file", { message: "Max size 10 MB" });
+              const maxBytes = (Number(process.env.NEXT_PUBLIC_MAX_IMAGE_MB) || 10) * 1024 * 1024;
+              if (f.size > maxBytes) {
+                form.setError("photo_file", { message: `Max size ${(Number(process.env.NEXT_PUBLIC_MAX_IMAGE_MB) || 10)} MB` });
                 return;
               }
               form.setValue("photo_file", f as unknown as FormValues["photo_file"], { shouldValidate: true });
@@ -249,12 +250,12 @@ export default function MultiStepForm() {
           ) : (
             <button type="button" onClick={() => photoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 w-full text-left hover:bg-neutral-50">
               <div className="font-medium">Choose a photo</div>
-              <div className="text-sm text-neutral-500">Images only, up to 10 MB</div>
+              <div className="text-sm text-neutral-500">Images only, up to {(Number(process.env.NEXT_PUBLIC_MAX_IMAGE_MB) || 10)} MB</div>
             </button>
           )}
         </div>
       )},
-      { id: 11, label: "Upload Video (video only, max 100 MB)", render: (
+      { id: 11, label: "Upload Video (video only, max 50 MB)", render: (
         <div className="space-y-3">
           <input
             ref={videoInputRef}
@@ -268,8 +269,9 @@ export default function MultiStepForm() {
                 form.setError("video_file", { message: "Only video files are allowed" });
                 return;
               }
-              if (f.size > 100 * 1024 * 1024) {
-                form.setError("video_file", { message: "Max size 100 MB" });
+              const maxBytes = (Number(process.env.NEXT_PUBLIC_MAX_VIDEO_MB) || 50) * 1024 * 1024;
+              if (f.size > maxBytes) {
+                form.setError("video_file", { message: `Max size ${(Number(process.env.NEXT_PUBLIC_MAX_VIDEO_MB) || 50)} MB` });
                 return;
               }
               form.setValue("video_file", f as unknown as FormValues["video_file"], { shouldValidate: true });
