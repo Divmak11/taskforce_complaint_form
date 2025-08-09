@@ -300,7 +300,7 @@ export default function MultiStepForm() {
           ) : (
             <button type="button" onClick={() => videoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 w-full text-left hover:bg-neutral-50">
               <div className="font-medium">Choose a video</div>
-              <div className="text-sm text-neutral-500">Videos only, up to 100 MB</div>
+              <div className="text-sm text-neutral-500">Videos only, up to {(Number(process.env.NEXT_PUBLIC_MAX_VIDEO_MB) || 50)} MB</div>
             </button>
           )}
         </div>
@@ -395,7 +395,7 @@ export default function MultiStepForm() {
                 <button
                   onClick={() => { if (canProceed) next(); }}
                   disabled={!canProceed || submitting}
-                  className="px-4 py-2 rounded-lg bg-blue-600 text-white disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
+                  className="px-4 py-2 rounded-lg font-semibold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >
                   OK
                 </button>
@@ -403,7 +403,7 @@ export default function MultiStepForm() {
                 <button
                   onClick={form.handleSubmit(onSubmit)}
                   disabled={submitting}
-                  className="px-4 py-2 rounded-lg bg-green-600 text-white disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
+                  className="px-4 py-2 rounded-lg font-semibold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >
                   {submitting ? 'Submitting...' : 'Submit'}
                 </button>

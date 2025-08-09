@@ -19,7 +19,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35 }}
-              className="bg-white shadow-sm rounded-2xl overflow-hidden border border-neutral-200"
+              className="bg-white shadow-sm rounded-2xl overflow-hidden border border-neutral-200 text-neutral-900"
             >
               <div className="relative h-48 w-full">
                 <Image src={headerImg} alt="Header" fill className="object-cover" priority />
@@ -31,7 +31,7 @@ export default function Home() {
                 <div className="mt-6">
                   <button
                     onClick={() => setStarted(true)}
-                    className="inline-flex items-center gap-2 rounded-xl bg-blue-600 text-white px-5 py-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30"
                   >
                     Start →
                   </button>

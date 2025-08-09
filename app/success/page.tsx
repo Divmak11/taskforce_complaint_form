@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function SuccessPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="bg-white rounded-2xl border border-neutral-200 p-10 max-w-lg w-full text-center shadow-sm">
+      <div className="bg-white rounded-2xl border border-neutral-200 p-10 max-w-lg w-full text-center shadow-sm text-neutral-900">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
