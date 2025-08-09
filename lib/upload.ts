@@ -1,4 +1,4 @@
-import { supabase } from './supabaseClient';
+import { getSupabaseClient } from './supabaseClient';
 
 const PHOTOS_BUCKET = 'complaints-photos';
 const VIDEOS_BUCKET = 'complaints-videos';
@@ -11,6 +11,7 @@ function randomPath(prefix: string, file: File) {
 }
 
 export async function uploadImage(file: File) {
+  const supabase = getSupabaseClient();
   const path = randomPath('photos', file);
   const { error } = await supabase.storage.from(PHOTOS_BUCKET).upload(path, file, {
     cacheControl: '3600',
@@ -23,6 +24,7 @@ export async function uploadImage(file: File) {
 }
 
 export async function uploadVideo(file: File) {
+  const supabase = getSupabaseClient();
   const path = randomPath('videos', file);
   const { error } = await supabase.storage.from(VIDEOS_BUCKET).upload(path, file, {
     cacheControl: '3600',

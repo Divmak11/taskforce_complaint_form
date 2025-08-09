@@ -7,7 +7,7 @@ import { formSchema, FormValues } from "@/lib/schema";
 import { COMPLAINT_TYPES } from "@/lib/content";
 import { motion, AnimatePresence } from "framer-motion";
 import { uploadImage, uploadVideo } from "@/lib/upload";
-import { supabase } from "@/lib/supabaseClient";
+import { getSupabaseClient } from "@/lib/supabaseClient";
 import DatePicker from "react-datepicker";
 
 const stepVariants = {
@@ -313,6 +313,7 @@ export default function MultiStepForm() {
     setError(null);
     setSubmitting(true);
     try {
+      const supabase = getSupabaseClient();
       // Uploads
       const photoUrl = await uploadImage(values.photo_file);
       const videoUrl = await uploadVideo(values.video_file);
