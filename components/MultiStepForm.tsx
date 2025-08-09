@@ -25,7 +25,7 @@ function StepWrapper({ children, step }: { children: React.ReactNode; step: numb
       animate="animate"
       exit="exit"
       transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl border border-neutral-200 p-6 md:p-8 shadow-sm"
+      className="bg-white rounded-2xl border border-neutral-200 p-6 md:p-8 shadow-sm text-neutral-900"
     >
       {children}
     </motion.div>
@@ -187,7 +187,7 @@ export default function MultiStepForm() {
                 {...form.register("complaint_type")}
                 className="h-4 w-4"
               />
-              <span className="text-lg">{opt}</span>
+              <span className="text-base sm:text-lg text-neutral-900">{opt}</span>
             </label>
           ))}
         </div>
@@ -233,7 +233,7 @@ export default function MultiStepForm() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photoPreview} alt="Preview" className="h-24 w-24 object-cover rounded-md border" />
               <div className="flex gap-2">
-                <button type="button" onClick={() => photoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300">Change</button>
+                <button type="button" onClick={() => photoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700">Change</button>
                 <button
                   type="button"
                   onClick={() => {
@@ -242,7 +242,7 @@ export default function MultiStepForm() {
                     form.clearErrors("photo_file");
                     if (photoInputRef.current) photoInputRef.current.value = "";
                   }}
-                  className="px-3 py-2 rounded-lg border border-neutral-300"
+                  className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700"
                 >Remove</button>
               </div>
             </div>
@@ -282,7 +282,7 @@ export default function MultiStepForm() {
             <div className="space-y-2">
               <video src={videoPreview} className="w-full max-w-sm rounded-md border" controls muted playsInline />
               <div className="flex gap-2">
-                <button type="button" onClick={() => videoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300">Change</button>
+                <button type="button" onClick={() => videoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700">Change</button>
                 <button
                   type="button"
                   onClick={() => {
@@ -291,7 +291,7 @@ export default function MultiStepForm() {
                     form.clearErrors("video_file");
                     if (videoInputRef.current) videoInputRef.current.value = "";
                   }}
-                  className="px-3 py-2 rounded-lg border border-neutral-300"
+                  className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700"
                 >Remove</button>
               </div>
             </div>
@@ -340,7 +340,10 @@ export default function MultiStepForm() {
     } catch (e: unknown) {
       const message =
         e instanceof Error ? e.message : typeof e === "string" ? e : null;
-      setError(message ?? "Failed to submit. Please try again.");
+      const friendly = message && message.includes("Invalid Compact JWS")
+        ? "Upload failed due to authentication. Please check Supabase keys configuration."
+        : message;
+      setError(friendly ?? "Failed to submit. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -352,7 +355,7 @@ export default function MultiStepForm() {
       <AnimatePresence mode="wait">
         <StepWrapper step={step}>
           <div className="space-y-4">
-            <div className="text-xl md:text-2xl font-semibold">{active.label}</div>
+            <div className="text-xl md:text-2xl font-semibold text-neutral-900">{active.label}</div>
             <div>{active.render}</div>
             {error && (
               <div className="text-red-600 text-sm">{error}</div>
