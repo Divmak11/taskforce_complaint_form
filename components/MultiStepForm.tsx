@@ -150,6 +150,7 @@ export default function MultiStepForm() {
             }}
             placeholderText="Select date"
             dateFormat="dd/MM/yyyy"
+            maxDate={new Date()}
             className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2"
             onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
             isClearable
