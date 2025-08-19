@@ -58,10 +58,10 @@ export default function ElectoralDemocracyPage() {
         </header>
 
         {/* Main Content */}
-        <main className="container mx-auto px-4 py-8">
-          {!showForm ? (
-            /* Description Card */
-            <div className="max-w-2xl mx-auto">
+        <div className="min-h-[calc(100vh-100px)] flex items-center justify-center p-4">
+          <div className="w-full max-w-3xl">
+            {!showForm ? (
+              /* Description Card */
               <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
                   {currentContent.title}
@@ -76,16 +76,12 @@ export default function ElectoralDemocracyPage() {
                   {currentContent.start}
                 </button>
               </div>
-            </div>
-          ) : (
-            /* Form */
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-                <LawyerForm />
-              </div>
-            </div>
-          )}
-        </main>
+            ) : (
+              /* Form */
+              <LawyerForm />
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

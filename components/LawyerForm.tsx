@@ -23,7 +23,7 @@ function StepWrapper({ children, step }: { children: React.ReactNode; step: numb
       animate="animate"
       exit="exit"
       transition={{ duration: 0.3 }}
-      className="text-neutral-900"
+      className="bg-white/95 backdrop-blur-sm rounded-2xl border border-neutral-200 p-6 md:p-8 shadow-sm text-neutral-900"
     >
       {children}
     </motion.div>
@@ -70,32 +70,32 @@ export default function LawyerForm() {
 
   const labels = {
     hi: {
-      name: "आपका नाम क्या है? *",
+      name: "आपका नाम क्या है?",
       whatsapp: "नंबर (व्हाट्सएप) *",
       practicing_court: "प्रैक्टिसिंग कोर्ट (यदि एक से अधिक जिला हो तो शामिल करें) *",
       assembly: "विधानसभा (कोड के साथ नाम) *",
       email: "ईमेल *",
-      placeholder: "आपका उत्तर",
+      placeholder: "अपना उत्तर यहाँ टाइप करें...",
       back: "वापस",
-      ok: "ठीक",
+      ok: "अगला",
       submit: "जमा करें",
       submitting: "जमा हो रहा है...",
-      tip: "सुझाव: जारी रखने के लिए Enter ↵ दबाएं",
+      tip: "जारी रखने के लिए Enter दबाएं",
       step: "चरण",
       of: "का"
     },
     en: {
-      name: "What is your Name? *",
+      name: "What is your Name?",
       whatsapp: "Number (WhatsApp) *",
       practicing_court: "Practicing Court (Include if more than one District) *",
       assembly: "Vidhansabha/Assembly (Name with Code) *",
       email: "Email *",
-      placeholder: "Your answer",
+      placeholder: "Type your answer here...",
       back: "Back",
-      ok: "OK",
+      ok: "Next",
       submit: "Submit",
       submitting: "Submitting...",
-      tip: "Tip: press Enter ↵ to continue",
+      tip: "Press Enter to continue",
       step: "Step",
       of: "of"
     }
@@ -197,7 +197,7 @@ export default function LawyerForm() {
 
   return (
     <div>
-          <div className="mb-4 text-sm text-neutral-600">{currentLabels.step} {step} {currentLabels.of} {totalSteps}</div>
+          <div className="mb-4 text-sm text-neutral-600">{language === 'hi' ? `चरण ${step} / ${totalSteps}` : `Step ${step} of ${totalSteps}`}</div>
           <AnimatePresence mode="wait">
             <StepWrapper step={step}>
               <div className="space-y-4">
