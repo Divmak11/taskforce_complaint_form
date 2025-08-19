@@ -1,10 +1,9 @@
 export const HEADER = {
-  title: "Complaint to Legal Taskforce",
-  // Text extracted from screenshots; please adjust in this file if needed
+  title: "Legal Taskforce",
   descriptionEn:
-    "If you want, your identity will be kept confidential. You can send us your complaint and such request at ________.",
+    "This form is for reporting electoral irregularities and complaints. Please provide all necessary information so that we can take appropriate action on your complaint.",
   descriptionHi:
-    "बिहार में संविधान और लोकतंत्र की रक्षा के लिए एक कानूनी टास्कफोर्स का गठन किया गया है। यदि आपको चुनाव में कोई गड़बड़ी, प्रशासन की निष्क्रियता, मतदाताओं का उत्पीड़न, या किसी भी प्रकार की असंवैधानिक गतिविधि की जानकारी हो, तो कृपया नीचे दिए गए फॉर्म के माध्यम से हमें सूचित करें। आपकी जानकारी के आधार पर हमारी कानूनी टीम उचित कार्रवाई करेगी।",
+    "यह फॉर्म चुनावी अनियमितताओं और शिकायतों की रिपोर्ट करने के लिए है। कृपया सभी आवश्यक जानकारी प्रदान करें ताकि हम आपकी शिकायत पर उचित कार्रवाई कर सकें।",
 };
 
 export const COMPLAINT_TYPES = [

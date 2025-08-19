@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState, useRef } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema, FormValues } from "@/lib/schema";
-import { COMPLAINT_TYPES } from "@/lib/content";
+import { formSchema, FormValues } from '@/lib/schema';
 import { motion, AnimatePresence } from "framer-motion";
 import { uploadImage, uploadVideo } from "@/lib/upload";
 import { getSupabaseClient } from "@/lib/supabaseClient";
@@ -25,7 +25,7 @@ function StepWrapper({ children, step }: { children: React.ReactNode; step: numb
       animate="animate"
       exit="exit"
       transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl border border-neutral-200 p-6 md:p-8 shadow-sm text-neutral-900"
+      className="bg-white/95 backdrop-blur-sm rounded-2xl border border-neutral-200 p-6 md:p-8 shadow-sm text-neutral-900"
     >
       {children}
     </motion.div>
@@ -33,6 +33,7 @@ function StepWrapper({ children, step }: { children: React.ReactNode; step: numb
 }
 
 export default function MultiStepForm() {
+  const { language } = useLanguage();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
@@ -48,6 +49,86 @@ export default function MultiStepForm() {
   const photoInputRef = useRef<HTMLInputElement | null>(null);
   const videoInputRef = useRef<HTMLInputElement | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+
+  const labelsHi = {
+    name: "आपका नाम क्या है?",
+    phone: "फोन नंबर",
+    assembly: "विधानसभा",
+    district: "जिला",
+    incidentDate: "घटना की तारीख",
+    incidentTime: "घटना का समय",
+    location: "घटना का स्थान (गांव/बूथ/क्षेत्र)",
+    complaintType: "शिकायत का प्रकार",
+    description: "घटना का संक्षिप्त विवरण",
+    photo: "फोटो अपलोड करें",
+    video: "वीडियो अपलोड करें",
+    uploadPhoto: "फोटो अपलोड करें (केवल छवियां, अधिकतम 10 MB)",
+    uploadVideo: "वीडियो अपलोड करें (केवल वीडियो, अधिकतम 50 MB)",
+    optional: "(वैकल्पिक)",
+    placeholder: "अपना उत्तर यहाँ टाइप करें...",
+    selectDate: "तारीख चुनें",
+    next: "अगला",
+    back: "वापस",
+    submit: "शिकायत जमा करें",
+    submitting: "जमा हो रहा है...",
+    tip: "जारी रखने के लिए Enter दबाएं",
+    change: "बदलें",
+    remove: "हटाएं",
+    choosePhoto: "फोटो चुनें",
+    chooseVideo: "वीडियो चुनें",
+    imagesOnly: "केवल छवियां, 10 MB तक",
+    videosOnly: "केवल वीडियो, 50 MB तक",
+    complaintTypes: {
+      "Voter Bribery": "मतदाता रिश्वतखोरी",
+      "Booth Capturing": "बूथ कैप्चरिंग",
+      "Fake Voting": "फर्जी मतदान",
+      "EVM Damage": "ईवीएम क्षति",
+      "Voter Intimidation": "मतदाता को डराना-धमकाना",
+      "Violation of Model Code of Conduct": "आदर्श आचार संहिता का उल्लंघन",
+      "Other": "अन्य"
+    }
+  };
+
+  const labelsEn = {
+    name: "What is your Name?",
+    phone: "Phone Number",
+    assembly: "Assembly",
+    district: "District",
+    incidentDate: "Date of Incident",
+    incidentTime: "Time of Incident",
+    location: "Location of Incident (Village/Booth/Area)",
+    complaintType: "Type of Complaint",
+    description: "Brief Description of the Incident",
+    photo: "Upload Photo",
+    video: "Upload Video",
+    uploadPhoto: "Upload Photo (images only, max 10 MB)",
+    uploadVideo: "Upload Video (video only, max 50 MB)",
+    optional: "(optional)",
+    placeholder: "Type your answer here...",
+    selectDate: "Select date",
+    next: "Next",
+    back: "Back",
+    submit: "Submit Complaint",
+    submitting: "Submitting...",
+    tip: "Press Enter to continue",
+    change: "Change",
+    remove: "Remove",
+    choosePhoto: "Choose a photo",
+    chooseVideo: "Choose a video",
+    imagesOnly: "Images only, up to 10 MB",
+    videosOnly: "Videos only, up to 50 MB",
+    complaintTypes: {
+      "Voter Bribery": "Voter Bribery",
+      "Booth Capturing": "Booth Capturing",
+      "Fake Voting": "Fake Voting",
+      "EVM Damage": "EVM Damage",
+      "Voter Intimidation": "Voter Intimidation",
+      "Violation of Model Code of Conduct": "Violation of Model Code of Conduct",
+      "Other": "Other"
+    }
+  };
+
+  const currentLabels = language === 'hi' ? labelsHi : labelsEn;
   const [videoPreview, setVideoPreview] = useState<string | null>(null);
 
   const toYMD = (d: Date) =>
@@ -95,46 +176,46 @@ export default function MultiStepForm() {
   // Steps map: 1..N
   const steps = useMemo(() => {
     return [
-      { id: 1, label: "What is your Name?", render: (
+      { id: 1, label: currentLabels.name, render: (
         <input
           autoFocus
           type="text"
-          className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2"
-          placeholder="Type your answer here..."
+          className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2"
+          placeholder={currentLabels.placeholder}
           {...form.register("name")}
           onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
         />
       )},
-      { id: 2, label: "Phone Number", render: (
+      { id: 2, label: currentLabels.phone, render: (
         <input
           type="tel"
           inputMode="numeric"
           pattern="[0-9]*"
-          className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2"
-          placeholder="10-digit mobile number"
+          className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2"
+          placeholder={currentLabels.placeholder}
           {...form.register("phone")}
           onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
         />
       )},
-      { id: 3, label: "Assembly (optional)", render: (
+      { id: 3, label: `${currentLabels.assembly} ${currentLabels.optional}`, render: (
         <input
           type="text"
-          className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2"
-          placeholder="Your assembly"
+          className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2"
+          placeholder={currentLabels.placeholder}
           {...form.register("assembly")}
           onKeyDown={(e) => { if (e.key === 'Enter') next(); }}
         />
       )},
-      { id: 4, label: "District", render: (
+      { id: 4, label: currentLabels.district, render: (
         <input
           type="text"
-          className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2"
-          placeholder="District"
+          className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2"
+          placeholder={currentLabels.placeholder}
           {...form.register("district")}
           onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
         />
       )},
-      { id: 5, label: "Date of Incident", render: (
+      { id: 5, label: currentLabels.incidentDate, render: (
         <div className="w-full">
           <DatePicker
             selected={incidentDateObj}
@@ -148,64 +229,64 @@ export default function MultiStepForm() {
                 form.setValue("incident_date", "", { shouldValidate: true });
               }
             }}
-            placeholderText="Select date"
+            placeholderText={currentLabels.selectDate}
             dateFormat="dd/MM/yyyy"
             maxDate={new Date()}
-            className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2"
+            className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2"
             onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
             isClearable
             showPopperArrow={false}
           />
         </div>
       )},
-      { id: 6, label: "Time of Incident", render: (
+      { id: 6, label: currentLabels.incidentTime, render: (
         <input
           type="time"
-          className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2"
+          className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2"
           {...form.register("incident_time")}
           onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
         />
       )},
-      { id: 7, label: "Location of Incident (Village/Booth/Area)", render: (
+      { id: 7, label: currentLabels.location, render: (
         <textarea
           rows={1}
           onInput={(e) => {
             const t = e.currentTarget; t.style.height = 'auto'; t.style.height = `${Math.min(t.scrollHeight, 240)}px`;
           }}
-          className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2 min-h-[44px] max-h-60 overflow-y-auto"
-          placeholder="Village / Booth / Area name"
+          className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2 min-h-[44px] max-h-60 overflow-y-auto"
+          placeholder={currentLabels.placeholder}
           {...form.register("location")}
           onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
         />
       )},
-      { id: 8, label: "Type of Complaint / शिकायत", render: (
+      { id: 8, label: currentLabels.complaintType, render: (
         <div className="space-y-3">
-          {COMPLAINT_TYPES.map((opt) => (
-            <label key={opt} className="flex items-center gap-3">
+          {Object.entries(currentLabels.complaintTypes).map(([key, label]) => (
+            <label key={key} className="flex items-center gap-3">
               <input
                 type="radio"
-                value={opt}
+                value={key}
                 {...form.register("complaint_type")}
                 className="h-4 w-4"
               />
-              <span className="text-base sm:text-lg text-neutral-900">{opt}</span>
+              <span className="text-base sm:text-lg text-neutral-900">{label}</span>
             </label>
           ))}
         </div>
       )},
-      { id: 9, label: "Brief Description of the Incident (optional)", render: (
+      { id: 9, label: `${currentLabels.description} ${currentLabels.optional}`, render: (
         <textarea
           rows={1}
           onInput={(e) => {
             const t = e.currentTarget; t.style.height = 'auto'; t.style.height = `${Math.min(t.scrollHeight, 320)}px`;
           }}
           className="w-full border-b-2 border-blue-600 focus:outline-none text-lg p-2 min-h-[44px] max-h-80 overflow-y-auto"
-          placeholder="Describe briefly..."
+          placeholder={currentLabels.placeholder}
           {...form.register("description")}
           onKeyDown={(e) => { if (e.key === 'Enter') next(); }}
         />
       )},
-      { id: 10, label: "Upload Photo (images only, max 10 MB)", render: (
+      { id: 10, label: currentLabels.uploadPhoto, render: (
         <div className="space-y-3">
           <input
             ref={photoInputRef}
@@ -235,7 +316,7 @@ export default function MultiStepForm() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photoPreview} alt="Preview" className="h-24 w-24 object-cover rounded-md border" />
               <div className="flex gap-2">
-                <button type="button" onClick={() => photoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700">Change</button>
+                <button type="button" onClick={() => photoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700">{currentLabels.change}</button>
                 <button
                   type="button"
                   onClick={() => {
@@ -245,18 +326,18 @@ export default function MultiStepForm() {
                     if (photoInputRef.current) photoInputRef.current.value = "";
                   }}
                   className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700"
-                >Remove</button>
+                >{currentLabels.remove}</button>
               </div>
             </div>
           ) : (
             <button type="button" onClick={() => photoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 w-full text-left hover:bg-neutral-50">
-              <div className="font-medium">Choose a photo</div>
-              <div className="text-sm text-neutral-500">Images only, up to {(Number(process.env.NEXT_PUBLIC_MAX_IMAGE_MB) || 10)} MB</div>
+              <div className="font-medium">{currentLabels.choosePhoto}</div>
+              <div className="text-sm text-neutral-500">{currentLabels.imagesOnly}</div>
             </button>
           )}
         </div>
       )},
-      { id: 11, label: "Upload Video (video only, max 50 MB)", render: (
+      { id: 11, label: currentLabels.uploadVideo, render: (
         <div className="space-y-3">
           <input
             ref={videoInputRef}
@@ -285,7 +366,7 @@ export default function MultiStepForm() {
             <div className="space-y-2">
               <video src={videoPreview} className="w-full max-w-sm rounded-md border" controls muted playsInline />
               <div className="flex gap-2">
-                <button type="button" onClick={() => videoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700">Change</button>
+                <button type="button" onClick={() => videoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700">{currentLabels.change}</button>
                 <button
                   type="button"
                   onClick={() => {
@@ -295,19 +376,19 @@ export default function MultiStepForm() {
                     if (videoInputRef.current) videoInputRef.current.value = "";
                   }}
                   className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700"
-                >Remove</button>
+                >{currentLabels.remove}</button>
               </div>
             </div>
           ) : (
             <button type="button" onClick={() => videoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 w-full text-left hover:bg-neutral-50">
-              <div className="font-medium">Choose a video</div>
-              <div className="text-sm text-neutral-500">Videos only, up to {(Number(process.env.NEXT_PUBLIC_MAX_VIDEO_MB) || 50)} MB</div>
+              <div className="font-medium">{currentLabels.chooseVideo}</div>
+              <div className="text-sm text-neutral-500">{currentLabels.videosOnly}</div>
             </button>
           )}
         </div>
       )},
     ];
-  }, [form, canProceed, incidentDateObj, photoPreview, videoPreview, next]);
+  }, [form, canProceed, incidentDateObj, photoPreview, videoPreview, next, currentLabels]);
 
   const totalSteps = steps.length;
   const active = steps[step - 1];
@@ -354,7 +435,7 @@ export default function MultiStepForm() {
 
   return (
     <div>
-      <div className="mb-4 text-sm text-neutral-600">Step {step} of {totalSteps}</div>
+      <div className="mb-4 text-sm text-neutral-600">{language === 'hi' ? `चरण ${step} / ${totalSteps}` : `Step ${step} of ${totalSteps}`}</div>
       <AnimatePresence mode="wait">
         <StepWrapper step={step}>
           <div className="space-y-4">
@@ -390,27 +471,27 @@ export default function MultiStepForm() {
                 disabled={step === 1 || submitting}
                 className="px-4 py-2 rounded-lg border border-neutral-300 text-neutral-700 disabled:opacity-50 w-full sm:w-auto"
               >
-                Back
+                {currentLabels.back}
               </button>
               {step < totalSteps ? (
                 <button
                   onClick={() => { if (canProceed) next(); }}
                   disabled={!canProceed || submitting}
-                  className="px-4 py-2 rounded-lg font-semibold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
+                  className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >
-                  OK
+                  {currentLabels.next}
                 </button>
               ) : (
                 <button
                   onClick={form.handleSubmit(onSubmit)}
                   disabled={submitting}
-                  className="px-4 py-2 rounded-lg font-semibold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
+                  className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >
-                  {submitting ? 'Submitting...' : 'Submit'}
+                  {submitting ? currentLabels.submitting : currentLabels.submit}
                 </button>
               )}
             </div>
-            <div className="text-xs text-neutral-500">Tip: press Enter ↵ to continue</div>
+            <div className="text-xs text-neutral-500">{currentLabels.tip}</div>
           </div>
         </StepWrapper>
       </AnimatePresence>

@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const englishSans = localFont({
+const roboto = Roboto({
   variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
+});
+
+const khand = localFont({
+  variable: "--font-khand",
   display: "swap",
   src: [
     { path: "./fonts/sf-ui-display-thin-58646e9b26e8b.woff", weight: "100", style: "normal" },
@@ -44,9 +41,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${englishSans.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 text-neutral-900`}
+        className={`${roboto.variable} ${khand.variable} font-roboto antialiased bg-neutral-50 text-neutral-900`}
       >
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
