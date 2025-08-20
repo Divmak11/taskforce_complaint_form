@@ -4,9 +4,25 @@ import Link from "next/link";
 import Image from "next/image";
 import bgImage from "./assets/bg.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
   const { language, setLanguage } = useLanguage();
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowLanguageDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const content = {
     hi: {
@@ -40,39 +56,76 @@ export default function Home() {
   const currentContent = content[language];
 
   return (
-    <div className="min-h-screen relative">
-      {/* Background Image */}
-      <div className="fixed inset-0 z-0">
-        <Image
-          src={bgImage}
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 min-h-screen">
-        {/* Header */}
-        <header className="flex justify-between items-center p-4 md:p-6">
-          {/* Logo Space - Left empty as requested */}
-          <div className="w-32 h-12"></div>
-          
-          {/* Language Selector */}
+    <div className="min-h-screen bg-white p-4 md:p-8">
+      {/* Header with Logo and Language Selector on White Background */}
+      <header className="flex justify-between items-center mb-4 md:mb-8">
+        {/* VoteChori Logo */}
+        <div className="flex items-center">
+          <div className="text-xl md:text-2xl font-bold text-gray-800">
+            <span className="text-black">Vote</span>
+            <span className="text-[#AD1818]">Chori</span>
+          </div>
+        </div>
+        
+        {/* Language Selector */}
+        <div className="relative" ref={dropdownRef}>
           <button
-            onClick={() => setLanguage(language === 'hi' ? 'en' : 'hi')}
-            className="px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-white/20 transition-colors flex items-center gap-2"
+            onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+            className="px-4 py-2 border border-blue-400 rounded-lg font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors flex items-center gap-2 min-w-[120px] justify-between"
           >
             {language === 'hi' ? 'हिंदी' : 'English'}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-        </header>
+          
+          {/* Language Dropdown */}
+          {showLanguageDropdown && (
+            <div className="absolute top-full left-0 mt-1 w-full bg-white border border-blue-400 rounded-lg shadow-lg z-20">
+              <button
+                onClick={() => {
+                  setLanguage('en');
+                  setShowLanguageDropdown(false);
+                }}
+                className={`w-full px-4 py-2 text-left hover:bg-blue-50 transition-colors ${
+                  language === 'en' ? 'bg-blue-100' : ''
+                }`}
+              >
+                English
+              </button>
+              <button
+                onClick={() => {
+                  setLanguage('hi');
+                  setShowLanguageDropdown(false);
+                }}
+                className={`w-full px-4 py-2 text-left hover:bg-blue-50 transition-colors rounded-b-lg ${
+                  language === 'hi' ? 'bg-blue-100' : ''
+                }`}
+              >
+                हिंदी
+              </button>
+            </div>
+          )}
+        </div>
+      </header>
 
-        {/* Main Content */}
-        <main className="container mx-auto px-4 py-8">
+      {/* Main Content Area with Background Image */}
+      <div className="relative rounded-lg overflow-hidden min-h-[calc(100vh-8rem)] md:min-h-[calc(100vh-12rem)]">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={bgImage}
+            alt="Background"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10">
+          {/* Main Content */}
+          <main className="container mx-auto px-4 py-8">
           {/* Main Action Buttons */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-16">
             {/* Electoral Democracy Button */}
@@ -151,8 +204,10 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </main>
+          </main>
+        </div>
       </div>
+      
     </div>
   );
 }

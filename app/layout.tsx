@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import Footer from "@/components/Footer";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -45,6 +46,7 @@ export default function RootLayout({
       >
         <LanguageProvider>
           {children}
+          <Footer />
         </LanguageProvider>
       </body>
     </html>
