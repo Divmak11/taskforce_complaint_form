@@ -1,0 +1,144 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import bgImage from "../assets/bg.png";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+export default function StopVoteChoriPage() {
+  const { language, setLanguage } = useLanguage();
+
+  const content = {
+    hi: {
+      header: "स्टॉप वोट चोरी",
+      titleMain: "StopVoteChori – बिहार में लोकतंत्र बचाओ",
+      intro:
+        "2020 के बिहार विधानसभा चुनाव ने यह साबित कर दिया कि हर वोट कितना कीमती है। हिलसा सीट पर जीत का अंतर सिर्फ 12 वोट था, और कई अन्य सीटों पर परिणाम 100, 200 या 500 वोटों के मामूली फासले से तय हुए। विपक्षी दलों ने खुल्लमखुल्ला कहा कि चुनावी प्रक्रियाओं में धांधली और गिनती के दौरान गलतियाँ हुईं, लेकिन उनकी शिकायतों को दरकिनार कर दिया गया। यही वह ज्वलंत कारण है जिससे “StopVoteChori” का जन्म हुआ—एक जनआंदोलन जिसे विपक्ष ने उठाया और जिसमें देशभर से मानवाधिकार संगठन, युवा स्वयंसेवी समूह और लोकतंत्र में भरोसा रखने वाले नागरिक जुड़े।",
+      whyTitle: "क्यों ज़रूरी है यह अभियान?",
+      whyPara:
+        "आज जब राजनीति में ऐसे नेता सक्रिय हैं जो खुलेआम चुनावी क़ानूनों का उल्लंघन कर रहे हैं और मतदाता पर ही यह बोझ डाल रहे हैं कि वह साबित करे कि “मैं वोटर हूँ”, तो यह लोकतंत्र के लिए ख़तरे की घंटी है।",
+      standsTitle: "StopVoteChori अभियान यह संदेश देता है कि—",
+      bullets: [
+        "हर वोट की रक्षा जनता करेगी।",
+        "हर गलती, हर गड़बड़ी पर सवाल उठेगा।",
+        "और हर नागरिक लोकतंत्र का प्रहरी बनेगा।",
+      ],
+      joinTitle: "आप कैसे जुड़ें?",
+      joinBullets: [
+        "यदि आप वकील हैं, तो हमारे Legal Taskforce से जुड़ें और जनता की आवाज़ को कानूनी ताकत दें।",
+        "यदि आप नागरिक हैं, तो अपनी देखी-सुनी हर चुनावी गड़बड़ी की रिपोर्ट दर्ज करें।",
+        "आपकी शिकायत हमारी टीम तक पहुँचेगी और हर मामले की गंभीरता से जाँच होगी।",
+      ],
+      closing:
+        "लोकतंत्र की सबसे बड़ी ताकत जनता का वोट है। अगर वोट ही चोरी हो जाए, तो लोकतंत्र सिर्फ एक दिखावा रह जाएगा।",
+      cta: "Legal Taskforce से जुड़ें →",
+    },
+    en: {
+      header: "Stop Vote Chori",
+      titleMain: "StopVoteChori — Save Democracy in Bihar",
+      intro:
+        "The 2020 Bihar Assembly election proved how precious every vote is. The Hilsa seat was decided by just 12 votes, and many other seats by margins of 100, 200 or 500 votes. Opposition parties alleged irregularities and counting errors, yet their complaints were brushed aside. This is why “StopVoteChori” was born — a people’s campaign championed by the opposition and supported by human-rights organisations, youth groups and citizens who believe in democracy.",
+      whyTitle: "Why is this campaign necessary?",
+      whyPara:
+        "When leaders openly flout electoral laws and push the burden on voters to prove they are ‘voters’, it rings an alarm for democracy.",
+      standsTitle: "StopVoteChori stands for —",
+      bullets: [
+        "People will protect every vote.",
+        "We will question every mistake and malpractice.",
+        "Every citizen will be a sentinel of democracy.",
+      ],
+      joinTitle: "How can you join?",
+      joinBullets: [
+        "If you are a lawyer, join our Legal Taskforce and give people’s voice legal strength.",
+        "If you are a citizen, report any malpractice or irregularity you witness.",
+        "Our team will receive your complaint and investigate every case with seriousness.",
+      ],
+      closing:
+        "The greatest strength of democracy is the people’s vote. If votes are stolen, democracy becomes a mere show.",
+      cta: "Join Legal Taskforce →",
+    },
+  } as const;
+
+  const t = content[language as keyof typeof content];
+
+  return (
+    <div className="min-h-screen relative">
+      {/* Background Image */}
+      <div className="fixed inset-0 z-0">
+        <Image src={bgImage} alt="Background" fill className="object-cover" priority />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Header */}
+        <header className="flex items-center justify-between p-4 md:p-6">
+          <h1 className="text-xl md:text-2xl font-extrabold tracking-tight">{t.header}</h1>
+          <button
+            onClick={() => setLanguage(language === "hi" ? "en" : "hi")}
+            className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors"
+          >
+            {language === "hi" ? "हिंदी" : "English"}
+          </button>
+        </header>
+
+        {/* Main */}
+        <main className="container mx-auto px-4 py-6 md:py-10">
+          <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
+            {/* Title card */}
+            <section className="relative overflow-hidden rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-xl">
+              <div className="absolute -top-20 -right-24 h-52 w-52 rounded-full bg-[#AD1818]/10 blur-2xl" />
+              <div className="absolute -bottom-20 -left-16 h-52 w-52 rounded-full bg-[#AD1818]/10 blur-2xl" />
+              <div className="relative p-6 md:p-10">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4">{t.titleMain}</h2>
+                <p className="text-gray-700 leading-relaxed md:text-lg">{t.intro}</p>
+              </div>
+            </section>
+
+            {/* Why card */}
+            <section className="rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-lg p-6 md:p-10">
+              <h3 className="text-xl md:text-2xl font-bold mb-3">{t.whyTitle}</h3>
+              <p className="text-gray-700 md:text-lg leading-relaxed">{t.whyPara}</p>
+            </section>
+
+            {/* Stands card */}
+            <section className="rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-lg p-6 md:p-10">
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t.standsTitle}</h3>
+              <ul className="space-y-3 md:space-y-4 text-gray-900">
+                {t.bullets.map((b, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#AD1818]"></span>
+                    <span className="md:text-lg">{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Join card */}
+            <section className="rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-lg p-6 md:p-10">
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t.joinTitle}</h3>
+              <ul className="space-y-3 md:space-y-4 text-gray-900 mb-6">
+                {t.joinBullets.map((b, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#AD1818]"></span>
+                    <span className="md:text-lg">{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/legal-taskforce"
+                className="inline-block px-6 py-3 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors"
+              >
+                {t.cta}
+              </Link>
+            </section>
+
+            {/* Closing note */}
+            <section className="rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-lg p-6 md:p-10">
+              <p className="text-gray-800 md:text-lg leading-relaxed">{t.closing}</p>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
