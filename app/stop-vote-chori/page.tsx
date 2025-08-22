@@ -32,7 +32,8 @@ export default function StopVoteChoriPage() {
       ],
       closing:
         "लोकतंत्र की सबसे बड़ी ताकत जनता का वोट है। अगर वोट ही चोरी हो जाए, तो लोकतंत्र सिर्फ एक दिखावा रह जाएगा।",
-      cta: "Legal Taskforce से जुड़ें →",
+      ctaLegal: "लीगल टीम से जुड़ें →",
+      ctaElectoral: "कंप्लेंट करे →",
     },
     en: {
       header: "Stop Vote Chori",
@@ -56,7 +57,8 @@ export default function StopVoteChoriPage() {
       ],
       closing:
         "The greatest strength of democracy is the people’s vote. If votes are stolen, democracy becomes a mere show.",
-      cta: "Join Legal Taskforce →",
+      ctaLegal: "Join Legal Team →",
+      ctaElectoral: "File Complaint →",
     },
   } as const;
 
@@ -127,12 +129,20 @@ export default function StopVoteChoriPage() {
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/legal-taskforce"
-                className="inline-block px-6 py-3 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors"
-              >
-                {t.cta}
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/electoral-democracy"
+                  className="inline-block px-6 py-3 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors text-center"
+                >
+                  {t.ctaElectoral}
+                </Link>
+                <Link
+                  href="/legal-taskforce"
+                  className="inline-block px-6 py-3 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors text-center"
+                >
+                  {t.ctaLegal}
+                </Link>
+              </div>
             </section>
 
             {/* Closing note */}
