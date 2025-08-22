@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import bgImage from "./assets/bg.png";
-import a1 from "./assets/a1.jpeg";
-import a2 from "./assets/a2.jpeg";
-import a3 from "./assets/a3.jpeg";
+import hallabolIcon from "./assets/hallabol_icon.png";
+import iycIcon from "./assets/iyc_icon.png";
+import icluIcon from "./assets/iclu_icon.png";
 import logo from "./assets/logo.png";
+import balanceIcon from "./assets/balance_icon.png";
+import pointyFingerIcon from "./assets/pointyFingerIcon.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect, useRef } from "react";
 
@@ -43,7 +45,7 @@ export default function Home() {
       language: "हिंदी",
       heroTitle1: "StopVoteChori – बिहार में लोकतंत्र बचाओ",
       heroParagraph:
-        "2020 चुनाव ने दिखाया कि 12 वोट का भी फासला सत्ता तय कर सकता है। इस अभियान से आज देशभर के युवा, नागरिक और मानवाधिकार संगठन जुड़ चुके हैं। आज राजनीति वहाँ पहुँच गई है जहाँ नीतियों पर कानून तोड़ने के आरोप हैं और जनता को ही साबित करना पड़ रहा है कि वह 'वोटर' है। यही लोकतंत्र का सबसे बड़ा संकट है।",
+        "देशभर में हुए चुनाव में धांधली के बाद बिहार में इसे रोकना ही आज का राष्ट्र धर्म है। जनता के मत को बचाने के लिए और संविधान पर हो रहे हमले को रोकने के लिए हमारी टीम बनी है। इस अभियान से आज देशभर के युवा, नागरिक और मानवाधिकार संगठन जुड़ चुके हैं। आज जनता को ही साबित करना पड़ रहा है कि वह 'वोटर' है। इसीलिए बेहद जरूरी है की आप इस चुनाव पर अपनी निगाह बनाये रखें और कोई भी असंवैधानिक काम नहीं होने दें।",
       heroTitle2: "StopVoteChori अभियान यह संदेश देता है कि—",
       heroBullets: [
         "हर वोट की रक्षा जनता करेगी।",
@@ -77,22 +79,23 @@ export default function Home() {
 
   const currentContent = content[language];
   
-  const metrics = language === 'hi'
-    ? [
-        { title: currentContent.demandsMade, value: currentContent.peopleCount, subtitle: currentContent.peopleStand },
-        { title: 'शिकायतें दर्ज', value: '1,24,512', subtitle: 'जिला स्तर पर रिपोर्ट्स' },
-        { title: 'स्वयंसेवक सक्रिय', value: '12,340', subtitle: 'आज' },
-      ]
-    : [
-        { title: currentContent.demandsMade, value: currentContent.peopleCount, subtitle: currentContent.peopleStand },
-        { title: 'Complaints Filed', value: '1,24,512', subtitle: 'Reported at district level' },
-        { title: 'Volunteers Active', value: '12,340', subtitle: 'Today' },
-      ];
+  // metrics removed (EC Demands section is commented out)
+
+  // Mobile alliance carousel state
+  const [allianceIndex, setAllianceIndex] = useState(0);
+  const allianceItems = [
+    { src: hallabolIcon, alt: 'Alliance logo 1', w: 120, h: 120 },
+    { src: iycIcon, alt: 'Alliance logo 2', w: 130, h: 140 },
+    // ICLU 3x size on mobile (was ~180x90)
+    { src: icluIcon, alt: 'Alliance logo 3', w: 540, h: 270 },
+  ];
+  const prevAlliance = () => setAllianceIndex((i) => (i - 1 + allianceItems.length) % allianceItems.length);
+  const nextAlliance = () => setAllianceIndex((i) => (i + 1) % allianceItems.length);
 
   const learnMoreLabel = language === 'hi' ? 'और जानें' : 'Learn More';
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-8">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] p-4 md:p-8">
       {/* Header with Logo and Language Selector on White Background */}
       <header className="flex justify-between items-center mb-4 md:mb-8">
         {/* VoteChori Logo */}
@@ -104,7 +107,7 @@ export default function Home() {
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-            className="px-4 py-2 border border-blue-400 rounded-lg font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors flex items-center gap-2 min-w-[120px] justify-between"
+            className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors flex items-center gap-2 min-w-[120px] justify-between"
           >
             {language === 'hi' ? 'हिंदी' : 'English'}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,14 +117,14 @@ export default function Home() {
           
           {/* Language Dropdown */}
           {showLanguageDropdown && (
-            <div className="absolute top-full left-0 mt-1 w-full bg-white border border-blue-400 rounded-lg shadow-lg z-20">
+            <div className="absolute top-full left-0 mt-1 w-full bg-white border-2 border-[#AD1818] rounded-lg shadow-lg z-20">
               <button
                 onClick={() => {
                   setLanguage('en');
                   setShowLanguageDropdown(false);
                 }}
-                className={`w-full px-4 py-2 text-left hover:bg-blue-50 transition-colors ${
-                  language === 'en' ? 'bg-blue-100' : ''
+                className={`w-full px-4 py-2 text-left hover:bg-[#ad18180d] transition-colors ${
+                  language === 'en' ? 'bg-[#ad18181a]' : ''
                 }`}
               >
                 English
@@ -131,8 +134,8 @@ export default function Home() {
                   setLanguage('hi');
                   setShowLanguageDropdown(false);
                 }}
-                className={`w-full px-4 py-2 text-left hover:bg-blue-50 transition-colors rounded-b-lg ${
-                  language === 'hi' ? 'bg-blue-100' : ''
+                className={`w-full px-4 py-2 text-left hover:bg-[#ad18180d] transition-colors rounded-b-lg ${
+                  language === 'hi' ? 'bg-[#ad18181a]' : ''
                 }`}
               >
                 हिंदी
@@ -164,15 +167,17 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-start">
               {/* Left: Headline + intro + Learn More (outside card) */}
               <div className="md:col-span-3">
-                <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">{currentContent.heroTitle1}</h1>
-                <p className="text-gray-800/95 leading-relaxed md:text-lg">{currentContent.heroParagraph}</p>
-                <div className="mt-4">
-                  <Link
-                    href="/stop-vote-chori"
-                    className="inline-block px-5 py-2 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors"
-                  >
-                    {learnMoreLabel} →
-                  </Link>
+                <div className="bg-white/90 md:bg-transparent rounded-xl p-4 md:p-0">
+                  <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">{currentContent.heroTitle1}</h1>
+                  <p className="text-gray-800/95 leading-relaxed md:text-lg">{currentContent.heroParagraph}</p>
+                  <div className="mt-4">
+                    <Link
+                      href="/stop-vote-chori"
+                      className="inline-block px-5 py-2 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors"
+                    >
+                      {learnMoreLabel} →
+                    </Link>
+                  </div>
                 </div>
               </div>
 
@@ -200,10 +205,8 @@ export default function Home() {
             {/* Electoral Democracy Button */}
             <Link href="/electoral-democracy">
               <div className="group cursor-pointer">
-                <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105">
-                  <svg className="w-16 h-16 text-white transition-transform duration-200 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                  </svg>
+                <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
+                  <Image src={pointyFingerIcon} alt="Electoral Democracy" width={88} height={88} className="w-[88px] h-[88px] object-contain brightness-0 invert contrast-200 transition-transform duration-200 group-hover:scale-110" />
                 </div>
                 <h3 className="text-center text-lg font-bold text-gray-900">
                   {currentContent.electoralDemocracy}
@@ -214,10 +217,8 @@ export default function Home() {
             {/* Legal Taskforce Button */}
             <Link href="/legal-taskforce">
               <div className="group cursor-pointer">
-                <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105">
-                  <svg className="w-16 h-16 text-white transition-transform duration-200 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
+                <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
+                  <Image src={balanceIcon} alt="Legal Taskforce" width={88} height={88} className="w-[88px] h-[88px] object-contain brightness-0 invert contrast-200 transition-transform duration-200 group-hover:scale-110" />
                 </div>
                 <h3 className="text-center text-lg font-bold text-gray-900">
                   {currentContent.legalTaskforce}
@@ -239,12 +240,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* EC Demands Carousel */}
+          {/* EC Demands Carousel - commented out per request */}
+          {/**
           <div className="max-w-4xl mx-auto mb-16">
             <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">
               {currentContent.demandsMade}
             </h2>
-            {/* Mobile carousel */}
             <div className="-mx-4 px-4 md:hidden">
               <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2">
                 {metrics.map((m, idx) => (
@@ -261,8 +262,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-
-            {/* Desktop 3-up */}
             <div className="hidden md:grid grid-cols-3 gap-6">
               {metrics.map((m, idx) => (
                 <div
@@ -278,19 +277,60 @@ export default function Home() {
               ))}
             </div>
           </div>
+          **/}
 
-          {/* Alliance Section */
-          }
-          <div className="max-w-4xl mx-auto">
+          {/* Alliance Section */}
+          <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
               {currentContent.alliance}
             </h2>
-            <div className="flex flex-wrap justify-center items-center gap-6">
-              {[a1, a2, a3].map((logo, idx) => (
-                <div key={idx} className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 p-4">
-                  <Image src={logo} alt={`Alliance logo ${idx + 1}`} width={140} height={60} className="object-contain" />
+            {/* Mobile carousel (one-at-a-time with arrows) */}
+            <div className="-mx-4 px-4 md:hidden">
+              <div className="relative flex items-center justify-center py-2" aria-label="Alliance carousel">
+                {/* Slide */}
+                <div className="w-full flex items-center justify-center min-h-[200px]">
+                  <Image
+                    key={allianceIndex}
+                    src={allianceItems[allianceIndex].src}
+                    alt={allianceItems[allianceIndex].alt}
+                    width={allianceItems[allianceIndex].w}
+                    height={allianceItems[allianceIndex].h}
+                    sizes="(max-width: 768px) 90vw, 400px"
+                    className="object-contain max-w-[90%] h-auto"
+                    loading="eager"
+                    priority
+                    unoptimized
+                  />
                 </div>
-              ))}
+                {/* Prev */}
+                <button
+                  type="button"
+                  onClick={prevAlliance}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 ml-1 px-3 py-2 rounded-full font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] active:scale-95"
+                  aria-label="Previous"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                {/* Next */}
+                <button
+                  type="button"
+                  onClick={nextAlliance}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 mr-1 px-3 py-2 rounded-full font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] active:scale-95"
+                  aria-label="Next"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            {/* Desktop layout */}
+            <div className="hidden md:grid grid-cols-3 items-center justify-items-center gap-8">
+              <Image src={hallabolIcon} alt="Alliance logo 1" width={160} height={160} className="object-contain" />
+              <Image src={iycIcon} alt="Alliance logo 2" width={180} height={160} className="object-contain" />
+              <Image src={icluIcon} alt="Alliance logo 3" width={550} height={440} className="object-contain" />
             </div>
           </div>
           </main>

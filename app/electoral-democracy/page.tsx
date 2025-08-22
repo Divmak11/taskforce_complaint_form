@@ -48,7 +48,7 @@ export default function ElectoralDemocracyPage() {
           {/* Language Selector */}
           <button
             onClick={() => setLanguage(language === 'hi' ? 'en' : 'hi')}
-            className="px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-white/20 transition-colors flex items-center gap-2"
+            className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors flex items-center gap-2"
           >
             {language === 'hi' ? 'हिंदी' : 'English'}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

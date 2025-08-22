@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${khand.variable} font-roboto antialiased bg-neutral-50 text-neutral-900`}
+        className={`${roboto.variable} ${khand.variable} font-roboto antialiased`}
       >
         <LanguageProvider>
           {children}
