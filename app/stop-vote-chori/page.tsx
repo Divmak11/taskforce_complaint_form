@@ -85,25 +85,25 @@ export default function StopVoteChoriPage() {
         <main className="container mx-auto px-4 py-6 md:py-10">
           <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
             {/* Title card */}
-            <section className="relative overflow-hidden rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-xl">
+            <section className="relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-xl text-neutral-900 dark:text-neutral-100">
               <div className="absolute -top-20 -right-24 h-52 w-52 rounded-full bg-[#AD1818]/10 blur-2xl" />
               <div className="absolute -bottom-20 -left-16 h-52 w-52 rounded-full bg-[#AD1818]/10 blur-2xl" />
               <div className="relative p-6 md:p-10">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4">{t.titleMain}</h2>
-                <p className="text-gray-700 leading-relaxed md:text-lg">{t.intro}</p>
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4 text-[var(--foreground)]">{t.titleMain}</h2>
+                <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed md:text-lg">{t.intro}</p>
               </div>
             </section>
 
             {/* Why card */}
-            <section className="rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-lg p-6 md:p-10">
-              <h3 className="text-xl md:text-2xl font-bold mb-3">{t.whyTitle}</h3>
-              <p className="text-gray-700 md:text-lg leading-relaxed">{t.whyPara}</p>
+            <section className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-lg p-6 md:p-10 text-neutral-900 dark:text-neutral-100">
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-[var(--foreground)]">{t.whyTitle}</h3>
+              <p className="text-neutral-700 dark:text-neutral-300 md:text-lg leading-relaxed">{t.whyPara}</p>
             </section>
 
             {/* Stands card */}
-            <section className="rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-lg p-6 md:p-10">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">{t.standsTitle}</h3>
-              <ul className="space-y-3 md:space-y-4 text-gray-900">
+            <section className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-lg p-6 md:p-10 text-neutral-900 dark:text-neutral-100">
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-[var(--foreground)]">{t.standsTitle}</h3>
+              <ul className="space-y-3 md:space-y-4 text-neutral-900 dark:text-neutral-100">
                 {t.bullets.map((b, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#AD1818]"></span>
@@ -114,9 +114,9 @@ export default function StopVoteChoriPage() {
             </section>
 
             {/* Join card */}
-            <section className="rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-lg p-6 md:p-10">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">{t.joinTitle}</h3>
-              <ul className="space-y-3 md:space-y-4 text-gray-900 mb-6">
+            <section className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-lg p-6 md:p-10 text-neutral-900 dark:text-neutral-100">
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-[var(--foreground)]">{t.joinTitle}</h3>
+              <ul className="space-y-3 md:space-y-4 text-neutral-900 dark:text-neutral-100 mb-6">
                 {t.joinBullets.map((b, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#AD1818]"></span>
@@ -133,8 +133,8 @@ export default function StopVoteChoriPage() {
             </section>
 
             {/* Closing note */}
-            <section className="rounded-2xl border-2 border-gray-800 bg-white/90 backdrop-blur-sm shadow-lg p-6 md:p-10">
-              <p className="text-gray-800 md:text-lg leading-relaxed">{t.closing}</p>
+            <section className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-lg p-6 md:p-10 text-neutral-900 dark:text-neutral-100">
+              <p className="text-neutral-800 dark:text-neutral-200 md:text-lg leading-relaxed">{t.closing}</p>
             </section>
           </div>
         </main>

@@ -23,7 +23,7 @@ function StepWrapper({ children, step }: { children: React.ReactNode; step: numb
       animate="animate"
       exit="exit"
       transition={{ duration: 0.3 }}
-      className="bg-white/95 backdrop-blur-sm rounded-2xl border border-neutral-200 p-6 md:p-8 shadow-sm text-neutral-900"
+      className="bg-white/95 dark:bg-black/60 backdrop-blur-sm rounded-2xl border border-neutral-200 dark:border-neutral-700 p-6 md:p-8 shadow-sm text-neutral-900 dark:text-neutral-100"
     >
       {children}
     </motion.div>
@@ -197,11 +197,11 @@ export default function LawyerForm() {
 
   return (
     <div>
-          <div className="mb-4 text-sm text-neutral-600">{language === 'hi' ? `चरण ${step} / ${totalSteps}` : `Step ${step} of ${totalSteps}`}</div>
+          <div className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">{language === 'hi' ? `चरण ${step} / ${totalSteps}` : `Step ${step} of ${totalSteps}`}</div>
           <AnimatePresence mode="wait">
             <StepWrapper step={step}>
               <div className="space-y-4">
-                <div className="text-xl md:text-2xl font-semibold text-neutral-900">{active.label}</div>
+                <div className="text-xl md:text-2xl font-semibold text-[var(--foreground)]">{active.label}</div>
                 <div>{active.render}</div>
                 {error && (
                   <div className="text-red-600 text-sm">{error}</div>
@@ -225,7 +225,7 @@ export default function LawyerForm() {
                   <button
                     onClick={prev}
                     disabled={step === 1 || submitting}
-                    className="px-4 py-2 rounded-lg border border-neutral-300 text-neutral-700 disabled:opacity-50 w-full sm:w-auto"
+                    className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 w-full sm:w-auto"
                   >
                     {currentLabels.back}
                   </button>
@@ -247,7 +247,7 @@ export default function LawyerForm() {
                     </button>
                   )}
                 </div>
-                <div className="text-xs text-neutral-500">{currentLabels.tip}</div>
+                <div className="text-xs text-neutral-500 dark:text-neutral-400">{currentLabels.tip}</div>
               </div>
             </StepWrapper>
           </AnimatePresence>

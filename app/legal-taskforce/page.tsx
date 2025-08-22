@@ -70,11 +70,11 @@ export default function LegalTaskforcePage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.35 }}
-                className="bg-white/95 backdrop-blur-sm shadow-sm rounded-2xl overflow-hidden border border-neutral-200 text-neutral-900"
+                className="bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-sm rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100"
               >
                 <div className="p-6 md:p-8">
-                  <h1 className="text-2xl md:text-3xl font-semibold mb-4">{currentContent.title}</h1>
-                  <p className="text-neutral-700 leading-relaxed">{currentContent.description}</p>
+                  <h1 className="text-2xl md:text-3xl font-semibold mb-4 text-[var(--foreground)]">{currentContent.title}</h1>
+                  <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">{currentContent.description}</p>
                   <div className="mt-6">
                     <button
                       onClick={() => setStarted(true)}

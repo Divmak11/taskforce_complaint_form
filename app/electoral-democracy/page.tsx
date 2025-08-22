@@ -62,11 +62,11 @@ export default function ElectoralDemocracyPage() {
           <div className="w-full max-w-3xl">
             {!showForm ? (
               /* Description Card */
-              <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+              <div className="bg-white/95 dark:bg-black/60 backdrop-blur-sm rounded-2xl shadow-lg p-8 md:p-12 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100">
+                <h1 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-6">
                   {currentContent.title}
                 </h1>
-                <p className="text-gray-600 mb-8 leading-relaxed">
+                <p className="text-neutral-700 dark:text-neutral-300 mb-8 leading-relaxed">
                   {currentContent.description}
                 </p>
                 <button

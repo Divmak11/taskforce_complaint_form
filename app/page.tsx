@@ -167,9 +167,9 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-start">
               {/* Left: Headline + intro + Learn More (outside card) */}
               <div className="md:col-span-3">
-                <div className="bg-white/90 md:bg-transparent rounded-xl p-4 md:p-0">
+                <div className="bg-white/90 dark:bg-black/60 md:bg-transparent rounded-xl p-4 md:p-0">
                   <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">{currentContent.heroTitle1}</h1>
-                  <p className="text-gray-800/95 leading-relaxed md:text-lg">{currentContent.heroParagraph}</p>
+                  <p className="text-black/90 dark:text-white/90 leading-relaxed md:text-lg">{currentContent.heroParagraph}</p>
                   <div className="mt-4">
                     <Link
                       href="/stop-vote-chori"
@@ -183,10 +183,10 @@ export default function Home() {
 
               {/* Right: Card with key bullets */}
               <div className="md:col-span-2 md:justify-self-end md:max-w-sm w-full">
-                <div className="relative overflow-hidden rounded-2xl border border-gray-300 bg-gradient-to-br from-white/85 to-[#AD1818]/5 backdrop-blur-sm shadow-lg">
+                <div className="relative overflow-hidden rounded-2xl border border-neutral-300 dark:border-neutral-700 bg-gradient-to-br from-white/85 to-[#AD1818]/5 dark:from-black/60 dark:to-[#AD1818]/10 backdrop-blur-sm shadow-lg">
                   <div className="relative p-5 md:p-6">
                     <h2 className="text-lg md:text-xl font-semibold mb-3">{currentContent.heroTitle2}</h2>
-                    <ul className="space-y-2.5 md:space-y-3 text-gray-800">
+                    <ul className="space-y-2.5 md:space-y-3 text-black/90 dark:text-white/90">
                       {(currentContent.heroBullets as string[]).map((b, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#AD1818]"></span>
@@ -208,7 +208,7 @@ export default function Home() {
                 <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
                   <Image src={pointyFingerIcon} alt="Electoral Democracy" width={88} height={88} className="w-[88px] h-[88px] object-contain brightness-0 invert contrast-200 transition-transform duration-200 group-hover:scale-110" />
                 </div>
-                <h3 className="text-center text-lg font-bold text-gray-900">
+                <h3 className="text-center text-lg font-bold text-[var(--foreground)]">
                   {currentContent.electoralDemocracy}
                 </h3>
               </div>
@@ -220,7 +220,7 @@ export default function Home() {
                 <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
                   <Image src={balanceIcon} alt="Legal Taskforce" width={88} height={88} className="w-[88px] h-[88px] object-contain brightness-0 invert contrast-200 transition-transform duration-200 group-hover:scale-110" />
                 </div>
-                <h3 className="text-center text-lg font-bold text-gray-900">
+                <h3 className="text-center text-lg font-bold text-[var(--foreground)]">
                   {currentContent.legalTaskforce}
                 </h3>
               </div>
@@ -281,7 +281,7 @@ export default function Home() {
 
           {/* Alliance Section */}
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
+            <h2 className="text-2xl font-bold text-[var(--foreground)] text-center mb-8">
               {currentContent.alliance}
             </h2>
             {/* Mobile carousel (one-at-a-time with arrows) */}

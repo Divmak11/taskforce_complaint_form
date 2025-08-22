@@ -25,7 +25,7 @@ function StepWrapper({ children, step }: { children: React.ReactNode; step: numb
       animate="animate"
       exit="exit"
       transition={{ duration: 0.3 }}
-      className="bg-white/95 backdrop-blur-sm rounded-2xl border border-neutral-200 p-6 md:p-8 shadow-sm text-neutral-900"
+      className="bg-white/95 dark:bg-black/60 backdrop-blur-sm rounded-2xl border border-neutral-200 dark:border-neutral-700 p-6 md:p-8 shadow-sm text-neutral-900 dark:text-neutral-100"
     >
       {children}
     </motion.div>
@@ -269,7 +269,7 @@ export default function MultiStepForm() {
                 {...form.register("complaint_type")}
                 className="h-4 w-4"
               />
-              <span className="text-base sm:text-lg text-neutral-900">{label}</span>
+              <span className="text-base sm:text-lg text-black/90 dark:text-white/90">{label}</span>
             </label>
           ))}
         </div>
@@ -314,9 +314,9 @@ export default function MultiStepForm() {
           {photoPreview ? (
             <div className="flex items-center gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={photoPreview} alt="Preview" className="h-24 w-24 object-cover rounded-md border" />
+              <img src={photoPreview} alt="Preview" className="h-24 w-24 object-cover rounded-md border border-neutral-200 dark:border-neutral-700" />
               <div className="flex gap-2">
-                <button type="button" onClick={() => photoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700">{currentLabels.change}</button>
+                <button type="button" onClick={() => photoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300">{currentLabels.change}</button>
                 <button
                   type="button"
                   onClick={() => {
@@ -325,14 +325,14 @@ export default function MultiStepForm() {
                     form.clearErrors("photo_file");
                     if (photoInputRef.current) photoInputRef.current.value = "";
                   }}
-                  className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700"
+                  className="px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300"
                 >{currentLabels.remove}</button>
               </div>
             </div>
           ) : (
-            <button type="button" onClick={() => photoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 w-full text-left hover:bg-neutral-50">
+            <button type="button" onClick={() => photoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 dark:border-neutral-700 w-full text-left hover:bg-neutral-50 dark:hover:bg-white/5">
               <div className="font-medium">{currentLabels.choosePhoto}</div>
-              <div className="text-sm text-neutral-500">{currentLabels.imagesOnly}</div>
+              <div className="text-sm text-neutral-500 dark:text-neutral-400">{currentLabels.imagesOnly}</div>
             </button>
           )}
         </div>
@@ -364,9 +364,9 @@ export default function MultiStepForm() {
           />
           {videoPreview ? (
             <div className="space-y-2">
-              <video src={videoPreview} className="w-full max-w-sm rounded-md border" controls muted playsInline />
+              <video src={videoPreview} className="w-full max-w-sm rounded-md border border-neutral-200 dark:border-neutral-700" controls muted playsInline />
               <div className="flex gap-2">
-                <button type="button" onClick={() => videoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700">{currentLabels.change}</button>
+                <button type="button" onClick={() => videoInputRef.current?.click()} className="px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300">{currentLabels.change}</button>
                 <button
                   type="button"
                   onClick={() => {
@@ -375,14 +375,14 @@ export default function MultiStepForm() {
                     form.clearErrors("video_file");
                     if (videoInputRef.current) videoInputRef.current.value = "";
                   }}
-                  className="px-3 py-2 rounded-lg border border-neutral-300 text-neutral-700"
+                  className="px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300"
                 >{currentLabels.remove}</button>
               </div>
             </div>
           ) : (
-            <button type="button" onClick={() => videoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 w-full text-left hover:bg-neutral-50">
+            <button type="button" onClick={() => videoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 dark:border-neutral-700 w-full text-left hover:bg-neutral-50 dark:hover:bg-white/5">
               <div className="font-medium">{currentLabels.chooseVideo}</div>
-              <div className="text-sm text-neutral-500">{currentLabels.videosOnly}</div>
+              <div className="text-sm text-neutral-500 dark:text-neutral-400">{currentLabels.videosOnly}</div>
             </button>
           )}
         </div>
@@ -435,11 +435,11 @@ export default function MultiStepForm() {
 
   return (
     <div>
-      <div className="mb-4 text-sm text-neutral-600">{language === 'hi' ? `चरण ${step} / ${totalSteps}` : `Step ${step} of ${totalSteps}`}</div>
+      <div className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">{language === 'hi' ? `चरण ${step} / ${totalSteps}` : `Step ${step} of ${totalSteps}`}</div>
       <AnimatePresence mode="wait">
         <StepWrapper step={step}>
           <div className="space-y-4">
-            <div className="text-xl md:text-2xl font-semibold text-neutral-900">{active.label}</div>
+            <div className="text-xl md:text-2xl font-semibold text-[var(--foreground)]">{active.label}</div>
             <div>{active.render}</div>
             {error && (
               <div className="text-red-600 text-sm">{error}</div>
@@ -469,7 +469,7 @@ export default function MultiStepForm() {
               <button
                 onClick={prev}
                 disabled={step === 1 || submitting}
-                className="px-4 py-2 rounded-lg border border-neutral-300 text-neutral-700 disabled:opacity-50 w-full sm:w-auto"
+                className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 w-full sm:w-auto"
               >
                 {currentLabels.back}
               </button>
@@ -491,7 +491,7 @@ export default function MultiStepForm() {
                 </button>
               )}
             </div>
-            <div className="text-xs text-neutral-500">{currentLabels.tip}</div>
+            <div className="text-xs text-neutral-500 dark:text-neutral-400">{currentLabels.tip}</div>
           </div>
         </StepWrapper>
       </AnimatePresence>
