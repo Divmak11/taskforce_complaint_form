@@ -281,7 +281,7 @@ export default function Home() {
 
           {/* Alliance Section */}
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold text-[var(--foreground)] text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-8 text-[var(--foreground)]">
               {currentContent.alliance}
             </h2>
             {/* Mobile carousel (one-at-a-time with arrows) */}
