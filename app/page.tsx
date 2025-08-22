@@ -123,7 +123,7 @@ export default function Home() {
                   setLanguage('en');
                   setShowLanguageDropdown(false);
                 }}
-                className={`w-full px-4 py-2 text-left hover:bg-[#ad18180d] transition-colors ${
+                className={`w-full px-4 py-2 text-left hover:bg-[#ad18180d] transition-colors text-black ${
                   language === 'en' ? 'bg-[#ad18181a]' : ''
                 }`}
               >
@@ -134,7 +134,7 @@ export default function Home() {
                   setLanguage('hi');
                   setShowLanguageDropdown(false);
                 }}
-                className={`w-full px-4 py-2 text-left hover:bg-[#ad18180d] transition-colors rounded-b-lg ${
+                className={`w-full px-4 py-2 text-left hover:bg-[#ad18180d] transition-colors rounded-b-lg text-black ${
                   language === 'hi' ? 'bg-[#ad18181a]' : ''
                 }`}
               >
@@ -167,9 +167,9 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-start">
               {/* Left: Headline + intro + Learn More (outside card) */}
               <div className="md:col-span-3">
-                <div className="bg-white/90 dark:bg-black/60 md:bg-transparent rounded-xl p-4 md:p-0">
-                  <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">{currentContent.heroTitle1}</h1>
-                  <p className="text-black/90 dark:text-white/90 leading-relaxed md:text-lg">{currentContent.heroParagraph}</p>
+                <div className="bg-white/90 md:bg-transparent rounded-xl p-4 md:p-0">
+                  <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-3 text-black">{currentContent.heroTitle1}</h1>
+                  <p className="text-black leading-relaxed md:text-lg">{currentContent.heroParagraph}</p>
                   <div className="mt-4">
                     <Link
                       href="/stop-vote-chori"
@@ -208,7 +208,7 @@ export default function Home() {
                 <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
                   <Image src={pointyFingerIcon} alt="Electoral Democracy" width={88} height={88} className="w-[88px] h-[88px] object-contain brightness-0 invert contrast-200 transition-transform duration-200 group-hover:scale-110" />
                 </div>
-                <h3 className="text-center text-lg font-bold text-[var(--foreground)]">
+                <h3 className="text-center text-lg font-bold text-black">
                   {currentContent.electoralDemocracy}
                 </h3>
               </div>
@@ -220,7 +220,7 @@ export default function Home() {
                 <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
                   <Image src={balanceIcon} alt="Legal Taskforce" width={88} height={88} className="w-[88px] h-[88px] object-contain brightness-0 invert contrast-200 transition-transform duration-200 group-hover:scale-110" />
                 </div>
-                <h3 className="text-center text-lg font-bold text-[var(--foreground)]">
+                <h3 className="text-center text-lg font-bold text-black">
                   {currentContent.legalTaskforce}
                 </h3>
               </div>
@@ -281,7 +281,7 @@ export default function Home() {
 
           {/* Alliance Section */}
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-8 text-[var(--foreground)]">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-8 text-black">
               {currentContent.alliance}
             </h2>
             {/* Mobile carousel (one-at-a-time with arrows) */}

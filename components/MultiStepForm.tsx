@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useState, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useForm } from "react-hook-form";
+import { useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema, FormValues } from '@/lib/schema';
 import { motion, AnimatePresence } from "framer-motion";
@@ -88,6 +88,44 @@ export default function MultiStepForm() {
       "Other": "अन्य"
     }
   };
+
+  // If submit is attempted with invalid fields, jump to the first invalid step
+  function onInvalid(errors: FieldErrors<FormValues>) {
+    const order: Array<keyof FormValues> = [
+      "name",
+      "phone",
+      "assembly", // optional but included for completeness
+      "district",
+      "incident_date",
+      "incident_time",
+      "location",
+      "complaint_type",
+      "description", // optional
+      "photo_file",
+      "video_file",
+    ];
+    for (let i = 0; i < order.length; i++) {
+      const key = order[i];
+      if (errors[key]) {
+        // Map field to step index (1-based)
+        const fieldToStep: Record<keyof FormValues, number> = {
+          name: 1,
+          phone: 2,
+          assembly: 3,
+          district: 4,
+          incident_date: 5,
+          incident_time: 6,
+          location: 7,
+          complaint_type: 8,
+          description: 9,
+          photo_file: 10,
+          video_file: 11,
+        };
+        setStep(fieldToStep[key]);
+        break;
+      }
+    }
+  }
 
   const labelsEn = {
     name: "What is your Name?",
@@ -483,7 +521,7 @@ export default function MultiStepForm() {
                 </button>
               ) : (
                 <button
-                  onClick={form.handleSubmit(onSubmit)}
+                  onClick={form.handleSubmit(onSubmit, onInvalid)}
                   disabled={submitting}
                   className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >

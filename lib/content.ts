@@ -6,13 +6,15 @@ export const HEADER = {
     "यह फॉर्म चुनावी अनियमितताओं और शिकायतों की रिपोर्ट करने के लिए है। कृपया सभी आवश्यक जानकारी प्रदान करें ताकि हम आपकी शिकायत पर उचित कार्रवाई कर सकें।",
 };
 
+// IMPORTANT: These string values must exactly match the values used as the
+// radio input "value" in components/MultiStepForm.tsx. The UI renders
+// localized labels, but the submitted value is one of these keys.
 export const COMPLAINT_TYPES = [
-  "Booth Capturing / Rigging / बूथ कब्जा / गड़बड़ी",
-  "Caste or Communal Targeting / जाति या सांप्रदायिक आधार पर हमला",
-  "Police Inaction or Bias / पुलिस की निष्क्रियता या पक्षपात",
-  "Threats to Voters / मतदाताओं को धमकी",
-  "Voter ID Tampering or Deletion / मतदाता सूची से नाम हटाना या छेड़छाड़",
-  "Counting Fraud or Manipulation / मतगणना में गड़बड़ी या हेरफेर",
-  "Other Disruption during Polling / मतदान के दौरान व्यवधान",
-  "Others / अन्य",
+  "Voter Bribery",
+  "Booth Capturing",
+  "Fake Voting",
+  "EVM Damage",
+  "Voter Intimidation",
+  "Violation of Model Code of Conduct",
+  "Other",
 ] as const;

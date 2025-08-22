@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import bgImage from "../assets/bg.png";
+import logo from "../assets/logo.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function StopVoteChoriPage() {
@@ -72,7 +73,9 @@ export default function StopVoteChoriPage() {
       <div className="relative z-10">
         {/* Header */}
         <header className="flex items-center justify-between p-4 md:p-6">
-          <h1 className="text-xl md:text-2xl font-extrabold tracking-tight">{t.header}</h1>
+          <Link href="/" className="flex items-center" aria-label={language === "hi" ? "होम पेज" : "Home"}>
+            <Image src={logo} alt="Stop Vote Chori" width={200} height={50} className="h-10 md:h-12 w-auto" />
+          </Link>
           <button
             onClick={() => setLanguage(language === "hi" ? "en" : "hi")}
             className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors"
@@ -85,25 +88,25 @@ export default function StopVoteChoriPage() {
         <main className="container mx-auto px-4 py-6 md:py-10">
           <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
             {/* Title card */}
-            <section className="relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-xl text-neutral-900 dark:text-neutral-100">
+            <section className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-sm shadow-xl text-black">
               <div className="absolute -top-20 -right-24 h-52 w-52 rounded-full bg-[#AD1818]/10 blur-2xl" />
               <div className="absolute -bottom-20 -left-16 h-52 w-52 rounded-full bg-[#AD1818]/10 blur-2xl" />
               <div className="relative p-6 md:p-10">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4 text-[var(--foreground)]">{t.titleMain}</h2>
-                <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed md:text-lg">{t.intro}</p>
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4 text-black">{t.titleMain}</h2>
+                <p className="text-black leading-relaxed md:text-lg">{t.intro}</p>
               </div>
             </section>
 
             {/* Why card */}
-            <section className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-lg p-6 md:p-10 text-neutral-900 dark:text-neutral-100">
-              <h3 className="text-xl md:text-2xl font-bold mb-3 text-[var(--foreground)]">{t.whyTitle}</h3>
-              <p className="text-neutral-700 dark:text-neutral-300 md:text-lg leading-relaxed">{t.whyPara}</p>
+            <section className="rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-sm shadow-lg p-6 md:p-10 text-black">
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-black">{t.whyTitle}</h3>
+              <p className="md:text-lg leading-relaxed text-black">{t.whyPara}</p>
             </section>
 
             {/* Stands card */}
-            <section className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-lg p-6 md:p-10 text-neutral-900 dark:text-neutral-100">
-              <h3 className="text-xl md:text-2xl font-bold mb-4 text-[var(--foreground)]">{t.standsTitle}</h3>
-              <ul className="space-y-3 md:space-y-4 text-neutral-900 dark:text-neutral-100">
+            <section className="rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-sm shadow-lg p-6 md:p-10 text-black">
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-black">{t.standsTitle}</h3>
+              <ul className="space-y-3 md:space-y-4 text-black">
                 {t.bullets.map((b, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#AD1818]"></span>
@@ -114,9 +117,9 @@ export default function StopVoteChoriPage() {
             </section>
 
             {/* Join card */}
-            <section className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-lg p-6 md:p-10 text-neutral-900 dark:text-neutral-100">
-              <h3 className="text-xl md:text-2xl font-bold mb-4 text-[var(--foreground)]">{t.joinTitle}</h3>
-              <ul className="space-y-3 md:space-y-4 text-neutral-900 dark:text-neutral-100 mb-6">
+            <section className="rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-sm shadow-lg p-6 md:p-10 text-black">
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-black">{t.joinTitle}</h3>
+              <ul className="space-y-3 md:space-y-4 text-black mb-6">
                 {t.joinBullets.map((b, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#AD1818]"></span>
@@ -133,8 +136,8 @@ export default function StopVoteChoriPage() {
             </section>
 
             {/* Closing note */}
-            <section className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-black/60 backdrop-blur-sm shadow-lg p-6 md:p-10 text-neutral-900 dark:text-neutral-100">
-              <p className="text-neutral-800 dark:text-neutral-200 md:text-lg leading-relaxed">{t.closing}</p>
+            <section className="rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-sm shadow-lg p-6 md:p-10 text-black">
+              <p className="md:text-lg leading-relaxed text-black">{t.closing}</p>
             </section>
           </div>
         </main>
