@@ -5,6 +5,8 @@ import Image from "next/image";
 import bgImage from "../assets/bg.png";
 import LawyerForm from "@/components/LawyerForm";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Link from "next/link";
+import logo from "../assets/logo.png";
 
 export default function ElectoralDemocracyPage() {
   const { language, setLanguage } = useLanguage();
@@ -12,7 +14,7 @@ export default function ElectoralDemocracyPage() {
 
   const content = {
     hi: {
-      title: "Electoral Democracy Taskforce",
+      title: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स",
       description: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स बिहार के सभी जिला न्यायालय परिसरों में गठित की जाएगी, जिसमें स्वतंत्र अधिवक्ताओं, वकील संगठन और कानून के छात्रों को आमंत्रित किया गया है। यह पहल राहुल गांधी के 'चुनावी लोकतंत्र की सुरक्षा' के विचार से प्रेरित है। इसका एकमात्र ध्येय यह है कि हर पात्र मतदाता को मतदान का अवसर मिले, चुनावी प्रक्रिया निष्पक्ष एवं पारदर्शी रहे और चुनाव से जुड़े आपराधिक मामलों पर तत्काल कार्यवाही हो।",
       start: "शुरू करें →"
     },
@@ -42,8 +44,12 @@ export default function ElectoralDemocracyPage() {
       <div className="relative z-10">
         {/* Header */}
         <header className="flex justify-between items-center p-4 md:p-6">
-          {/* Logo Space - Left empty */}
-          <div className="w-32 h-12"></div>
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/">
+              <Image src={logo} alt="VoteChori logo" width={200} height={50} className="h-10 md:h-12 w-auto" />
+            </Link>
+          </div>
           
           {/* Language Selector */}
           <button

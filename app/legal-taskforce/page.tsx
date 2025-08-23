@@ -6,6 +6,8 @@ import bgImage from "../assets/bg.png";
 import MultiStepForm from "@/components/MultiStepForm";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Link from "next/link";
+import logo from "../assets/logo.png";
 
 export default function LegalTaskforcePage() {
   const { language, setLanguage } = useLanguage();
@@ -13,7 +15,7 @@ export default function LegalTaskforcePage() {
 
   const content = {
     hi: {
-      title: "Legal Taskforce",
+      title: "लीगल टास्कफोर्स",
       description: "यह फॉर्म चुनावी अनियमितताओं और शिकायतों की रिपोर्ट करने के लिए है। कृपया सभी आवश्यक जानकारी प्रदान करें ताकि हम आपकी शिकायत पर उचित कार्रवाई कर सकें।",
       start: "शुरू करें →",
       language: "English"
@@ -45,8 +47,12 @@ export default function LegalTaskforcePage() {
       <div className="relative z-10">
         {/* Header */}
         <header className="flex justify-between items-center p-4 md:p-6">
-          {/* Logo Space - Left empty */}
-          <div className="w-32 h-12"></div>
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/">
+              <Image src={logo} alt="VoteChori logo" width={200} height={50} className="h-10 md:h-12 w-auto" />
+            </Link>
+          </div>
           
           {/* Language Selector */}
           <button
