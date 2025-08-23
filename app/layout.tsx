@@ -30,6 +30,9 @@ const khand = localFont({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const ogAbsolute = siteUrl
+  ? new URL("/og.png?v=2", siteUrl).toString()
+  : "/og.png?v=2";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
@@ -48,8 +51,8 @@ export const metadata: Metadata = {
       "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
     type: "website",
     images: [
-      // Preferred OG image served from public/ (square 600x600, <300KB) — better for WhatsApp
-      { url: "/og.png", width: 600, height: 600, alt: "#StopVoteChori in Bihar" },
+      // Preferred OG image served from public/ with cache-buster (square 600x600, <300KB)
+      { url: ogAbsolute, width: 600, height: 600, alt: "#StopVoteChori in Bihar" },
       // Fallback to current bundled logo asset if og.png is not present
       { url: logo.src, width: 1200, height: 630, alt: "#StopVoteChori in Bihar" },
     ],
@@ -59,7 +62,7 @@ export const metadata: Metadata = {
     title: "#StopVoteChori in Bihar",
     description:
       "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
-    images: ["/og.png", logo.src],
+    images: [ogAbsolute, logo.src],
   },
 };
 
