@@ -16,5 +16,7 @@ export const COMPLAINT_TYPES = [
   "EVM Damage",
   "Voter Intimidation",
   "Violation of Model Code of Conduct",
+  "CCTV tampering",
+  "Voter Deletion",
   "Other",
 ] as const;

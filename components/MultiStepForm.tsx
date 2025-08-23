@@ -85,6 +85,8 @@ export default function MultiStepForm() {
       "EVM Damage": "ईवीएम क्षति",
       "Voter Intimidation": "मतदाता को डराना-धमकाना",
       "Violation of Model Code of Conduct": "आदर्श आचार संहिता का उल्लंघन",
+      "CCTV tampering": "सीसीटीवी छेड़छाड़",
+      "Voter Deletion": "मतदाता विलोपन",
       "Other": "अन्य"
     },
     otherSpecify: "कृपया बताएं",
@@ -165,6 +167,8 @@ export default function MultiStepForm() {
       "EVM Damage": "EVM Damage",
       "Voter Intimidation": "Voter Intimidation",
       "Violation of Model Code of Conduct": "Violation of Model Code of Conduct",
+      "CCTV tampering": "CCTV tampering",
+      "Voter Deletion": "Voter Deletion",
       "Other": "Other"
     },
     otherSpecify: "Please specify",
