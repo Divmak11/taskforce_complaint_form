@@ -16,6 +16,7 @@ export default function Home() {
   const { language, setLanguage } = useLanguage();
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -27,6 +28,15 @@ export default function Home() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+    updateIsMobile();
+    window.addEventListener('resize', updateIsMobile);
+    return () => {
+      window.removeEventListener('resize', updateIsMobile);
     };
   }, []);
 
@@ -91,6 +101,15 @@ export default function Home() {
   ];
   const prevAlliance = () => setAllianceIndex((i) => (i - 1 + allianceItems.length) % allianceItems.length);
   const nextAlliance = () => setAllianceIndex((i) => (i + 1) % allianceItems.length);
+
+  // Auto-advance alliance carousel on mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    const id = window.setInterval(() => {
+      setAllianceIndex((i) => (i + 1) % allianceItems.length);
+    }, 2500);
+    return () => window.clearInterval(id);
+  }, [isMobile, allianceItems.length]);
 
   const learnMoreLabel = language === 'hi' ? 'और जानें' : 'Learn More';
 
