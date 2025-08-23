@@ -86,7 +86,8 @@ export default function MultiStepForm() {
       "Voter Intimidation": "मतदाता को डराना-धमकाना",
       "Violation of Model Code of Conduct": "आदर्श आचार संहिता का उल्लंघन",
       "Other": "अन्य"
-    }
+    },
+    otherSpecify: "कृपया बताएं",
   };
 
   // If submit is attempted with invalid fields, jump to the first invalid step
@@ -100,6 +101,7 @@ export default function MultiStepForm() {
       "incident_time",
       "location",
       "complaint_type",
+      "other_text",
       "description", // optional
       "photo_file",
       "video_file",
@@ -117,6 +119,7 @@ export default function MultiStepForm() {
           incident_time: 6,
           location: 7,
           complaint_type: 8,
+          other_text: 8,
           description: 9,
           photo_file: 10,
           video_file: 11,
@@ -163,7 +166,8 @@ export default function MultiStepForm() {
       "Voter Intimidation": "Voter Intimidation",
       "Violation of Model Code of Conduct": "Violation of Model Code of Conduct",
       "Other": "Other"
-    }
+    },
+    otherSpecify: "Please specify",
   };
 
   const currentLabels = language === 'hi' ? labelsHi : labelsEn;
@@ -195,7 +199,11 @@ export default function MultiStepForm() {
       case 7:
         return (w.location || "").trim().length > 0;
       case 8:
-        return !!w.complaint_type;
+        if (!w.complaint_type) return false;
+        if (w.complaint_type === 'Other') {
+          return (w.other_text || '').toString().trim().length > 0;
+        }
+        return true;
       case 9:
         return true; // optional
       case 10:
@@ -205,7 +213,7 @@ export default function MultiStepForm() {
       default:
         return false;
     }
-  }, [step, w]);
+  }, [step, w, w.complaint_type, w.other_text]);
 
   const TOTAL_STEPS = 11;
   const next = useCallback(() => setStep((s) => Math.min(s + 1, TOTAL_STEPS)), []);
@@ -310,6 +318,17 @@ export default function MultiStepForm() {
               <span className="text-base sm:text-lg text-black/90 dark:text-white/90">{label}</span>
             </label>
           ))}
+          {w.complaint_type === 'Other' && (
+            <div className="pt-2">
+              <input
+                type="text"
+                className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2"
+                placeholder={currentLabels.otherSpecify}
+                {...form.register('other_text')}
+                onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
+              />
+            </div>
+          )}
         </div>
       )},
       { id: 9, label: `${currentLabels.description} ${currentLabels.optional}`, render: (
@@ -438,7 +457,16 @@ export default function MultiStepForm() {
       const supabase = getSupabaseClient();
       // Uploads
       const photoUrl = await uploadImage(values.photo_file);
-      const videoUrl = await uploadVideo(values.video_file);
+      let videoUrl: string | null = null;
+      try {
+        videoUrl = await uploadVideo(values.video_file);
+      } catch (ve: unknown) {
+        const m = ve instanceof Error ? ve.message : String(ve);
+        if (m && m.includes('Failed to fetch')) {
+          throw new Error('Video upload failed (network/CORS). Please check network connectivity and Supabase URL configuration.');
+        }
+        throw new Error(`Video upload failed: ${m}`);
+      }
 
       // Insert row
       const { error: insertError } = await supabase
@@ -452,7 +480,9 @@ export default function MultiStepForm() {
           incident_time: values.incident_time,
           location: values.location,
           complaint_type: values.complaint_type,
-          description: values.description || null,
+          description: (values.description && values.description.trim().length > 0)
+            ? values.description
+            : (values.other_text && values.other_text.trim().length > 0 ? values.other_text : null),
           photo_url: photoUrl,
           video_url: videoUrl,
         });
@@ -498,7 +528,10 @@ export default function MultiStepForm() {
                 11: "video_file",
               };
               const field = fieldByStep[step];
-              const msg = field ? form.formState.errors[field]?.message : undefined;
+              let msg = field ? form.formState.errors[field]?.message : undefined;
+              if (!msg && step === 8) {
+                msg = form.formState.errors.other_text?.message as string | undefined;
+              }
               return msg ? (
                 <div className="text-red-600 text-sm">{String(msg)}</div>
               ) : null;
