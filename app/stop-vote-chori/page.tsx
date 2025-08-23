@@ -131,13 +131,13 @@ export default function StopVoteChoriPage() {
               </ul>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/electoral-democracy"
+                  href="/legal-taskforce"
                   className="inline-block px-6 py-3 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors text-center"
                 >
                   {t.ctaElectoral}
                 </Link>
                 <Link
-                  href="/legal-taskforce"
+                  href="/electoral-democracy"
                   className="inline-block px-6 py-3 rounded-lg font-bold text-[#AD1818] border-2 border-[#AD1818] bg-white hover:bg-[#ad18180d] transition-colors text-center"
                 >
                   {t.ctaLegal}

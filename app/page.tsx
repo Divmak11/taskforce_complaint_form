@@ -222,7 +222,7 @@ export default function Home() {
           {/* Main Action Buttons */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mt-8 mb-20">
             {/* Electoral Democracy Button */}
-            <Link href="/electoral-democracy">
+            <Link href="/legal-taskforce">
               <div className="group cursor-pointer">
                 <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
                   <Image src={pointyFingerIcon} alt="Electoral Democracy" width={88} height={88} className="w-[88px] h-[88px] object-contain brightness-0 invert contrast-200 transition-transform duration-200 group-hover:scale-110" />
@@ -234,7 +234,7 @@ export default function Home() {
             </Link>
 
             {/* Legal Taskforce Button */}
-            <Link href="/legal-taskforce">
+            <Link href="/electoral-democracy">
               <div className="group cursor-pointer">
                 <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
                   <Image src={balanceIcon} alt="Legal Taskforce" width={88} height={88} className="w-[88px] h-[88px] object-contain brightness-0 invert contrast-200 transition-transform duration-200 group-hover:scale-110" />

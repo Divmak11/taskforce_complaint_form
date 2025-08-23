@@ -5,6 +5,7 @@ import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Footer from "@/components/Footer";
+import logo from "./assets/logo.png";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -28,10 +29,34 @@ const khand = localFont({
   ],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 export const metadata: Metadata = {
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: "Complaint to Legal Taskforce",
   description:
-    "Typeform-style single-question flow to submit complaints with photo/video uploads.",
+    "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
+  openGraph: {
+    title: "#StopVoteChori in Bihar",
+    description:
+      "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
+    type: "website",
+    images: [
+      {
+        url: logo.src,
+        width: 1200,
+        height: 630,
+        alt: "#StopVoteChori in Bihar",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "#StopVoteChori in Bihar",
+    description:
+      "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
+    images: [logo.src],
+  },
 };
 
 export default function RootLayout({
