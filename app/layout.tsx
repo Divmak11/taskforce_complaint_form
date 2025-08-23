@@ -42,13 +42,14 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
+    url: siteUrl || undefined,
     title: "#StopVoteChori in Bihar",
     description:
       "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
     type: "website",
     images: [
-      // Preferred OG image served from public/ (1200x630, <300KB)
-      { url: "/og.png", width: 1200, height: 630, alt: "#StopVoteChori in Bihar" },
+      // Preferred OG image served from public/ (square 600x600, <300KB) — better for WhatsApp
+      { url: "/og.png", width: 600, height: 600, alt: "#StopVoteChori in Bihar" },
       // Fallback to current bundled logo asset if og.png is not present
       { url: logo.src, width: 1200, height: 630, alt: "#StopVoteChori in Bihar" },
     ],
