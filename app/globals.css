@@ -187,3 +187,10 @@ body {
     animation: none;
   }
 }
+
+/* Homepage logo should appear white in dark mode only */
+@media (prefers-color-scheme: dark) {
+  img.home-logo {
+    filter: brightness(0) invert(1);
+  }
+}

@@ -119,7 +119,7 @@ export default function Home() {
       <header className="flex justify-between items-center mb-4 md:mb-8">
         {/* VoteChori Logo */}
         <div className="flex items-center">
-          <Image src={logo} alt="VoteChori logo" width={200} height={50} className="h-10 md:h-12 w-auto" />
+          <Image src={logo} alt="VoteChori logo" width={200} height={50} className="h-10 md:h-12 w-auto home-logo" />
         </div>
         
         {/* Language Selector */}
