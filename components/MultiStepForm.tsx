@@ -217,7 +217,7 @@ export default function MultiStepForm() {
       default:
         return false;
     }
-  }, [step, w, w.complaint_type, w.other_text]);
+  }, [step, w]);
 
   const TOTAL_STEPS = 11;
   const next = useCallback(() => setStep((s) => Math.min(s + 1, TOTAL_STEPS)), []);
@@ -449,7 +449,7 @@ export default function MultiStepForm() {
         </div>
       )},
     ];
-  }, [form, canProceed, incidentDateObj, photoPreview, videoPreview, next, currentLabels]);
+  }, [form, canProceed, incidentDateObj, photoPreview, videoPreview, next, currentLabels, w.complaint_type]);
 
   const totalSteps = steps.length;
   const active = steps[step - 1];
