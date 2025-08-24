@@ -42,6 +42,10 @@ export default function MultiStepForm() {
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const [uploadingVideo, setUploadingVideo] = useState(false);
+  const [progress, setProgress] = useState<number>(0);
+  const [progressStage, setProgressStage] = useState<'idle'|'preparing'|'uploading_photo'|'uploading_video'|'saving'|'done'>('idle');
 
   // Local UI states
   // Separate Day/Month/Year selectors for incident date
@@ -450,25 +454,51 @@ export default function MultiStepForm() {
             type="file"
             accept="image/*"
             className="hidden"
-            onChange={(e) => {
+            onChange={async (e) => {
               const f = e.target.files?.[0];
               if (!f) return;
+              
+              // Reset previous errors
+              form.clearErrors("photo_file");
+              setError(null);
+              
               if (!f.type.startsWith("image/")) {
                 form.setError("photo_file", { message: "Only image files are allowed" });
+                if (photoInputRef.current) photoInputRef.current.value = "";
                 return;
               }
+              
               const maxBytes = (Number(process.env.NEXT_PUBLIC_MAX_IMAGE_MB) || 10) * 1024 * 1024;
               if (f.size > maxBytes) {
-                form.setError("photo_file", { message: `Max size ${(Number(process.env.NEXT_PUBLIC_MAX_IMAGE_MB) || 10)} MB` });
+                form.setError("photo_file", { message: `Max size ${(Number(process.env.NEXT_PUBLIC_MAX_IMAGE_MB) || 10)} MB. Please choose a smaller image.` });
+                if (photoInputRef.current) photoInputRef.current.value = "";
                 return;
               }
-              form.setValue("photo_file", f as unknown as FormValues["photo_file"], { shouldValidate: true });
-              form.clearErrors("photo_file");
-              const url = URL.createObjectURL(f);
-              setPhotoPreview((prev) => { if (prev) URL.revokeObjectURL(prev); return url; });
+              
+              setUploadingPhoto(true);
+              try {
+                // Test upload capability before proceeding
+                const url = URL.createObjectURL(f);
+                setPhotoPreview((prev) => { if (prev) URL.revokeObjectURL(prev); return url; });
+                form.setValue("photo_file", f as unknown as FormValues["photo_file"], { shouldValidate: true });
+                form.clearErrors("photo_file");
+              } catch (error) {
+                console.error('Photo preview error:', error);
+                form.setError("photo_file", { message: "Failed to process image. Please try a different file." });
+                if (photoInputRef.current) photoInputRef.current.value = "";
+              } finally {
+                setUploadingPhoto(false);
+              }
             }}
           />
-          {photoPreview ? (
+          {uploadingPhoto ? (
+            <div className="flex items-center justify-center p-8">
+              <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                <div className="animate-spin rounded-full h-4 w-4 border-2 border-[#AD1818] border-t-transparent"></div>
+                <span>Processing image...</span>
+              </div>
+            </div>
+          ) : photoPreview ? (
             <div className="flex items-center gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photoPreview} alt="Preview" className="h-24 w-24 object-cover rounded-md border border-neutral-200 dark:border-neutral-700" />
@@ -480,6 +510,7 @@ export default function MultiStepForm() {
                     setPhotoPreview((prev) => { if (prev) URL.revokeObjectURL(prev); return null; });
                     form.setValue("photo_file", undefined as unknown as FormValues["photo_file"], { shouldValidate: true });
                     form.clearErrors("photo_file");
+                    setError(null);
                     if (photoInputRef.current) photoInputRef.current.value = "";
                   }}
                   className="px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300"
@@ -487,7 +518,7 @@ export default function MultiStepForm() {
               </div>
             </div>
           ) : (
-            <button type="button" onClick={() => photoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 dark:border-neutral-700 w-full text-left hover:bg-neutral-50 dark:hover:bg-white/5">
+            <button type="button" onClick={() => photoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 dark:border-neutral-700 w-full text-left hover:bg-neutral-50 dark:hover:bg-white/5" disabled={uploadingPhoto}>
               <div className="font-medium">{currentLabels.choosePhoto}</div>
               <div className="text-sm text-neutral-500 dark:text-neutral-400">{currentLabels.imagesOnly}</div>
             </button>
@@ -501,25 +532,51 @@ export default function MultiStepForm() {
             type="file"
             accept="video/*"
             className="hidden"
-            onChange={(e) => {
+            onChange={async (e) => {
               const f = e.target.files?.[0];
               if (!f) return;
+              
+              // Reset previous errors
+              form.clearErrors("video_file");
+              setError(null);
+              
               if (!f.type.startsWith("video/")) {
                 form.setError("video_file", { message: "Only video files are allowed" });
+                if (videoInputRef.current) videoInputRef.current.value = "";
                 return;
               }
+              
               const maxBytes = (Number(process.env.NEXT_PUBLIC_MAX_VIDEO_MB) || 50) * 1024 * 1024;
               if (f.size > maxBytes) {
-                form.setError("video_file", { message: `Max size ${(Number(process.env.NEXT_PUBLIC_MAX_VIDEO_MB) || 50)} MB` });
+                form.setError("video_file", { message: `Max size ${(Number(process.env.NEXT_PUBLIC_MAX_VIDEO_MB) || 50)} MB. Please choose a shorter or lower resolution video.` });
+                if (videoInputRef.current) videoInputRef.current.value = "";
                 return;
               }
-              form.setValue("video_file", f as unknown as FormValues["video_file"], { shouldValidate: true });
-              form.clearErrors("video_file");
-              const url = URL.createObjectURL(f);
-              setVideoPreview((prev) => { if (prev) URL.revokeObjectURL(prev); return url; });
+              
+              setUploadingVideo(true);
+              try {
+                // Test video preview capability before proceeding
+                const url = URL.createObjectURL(f);
+                setVideoPreview((prev) => { if (prev) URL.revokeObjectURL(prev); return url; });
+                form.setValue("video_file", f as unknown as FormValues["video_file"], { shouldValidate: true });
+                form.clearErrors("video_file");
+              } catch (error) {
+                console.error('Video preview error:', error);
+                form.setError("video_file", { message: "Failed to process video. Please try a different file." });
+                if (videoInputRef.current) videoInputRef.current.value = "";
+              } finally {
+                setUploadingVideo(false);
+              }
             }}
           />
-          {videoPreview ? (
+          {uploadingVideo ? (
+            <div className="flex items-center justify-center p-8">
+              <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                <div className="animate-spin rounded-full h-4 w-4 border-2 border-[#AD1818] border-t-transparent"></div>
+                <span>Processing video...</span>
+              </div>
+            </div>
+          ) : videoPreview ? (
             <div className="space-y-2">
               <video src={videoPreview} className="w-full max-w-sm rounded-md border border-neutral-200 dark:border-neutral-700" controls muted playsInline />
               <div className="flex gap-2">
@@ -530,6 +587,7 @@ export default function MultiStepForm() {
                     setVideoPreview((prev) => { if (prev) URL.revokeObjectURL(prev); return null; });
                     form.setValue("video_file", undefined as unknown as FormValues["video_file"], { shouldValidate: true });
                     form.clearErrors("video_file");
+                    setError(null);
                     if (videoInputRef.current) videoInputRef.current.value = "";
                   }}
                   className="px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300"
@@ -537,7 +595,7 @@ export default function MultiStepForm() {
               </div>
             </div>
           ) : (
-            <button type="button" onClick={() => videoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 dark:border-neutral-700 w-full text-left hover:bg-neutral-50 dark:hover:bg-white/5">
+            <button type="button" onClick={() => videoInputRef.current?.click()} className="px-4 py-3 rounded-lg border-2 border-dashed border-neutral-300 dark:border-neutral-700 w-full text-left hover:bg-neutral-50 dark:hover:bg-white/5" disabled={uploadingVideo}>
               <div className="font-medium">{currentLabels.chooseVideo}</div>
               <div className="text-sm text-neutral-500 dark:text-neutral-400">{currentLabels.videosOnly}</div>
             </button>
@@ -545,7 +603,7 @@ export default function MultiStepForm() {
         </div>
       )},
     ];
-  }, [form, canProceed, photoPreview, videoPreview, next, currentLabels, w.complaint_type, selDay, selMonth, selYear, updateIncidentDateFromSelects, daysInMonth]);
+  }, [form, canProceed, photoPreview, videoPreview, next, currentLabels, w.complaint_type, selDay, selMonth, selYear, updateIncidentDateFromSelects, daysInMonth, uploadingPhoto, uploadingVideo]);
 
   const totalSteps = steps.length;
   const active = steps[step - 1];
@@ -553,22 +611,59 @@ export default function MultiStepForm() {
   async function onSubmit(values: FormValues) {
     setError(null);
     setSubmitting(true);
+    setProgress(5);
+    setProgressStage('preparing');
+    
+    let photoUrl: string | null = null;
+    let videoUrl: string | null = null;
+    
     try {
       const supabase = getSupabaseClient();
-      // Uploads
-      const photoUrl = await uploadImage(values.photo_file);
-      let videoUrl: string | null = null;
-      try {
-        videoUrl = await uploadVideo(values.video_file);
-      } catch (ve: unknown) {
-        const m = ve instanceof Error ? ve.message : String(ve);
-        if (m && m.includes('Failed to fetch')) {
-          throw new Error('Video upload failed (network/CORS). Please check network connectivity and Supabase URL configuration.');
+      
+      // Upload photo if provided
+      if (values.photo_file) {
+        try {
+          setProgressStage('uploading_photo');
+          setProgress(30);
+          photoUrl = await uploadImage(values.photo_file);
+          setProgress(45);
+        } catch (pe: unknown) {
+          const m = pe instanceof Error ? pe.message : String(pe);
+          if (m && (m.includes('Failed to fetch') || m.includes('NetworkError') || m.includes('fetch'))) {
+            throw new Error('Image upload failed due to network issues. Please check your internet connection and try again.');
+          }
+          if (m && m.includes('413')) {
+            throw new Error('Image file is too large. Please choose a smaller image or compress it.');
+          }
+          throw new Error(`Image upload failed: ${m}. Please try selecting the image again.`);
         }
-        throw new Error(`Video upload failed: ${m}`);
+      }
+      
+      // Upload video if provided
+      if (values.video_file) {
+        try {
+          setProgressStage('uploading_video');
+          setProgress(60);
+          videoUrl = await uploadVideo(values.video_file);
+          setProgress(85);
+        } catch (ve: unknown) {
+          const m = ve instanceof Error ? ve.message : String(ve);
+          if (m && (m.includes('Failed to fetch') || m.includes('NetworkError') || m.includes('fetch'))) {
+            throw new Error('Video upload failed due to network issues. Please check your internet connection and try again.');
+          }
+          if (m && m.includes('413')) {
+            throw new Error('Video file is too large. Please choose a shorter or lower resolution video.');
+          }
+          if (m && m.includes('timeout')) {
+            throw new Error('Video upload timed out. Please try with a smaller video file.');
+          }
+          throw new Error(`Video upload failed: ${m}. Please try selecting the video again.`);
+        }
       }
 
-      // Insert row
+      // Insert complaint record
+      setProgressStage('saving');
+      setProgress(90);
       const { error: insertError } = await supabase
         .from("complaints")
         .insert({
@@ -588,14 +683,39 @@ export default function MultiStepForm() {
         });
       if (insertError) throw insertError;
 
+      setProgressStage('done');
+      setProgress(100);
       window.location.href = "/success";
     } catch (e: unknown) {
       const message =
         e instanceof Error ? e.message : typeof e === "string" ? e : null;
-      const friendly = message && message.includes("Invalid Compact JWS")
-        ? "Upload failed due to authentication. Please check Supabase keys configuration."
-        : message;
-      setError(friendly ?? "Failed to submit. Please try again.");
+      
+      let friendly: string;
+      if (message && message.includes("Invalid Compact JWS")) {
+        friendly = "Upload failed due to authentication issues. Please refresh the page and try again.";
+      } else if (message && message.includes("network")) {
+        friendly = message; // Use the specific network error message we crafted above
+      } else if (message && message.includes("timeout")) {
+        friendly = message; // Use the specific timeout error message
+      } else if (message && message.includes("too large")) {
+        friendly = message; // Use the specific file size error message
+      } else {
+        friendly = message || "Failed to submit complaint. Please check your files and try again.";
+      }
+      
+      setError(friendly);
+      
+      // Clear file inputs on upload errors to prevent getting stuck
+      if (message && (message.includes('upload') || message.includes('network') || message.includes('fetch'))) {
+        if (photoInputRef.current) photoInputRef.current.value = "";
+        if (videoInputRef.current) videoInputRef.current.value = "";
+        setPhotoPreview(null);
+        setVideoPreview(null);
+        form.setValue("photo_file", undefined as unknown as FormValues["photo_file"]);
+        form.setValue("video_file", undefined as unknown as FormValues["video_file"]);
+      }
+      setProgress(0);
+      setProgressStage('idle');
     } finally {
       setSubmitting(false);
     }
@@ -636,10 +756,32 @@ export default function MultiStepForm() {
                 <div className="text-red-600 text-sm">{String(msg)}</div>
               ) : null;
             })()}
+            {progressStage !== 'idle' && (
+              <div className="space-y-2">
+                <div className="text-sm text-neutral-600 dark:text-neutral-300">
+                  {language === 'hi' ? (
+                    progressStage === 'preparing' ? 'तैयारी हो रही है...' :
+                    progressStage === 'uploading_photo' ? 'फोटो अपलोड हो रहा है...' :
+                    progressStage === 'uploading_video' ? 'वीडियो अपलोड हो रहा है...' :
+                    progressStage === 'saving' ? 'शिकायत सहेजी जा रही है...' :
+                    'पूर्ण'
+                  ) : (
+                    progressStage === 'preparing' ? 'Preparing...' :
+                    progressStage === 'uploading_photo' ? 'Uploading photo...' :
+                    progressStage === 'uploading_video' ? 'Uploading video...' :
+                    progressStage === 'saving' ? 'Saving complaint...' :
+                    'Done'
+                  )}
+                </div>
+                <div className="w-full h-2 bg-neutral-200 dark:bg-neutral-800 rounded">
+                  <div className="h-2 bg-[#AD1818] rounded transition-all duration-300" style={{ width: `${progress}%` }} />
+                </div>
+              </div>
+            )}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
               <button
                 onClick={prev}
-                disabled={step === 1 || submitting}
+                disabled={step === 1 || submitting || progressStage !== 'idle'}
                 className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 w-full sm:w-auto"
               >
                 {currentLabels.back}
@@ -647,7 +789,7 @@ export default function MultiStepForm() {
               {step < totalSteps ? (
                 <button
                   onClick={() => { if (canProceed) next(); }}
-                  disabled={!canProceed || submitting}
+                  disabled={!canProceed || submitting || uploadingPhoto || uploadingVideo || progressStage !== 'idle'}
                   className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >
                   {currentLabels.next}
@@ -655,7 +797,7 @@ export default function MultiStepForm() {
               ) : (
                 <button
                   onClick={form.handleSubmit(onSubmit, onInvalid)}
-                  disabled={submitting}
+                  disabled={submitting || uploadingPhoto || uploadingVideo || progressStage !== 'idle'}
                   className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >
                   {submitting ? currentLabels.submitting : currentLabels.submit}
