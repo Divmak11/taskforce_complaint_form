@@ -15,14 +15,14 @@ export default function LegalTaskforcePage() {
 
   const content = {
     hi: {
-      title: "लीगल टास्कफोर्स",
-      description: "यह फॉर्म चुनावी अनियमितताओं और शिकायतों की रिपोर्ट करने के लिए है। कृपया सभी आवश्यक जानकारी प्रदान करें ताकि हम आपकी शिकायत पर उचित कार्रवाई कर सकें।",
+      title: "लीगल टास्क फोर्स",
+      description: "यह फॉर्म चुनावी अनियमितताओं और शिकायतों की रिपोर्ट करने के लिए है। कृपया सभी आवश्यक जानकारियाँ प्रदान करें ताकि हम आपकी शिकायत पर उचित कार्रवाई कर सकें।",
       start: "शुरू करें →",
       language: "English"
     },
     en: {
-      title: "Legal Taskforce",
-      description: "This form is for reporting electoral irregularities and complaints. Please provide all necessary information so that we can take appropriate action on your complaint.",
+      title: "Legal Task Force",
+      description: "This form is for reporting electoral irregularities and complaints. Please provide all necessary informations so that we can take appropriate action on your complaint.",
       start: "Start →",
       language: "हिंदी"
     }

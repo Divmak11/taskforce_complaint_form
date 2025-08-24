@@ -12,7 +12,18 @@ export const formSchema = z.object({
   assembly: z.string().trim().optional().or(z.literal('')),
   district: z.string().trim().min(1, 'District is required'),
 
-  incident_date: z.string().min(1, 'Date is required'), // yyyy-mm-dd from input[type=date]
+  incident_date: z
+    .string()
+    .min(1, 'Date is required')
+    .refine((s) => {
+      // Expect yyyy-mm-dd
+      const d = new Date(s);
+      if (Number.isNaN(d.getTime())) return false;
+      // Compare as date-only
+      const today = new Date(); today.setHours(0,0,0,0);
+      d.setHours(0,0,0,0);
+      return d.getTime() <= today.getTime();
+    }, { message: 'Date cannot be in the future' }), // yyyy-mm-dd
   incident_time: z.string().min(1, 'Time is required'), // HH:mm from input[type=time]
   location: z.string().trim().min(1, 'Location is required'),
 

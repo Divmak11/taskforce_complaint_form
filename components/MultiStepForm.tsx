@@ -8,7 +8,6 @@ import { formSchema, FormValues } from '@/lib/schema';
 import { motion, AnimatePresence } from "framer-motion";
 import { uploadImage, uploadVideo } from "@/lib/upload";
 import { getSupabaseClient } from "@/lib/supabaseClient";
-import DatePicker from "react-datepicker";
 
 const stepVariants = {
   initial: { opacity: 0, y: 10 },
@@ -45,7 +44,10 @@ export default function MultiStepForm() {
   const [error, setError] = useState<string | null>(null);
 
   // Local UI states
-  const [incidentDateObj, setIncidentDateObj] = useState<Date | null>(null);
+  // Separate Day/Month/Year selectors for incident date
+  const [selDay, setSelDay] = useState<number | "">("");
+  const [selMonth, setSelMonth] = useState<number | "">("");
+  const [selYear, setSelYear] = useState<number | "">("");
   const photoInputRef = useRef<HTMLInputElement | null>(null);
   const videoInputRef = useRef<HTMLInputElement | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
@@ -67,6 +69,9 @@ export default function MultiStepForm() {
     optional: "(वैकल्पिक)",
     placeholder: "अपना उत्तर यहाँ टाइप करें...",
     selectDate: "तारीख चुनें",
+    dayLabel: "दिन",
+    monthLabel: "महीना",
+    yearLabel: "वर्ष",
     next: "अगला",
     back: "वापस",
     submit: "शिकायत जमा करें",
@@ -149,6 +154,9 @@ export default function MultiStepForm() {
     optional: "(optional)",
     placeholder: "Type your answer here...",
     selectDate: "Select date",
+    dayLabel: "Day",
+    monthLabel: "Month",
+    yearLabel: "Year",
     next: "Next",
     back: "Back",
     submit: "Submit Complaint",
@@ -177,10 +185,40 @@ export default function MultiStepForm() {
   const currentLabels = language === 'hi' ? labelsHi : labelsEn;
   const [videoPreview, setVideoPreview] = useState<string | null>(null);
 
-  const toYMD = (d: Date) =>
+  const toYMD = useCallback((d: Date) =>
     `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
       d.getDate()
-    ).padStart(2, "0")}`;
+    ).padStart(2, "0")}`
+  , []);
+
+  // Helpers for date select logic
+  const daysInMonth = useCallback((year: number, month: number) => new Date(year, month, 0).getDate(), []); // month: 1-12
+  const isFuture = useCallback((y: number, m: number, d: number) => {
+    const t = new Date(); t.setHours(0,0,0,0);
+    const c = new Date(y, m - 1, d);
+    c.setHours(0,0,0,0);
+    return c.getTime() > t.getTime();
+  }, []);
+
+  const updateIncidentDateFromSelects = useCallback((y?: number, m?: number, d?: number) => {
+    if (y && m && d) {
+      const maxDay = daysInMonth(y, m);
+      if (d > maxDay) {
+        setSelDay("");
+        form.setValue("incident_date", "", { shouldValidate: true, shouldDirty: true });
+        return;
+      }
+      if (isFuture(y, m, d)) {
+        form.setValue("incident_date", "", { shouldValidate: true, shouldDirty: true });
+        return;
+      }
+      const date = new Date(y, m - 1, d);
+      form.setValue("incident_date", toYMD(date), { shouldValidate: true, shouldDirty: true });
+      form.clearErrors("incident_date");
+    } else {
+      form.setValue("incident_date", "", { shouldValidate: true, shouldDirty: true });
+    }
+  }, [form, isFuture, daysInMonth, toYMD]);
 
   // Validate only the current step so the OK button enables as soon as the
   // active field(s) are valid, rather than waiting for the entire form.
@@ -197,7 +235,14 @@ export default function MultiStepForm() {
       case 4:
         return (w.district || "").trim().length > 0;
       case 5:
-        return !!w.incident_date;
+        if (!w.incident_date) return false;
+        {
+          const d = new Date(w.incident_date);
+          if (isNaN(d.getTime())) return false;
+          d.setHours(0,0,0,0);
+          const t = new Date(); t.setHours(0,0,0,0);
+          return d.getTime() <= t.getTime();
+        }
       case 6:
         return !!w.incident_time;
       case 7:
@@ -267,26 +312,77 @@ export default function MultiStepForm() {
       )},
       { id: 5, label: currentLabels.incidentDate, render: (
         <div className="w-full">
-          <DatePicker
-            selected={incidentDateObj}
-            onChange={(d) => {
-              setIncidentDateObj(d as Date | null);
-              if (d) {
-                const v = toYMD(d as Date);
-                form.setValue("incident_date", v, { shouldValidate: true, shouldDirty: true });
-                form.clearErrors("incident_date");
-              } else {
-                form.setValue("incident_date", "", { shouldValidate: true });
-              }
-            }}
-            placeholderText={currentLabels.selectDate}
-            dateFormat="dd/MM/yyyy"
-            maxDate={new Date()}
-            className="w-full border-b-2 border-[#AD1818] focus:outline-none text-lg p-2"
-            onKeyDown={(e) => { if (e.key === 'Enter' && canProceed) next(); }}
-            isClearable
-            showPopperArrow={false}
-          />
+          <div className="grid grid-cols-3 gap-3">
+            {/* Day */}
+            <select
+              className="border-b-2 border-[#AD1818] focus:outline-none text-lg p-2 bg-transparent"
+              value={selDay}
+              onChange={(e) => {
+                const val = e.target.value === "" ? "" : Number(e.target.value);
+                setSelDay(val as number | "");
+                updateIncidentDateFromSelects(selYear as number, selMonth as number, val as number);
+              }}
+            >
+              <option value="">{currentLabels.dayLabel}</option>
+              {(() => {
+                const y = selYear as number; const m = selMonth as number;
+                const max = y && m ? daysInMonth(y, m) : 31;
+                const t = new Date(); const isCurYM = y === t.getFullYear() && m === (t.getMonth()+1);
+                const limit = isCurYM ? t.getDate() : max;
+                return Array.from({ length: max }, (_, i) => i + 1).map((d) => (
+                  <option key={d} value={d} disabled={isCurYM && d > limit}>{String(d).padStart(2, '0')}</option>
+                ));
+              })()}
+            </select>
+
+            {/* Month */}
+            <select
+              className="border-b-2 border-[#AD1818] focus:outline-none text-lg p-2 bg-transparent"
+              value={selMonth}
+              onChange={(e) => {
+                const val = e.target.value === "" ? "" : Number(e.target.value);
+                setSelMonth(val as number | "");
+                // Adjust day if now invalid
+                if (selYear && val !== "") {
+                  const max = daysInMonth(selYear as number, val as number);
+                  if (selDay && (selDay as number) > max) setSelDay("");
+                }
+                updateIncidentDateFromSelects(selYear as number, val as number, selDay as number);
+              }}
+            >
+              <option value="">{currentLabels.monthLabel}</option>
+              {(() => {
+                const t = new Date();
+                const curY = t.getFullYear(); const curM = t.getMonth()+1;
+                return Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                  <option key={m} value={m} disabled={selYear === curY && m > curM}>{String(m).padStart(2, '0')}</option>
+                ));
+              })()}
+            </select>
+
+            {/* Year */}
+            <select
+              className="border-b-2 border-[#AD1818] focus:outline-none text-lg p-2 bg-transparent"
+              value={selYear}
+              onChange={(e) => {
+                const val = e.target.value === "" ? "" : Number(e.target.value);
+                setSelYear(val as number | "");
+                updateIncidentDateFromSelects(val as number, selMonth as number, selDay as number);
+              }}
+            >
+              <option value="">{currentLabels.yearLabel}</option>
+              {(() => {
+                const t = new Date();
+                const curY = t.getFullYear();
+                const start = 1950;
+                const ys: number[] = [];
+                for (let y = curY; y >= start; y--) ys.push(y);
+                return ys.map((y) => (
+                  <option key={y} value={y}>{y}</option>
+                ));
+              })()}
+            </select>
+          </div>
         </div>
       )},
       { id: 6, label: currentLabels.incidentTime, render: (
@@ -449,7 +545,7 @@ export default function MultiStepForm() {
         </div>
       )},
     ];
-  }, [form, canProceed, incidentDateObj, photoPreview, videoPreview, next, currentLabels, w.complaint_type]);
+  }, [form, canProceed, photoPreview, videoPreview, next, currentLabels, w.complaint_type, selDay, selMonth, selYear, updateIncidentDateFromSelects, daysInMonth]);
 
   const totalSteps = steps.length;
   const active = steps[step - 1];
