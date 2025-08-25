@@ -33,7 +33,7 @@ export const formSchema = z.object({
   description: z.string().trim().optional().or(z.literal('')),
 
   photo_file: z.instanceof(File, { message: 'Photo is required' }),
-  video_file: z.instanceof(File, { message: 'Video is required' }),
+  video_file: z.instanceof(File).optional(),
 }).refine((vals) => {
   if (vals.complaint_type === 'Other') {
     return (vals.other_text || '').trim().length > 0;

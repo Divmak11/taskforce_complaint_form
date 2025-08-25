@@ -120,6 +120,11 @@ export default function MultiStepForm() {
     for (let i = 0; i < order.length; i++) {
       const key = order[i];
       if (errors[key]) {
+        // If video has no file selected, ignore any lingering custom errors
+        if (key === 'video_file') {
+          const hasVideo = !!form.getValues('video_file');
+          if (!hasVideo) continue;
+        }
         // Map field to step index (1-based)
         const fieldToStep: Record<keyof FormValues, number> = {
           name: 1,
@@ -262,7 +267,8 @@ export default function MultiStepForm() {
       case 10:
         return !!w.photo_file;
       case 11:
-        return !!w.video_file;
+        // Video is optional
+        return true;
       default:
         return false;
     }
@@ -525,7 +531,7 @@ export default function MultiStepForm() {
           )}
         </div>
       )},
-      { id: 11, label: currentLabels.uploadVideo, render: (
+      { id: 11, label: `${currentLabels.uploadVideo} ${currentLabels.optional}`, render: (
         <div className="space-y-3">
           <input
             ref={videoInputRef}
@@ -664,23 +670,29 @@ export default function MultiStepForm() {
       // Insert complaint record
       setProgressStage('saving');
       setProgress(90);
+      // Ensure we have a photo URL as it is required
+      if (!photoUrl) {
+        throw new Error('Photo upload failed or missing photo URL. Please retry.');
+      }
+      const finalDescription = (values.description && values.description.trim().length > 0)
+        ? values.description
+        : (values.other_text && values.other_text.trim().length > 0 ? values.other_text : undefined);
+      const payload: Record<string, unknown> = {
+        name: values.name,
+        phone: values.phone,
+        assembly: values.assembly || null,
+        district: values.district,
+        incident_date: values.incident_date,
+        incident_time: values.incident_time,
+        location: values.location,
+        complaint_type: values.complaint_type,
+        photo_url: photoUrl,
+      };
+      if (finalDescription !== undefined) payload.description = finalDescription;
+      if (videoUrl) payload.video_url = videoUrl; // only include if provided
       const { error: insertError } = await supabase
         .from("complaints")
-        .insert({
-          name: values.name,
-          phone: values.phone,
-          assembly: values.assembly || null,
-          district: values.district,
-          incident_date: values.incident_date,
-          incident_time: values.incident_time,
-          location: values.location,
-          complaint_type: values.complaint_type,
-          description: (values.description && values.description.trim().length > 0)
-            ? values.description
-            : (values.other_text && values.other_text.trim().length > 0 ? values.other_text : null),
-          photo_url: photoUrl,
-          video_url: videoUrl,
-        });
+        .insert(payload);
       if (insertError) throw insertError;
 
       setProgressStage('done');
@@ -752,6 +764,10 @@ export default function MultiStepForm() {
               if (!msg && step === 8) {
                 msg = form.formState.errors.other_text?.message as string | undefined;
               }
+              // Suppress video error if skipping video
+              if (step === 11 && !w.video_file) {
+                msg = undefined;
+              }
               return msg ? (
                 <div className="text-red-600 text-sm">{String(msg)}</div>
               ) : null;
@@ -788,7 +804,14 @@ export default function MultiStepForm() {
               </button>
               {step < totalSteps ? (
                 <button
-                  onClick={() => { if (canProceed) next(); }}
+                  onClick={() => {
+                    if (!canProceed) return;
+                    // If on video step and no file selected, clear any lingering errors
+                    if (step === 11 && !w.video_file) {
+                      form.clearErrors('video_file');
+                    }
+                    next();
+                  }}
                   disabled={!canProceed || submitting || uploadingPhoto || uploadingVideo || progressStage !== 'idle'}
                   className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >
@@ -796,7 +819,13 @@ export default function MultiStepForm() {
                 </button>
               ) : (
                 <button
-                  onClick={form.handleSubmit(onSubmit, onInvalid)}
+                  onClick={() => {
+                    // If skipping video, ensure errors are cleared before submit
+                    if (!w.video_file) {
+                      form.clearErrors('video_file');
+                    }
+                    form.handleSubmit(onSubmit, onInvalid)();
+                  }}
                   disabled={submitting || uploadingPhoto || uploadingVideo || progressStage !== 'idle'}
                   className="px-4 py-2 rounded-lg font-bold text-[#AD1818] border border-[#AD1818] bg-white hover:bg-[#ad18180d] focus:outline-none focus:ring-2 focus:ring-[#AD1818]/30 disabled:opacity-50 w-full sm:w-auto sm:ml-auto"
                 >
