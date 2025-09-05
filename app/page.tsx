@@ -47,6 +47,7 @@ export default function Home() {
       description: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स बिहार के सभी जिला न्यायालय परिसरों में गठित की जाएगी, जिसमें स्वतंत्र अधिवक्ताओं, वकील संगठन और कानून के छात्रों को आमंत्रित किया गया है। यह पहल राहुल गांधी के 'चुनावी लोकतंत्र की सुरक्षा' के विचार से प्रेरित है। इसका एकमात्र ध्येय यह है कि हर पात्र मतदाता को मतदान का अवसर मिले, चुनावी प्रक्रिया निष्पक्ष एवं पारदर्शी रहे और चुनाव से जुड़े आपराधिक मामलों पर तत्काल कार्यवाही हो।",
       electoralDemocracy: "कंप्लेंट करे",
       legalTaskforce: "लीगल टीम से जुड़ें",
+      registerComplaint: "शिकायत दर्ज करें",
       alliance: "गठबंधन",
       demandsMade: "ईसी मांगें की गईं",
       peopleCount: "28,19,731",
@@ -69,6 +70,7 @@ export default function Home() {
       description: "The Electoral Democracy Taskforce will be formed in all district court premises in Bihar, inviting independent advocates, lawyer organizations and law students. This initiative is inspired by Rahul Gandhi's idea of 'Protection of Electoral Democracy'. Its sole objective is to ensure that every eligible voter gets the opportunity to vote, the electoral process remains fair and transparent, and immediate action is taken on criminal cases related to elections.",
       electoralDemocracy: "File Complaint",
       legalTaskforce: "Join Legal Team",
+      registerComplaint: "Register Complaint",
       alliance: "Alliances",
       demandsMade: "EC DEMANDS MADE",
       peopleCount: "28,19,731",
@@ -220,7 +222,7 @@ export default function Home() {
           </div>
 
           {/* Main Action Buttons */}
-          <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mt-8 mb-20">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mt-8 mb-20">
             {/* Electoral Democracy Button */}
             <Link href="/legal-taskforce">
               <div className="group cursor-pointer">
@@ -244,6 +246,23 @@ export default function Home() {
                 </h3>
               </div>
             </Link>
+
+            {/* Register Complaint Button */}
+            <a href="#" onClick={(e) => { e.preventDefault(); /* TODO: Add chatbot integration */ }}>
+              <div className="group cursor-pointer">
+                <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
+                  {/* Chat/Message Icon */}
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="w-[80px] h-[80px] text-white transition-transform duration-200 group-hover:scale-110">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    <path d="M8 9h8"/>
+                    <path d="M8 13h6"/>
+                  </svg>
+                </div>
+                <h3 className="text-center text-lg font-bold text-black">
+                  {currentContent.registerComplaint}
+                </h3>
+              </div>
+            </a>
           </div>
 
           {/* YouTube Video */}
