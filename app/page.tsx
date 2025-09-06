@@ -248,21 +248,21 @@ export default function Home() {
             </Link>
 
             {/* Register Complaint Button */}
-            <a href="#" onClick={(e) => { e.preventDefault(); /* TODO: Add chatbot integration */ }}>
+            <Link href="/voteraudit">
               <div className="group cursor-pointer">
                 <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
                   {/* Chat/Message Icon */}
-                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="w-[80px] h-[80px] text-white transition-transform duration-200 group-hover:scale-110">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                    <path d="M8 9h8"/>
-                    <path d="M8 13h6"/>
+                  <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-[88px] h-[88px] text-white transition-transform duration-200 group-hover:scale-110">
+                    <path d="M8.5 14.5L4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H8.5z"/>
+                    <path d="M9 10h6"/>
+                    <path d="M9 13h4"/>
                   </svg>
                 </div>
                 <h3 className="text-center text-lg font-bold text-black">
                   {currentContent.registerComplaint}
                 </h3>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* YouTube Video */}
