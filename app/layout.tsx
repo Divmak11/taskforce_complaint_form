@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: "Complaint to Legal Taskforce",
   description:
-    "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
+    "Campaign to protect India's electoral democracy. File a complaint. Join our Legal Team.",
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
@@ -45,20 +45,20 @@ export const metadata: Metadata = {
   },
   openGraph: {
     url: siteUrl || undefined,
-    title: "#StopVoteChori in Bihar",
+    title: "#StopVoteChori in India",
     description:
-      "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
+      "Campaign to protect India's electoral democracy. File a complaint. Join our Legal Team.",
     type: "website",
     images: [
       // Single authoritative OG image (square 600x600, <300KB)
-      { url: ogAbsolute, width: 600, height: 600, alt: "#StopVoteChori in Bihar" },
+      { url: ogAbsolute, width: 600, height: 600, alt: "#StopVoteChori in India" },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "#StopVoteChori in Bihar",
+    title: "#StopVoteChori in India",
     description:
-      "Campaign to protect the electoral democracy in Bihar. File Complaint. Join our Legal Team.",
+      "Campaign to protect India's electoral democracy. File a complaint. Join our Legal Team.",
     images: [ogAbsolute],
   },
 };

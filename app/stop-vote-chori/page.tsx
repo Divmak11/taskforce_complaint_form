@@ -12,9 +12,9 @@ export default function StopVoteChoriPage() {
   const content = {
     hi: {
       header: "स्टॉप वोट चोरी",
-      titleMain: "स्टॉप वोट चोरी — बिहार में लोकतंत्र बचाओ",
+      titleMain: "स्टॉप वोट चोरी — भारत में लोकतंत्र बचाओ",
       intro:
-        "देशभर में हुए चुनाव में धांधली के बाद बिहार में इसे रोकना ही आज का राष्ट्र धर्म है। जनता के मत को बचाने के लिए और संविधान पर हो रहे हमले को रोकने के लिए हमारी टीम बनी है। इस अभियान से आज देशभर के युवा, नागरिक और मानवाधिकार संगठन जुड़ चुके हैं। आज जनता को ही साबित करना पड़ रहा है कि वह 'वोटर' है। इसीलिए बेहद जरूरी है की आप इस चुनाव पर अपनी निगाह बनाये रखें और कोई भी असंवैधानिक काम नहीं होने दें।",
+        "देशभर में हुए चुनाव में धांधली की खबरों और अनियमितताओं की आशंकाओं के बीच, इसे रोकना ही आज का राष्ट्र धर्म है। जनता के मत को बचाने और संविधान पर हो रहे हमलों को रोकने के लिए हमारी टीम बनी है। इस अभियान से आज देशभर के युवा, नागरिक और मानवाधिकार संगठन जुड़ चुके हैं। कई जगहों पर जनता को ही साबित करना पड़ रहा है कि वह 'वोटर' है। इसलिए बेहद ज़रूरी है कि आप चुनाव प्रक्रिया पर निगाह बनाए रखें और कोई भी असंवैधानिक काम न होने दें।",
       whyTitle: "क्यों ज़रूरी है यह अभियान?",
       whyPara:
         "आज जब राजनीति में ऐसे नेता सक्रिय हैं जो खुलेआम चुनावी क़ानूनों का उल्लंघन कर रहे हैं और मतदाता पर ही यह बोझ डाल रहे हैं कि वह साबित करे कि “मैं वोटर हूँ”, तो यह लोकतंत्र के लिए ख़तरे की घंटी है।",
@@ -37,9 +37,9 @@ export default function StopVoteChoriPage() {
     },
     en: {
       header: "Stop Vote Chori",
-      titleMain: "StopVoteChori — Save Democracy in Bihar",
+      titleMain: "StopVoteChori — Save Democracy in India",
       intro:
-        "The 2020 Bihar Assembly election proved how precious every vote is. The Hilsa seat was decided by just 12 votes, and many other seats by margins of 100, 200 or 500 votes. Opposition parties alleged irregularities and counting errors, yet their complaints were brushed aside. This is why “StopVoteChori” was born — a people’s campaign championed by the opposition and supported by human-rights organisations, youth groups and citizens who believe in democracy.",
+        "Recent elections have shown how fragile the mandate can be. Across India, youth, citizens and human-rights groups have rallied behind this campaign to protect the vote and the Constitution. When politics bends rules and people are forced to prove they are 'voters', it is a clear warning for our democracy. This is why StopVoteChori was born — a people's campaign to defend every vote.",
       whyTitle: "Why is this campaign necessary?",
       whyPara:
         "When leaders openly flout electoral laws and push the burden on voters to prove they are ‘voters’, it rings an alarm for democracy.",

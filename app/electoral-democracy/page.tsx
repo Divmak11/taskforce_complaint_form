@@ -15,12 +15,12 @@ export default function ElectoralDemocracyPage() {
   const content = {
     hi: {
       title: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स",
-      description: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स बिहार के सभी जिला न्यायालय परिसरों में गठित की जाएगी, जिसमें स्वतंत्र अधिवक्ताओं, वकील संगठन और कानून के छात्रों को आमंत्रित किया गया है। यह पहल राहुल गांधी के 'चुनावी लोकतंत्र की सुरक्षा' के विचार से प्रेरित है। इसका एकमात्र ध्येय यह है कि हर पात्र मतदाता को मतदान का अवसर मिले, चुनावी प्रक्रिया निष्पक्ष एवं पारदर्शी रहे और चुनाव से जुड़े आपराधिक मामलों पर तत्काल कार्यवाही हो।",
+      description: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स देशभर के जिला न्यायालय परिसरों में गठित की जाएगी, जिसमें स्वतंत्र अधिवक्ताओं, वकील संगठन और कानून के छात्रों को आमंत्रित किया गया है। यह पहल 'चुनावी लोकतंत्र की सुरक्षा' के विचार से प्रेरित है। इसका उद्देश्य है कि हर पात्र मतदाता को मतदान का अवसर मिले, चुनावी प्रक्रिया निष्पक्ष एवं पारदर्शी रहे और चुनाव से जुड़े आपराधिक मामलों पर तत्काल कार्यवाही हो।",
       start: "शुरू करें →"
     },
     en: {
       title: "Electoral Democracy Taskforce",
-      description: "The Electoral Democracy Taskforce will be formed in all district court premises in Bihar, inviting independent advocates, lawyer organizations and law students. This initiative is inspired by Rahul Gandhi's idea of 'Protection of Electoral Democracy'. Its sole objective is to ensure that every eligible voter gets the opportunity to vote, the electoral process remains fair and transparent, and immediate action is taken on criminal cases related to elections.",
+      description: "The Electoral Democracy Taskforce will be formed across district court premises in India, inviting independent advocates, bar associations and law students. Inspired by the idea of safeguarding electoral democracy, its purpose is to ensure every eligible voter can vote, the process remains fair and transparent, and election-related offences are acted upon promptly.",
       start: "Start →"
     }
   };

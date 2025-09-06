@@ -43,8 +43,8 @@ export default function Home() {
   const content = {
     hi: {
       title: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स",
-      subtitle: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स | बिहार",
-      description: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स बिहार के सभी जिला न्यायालय परिसरों में गठित की जाएगी, जिसमें स्वतंत्र अधिवक्ताओं, वकील संगठन और कानून के छात्रों को आमंत्रित किया गया है। यह पहल राहुल गांधी के 'चुनावी लोकतंत्र की सुरक्षा' के विचार से प्रेरित है। इसका एकमात्र ध्येय यह है कि हर पात्र मतदाता को मतदान का अवसर मिले, चुनावी प्रक्रिया निष्पक्ष एवं पारदर्शी रहे और चुनाव से जुड़े आपराधिक मामलों पर तत्काल कार्यवाही हो।",
+      subtitle: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स | भारत",
+      description: "इलेक्टोरल डेमोक्रेसी टास्कफोर्स देशभर के जिला न्यायालय परिसरों में गठित की जाएगी, जिसमें स्वतंत्र अधिवक्ताओं, वकील संगठन और कानून के छात्रों को आमंत्रित किया गया है। यह पहल 'चुनावी लोकतंत्र की सुरक्षा' के विचार से प्रेरित है। इसका उद्देश्य है कि हर पात्र मतदाता को मतदान का अवसर मिले, चुनावी प्रक्रिया निष्पक्ष एवं पारदर्शी रहे और चुनाव से जुड़े आपराधिक मामलों पर तत्काल कार्यवाही हो।",
       electoralDemocracy: "कंप्लेंट करे",
       legalTaskforce: "लीगल टीम से जुड़ें",
       registerComplaint: "शिकायत दर्ज करें",
@@ -54,9 +54,9 @@ export default function Home() {
       peopleStand: "लोग पहले ही अपना रुख ले चुके हैं!",
       willYou: "क्या आप अगले होंगे?",
       language: "हिंदी",
-      heroTitle1: "स्टॉप वोट चोरी — बिहार में लोकतंत्र बचाओ",
+      heroTitle1: "स्टॉप वोट चोरी — भारत में लोकतंत्र बचाओ",
       heroParagraph:
-        "देशभर में हुए चुनाव में धांधली के बाद बिहार में इसे रोकना ही आज का राष्ट्र धर्म है। जनता के मत को बचाने के लिए और संविधान पर हो रहे हमले को रोकने के लिए हमारी टीम बनी है। इस अभियान से आज देशभर के युवा, नागरिक और मानवाधिकार संगठन जुड़ चुके हैं। आज जनता को ही साबित करना पड़ रहा है कि वह 'वोटर' है। इसीलिए बेहद जरूरी है की आप इस चुनाव पर अपनी निगाह बनाये रखें और कोई भी असंवैधानिक काम नहीं होने दें।",
+        "देशभर में चुनावों में धांधली की आशंकाओं और अनियमितताओं की खबरों के बीच, इसे रोकना ही आज का राष्ट्र धर्म है। जनता के मत की रक्षा और संविधान पर हो रहे हमलों को रोकने के लिए हमारी टीम बनी है। इस अभियान से आज देशभर के युवा, नागरिक और मानवाधिकार संगठन जुड़ चुके हैं। कई जगहों पर जनता को ही साबित करना पड़ रहा है कि वह 'वोटर' है। इसलिए बेहद ज़रूरी है कि आप चुनाव प्रक्रिया पर निगाह बनाए रखें और कोई भी असंवैधानिक काम न होने दें।",
       heroTitle2: "स्टॉप वोट चोरी अभियान यह संदेश देता है कि—",
       heroBullets: [
         "हर वोट की रक्षा जनता करेगी।",
@@ -65,9 +65,9 @@ export default function Home() {
       ],
     },
     en: {
-      title: "Taskforce For Electoral Democracy",
-      subtitle: "Electoral Democracy Taskforce | Bihar",
-      description: "The Electoral Democracy Taskforce will be formed in all district court premises in Bihar, inviting independent advocates, lawyer organizations and law students. This initiative is inspired by Rahul Gandhi's idea of 'Protection of Electoral Democracy'. Its sole objective is to ensure that every eligible voter gets the opportunity to vote, the electoral process remains fair and transparent, and immediate action is taken on criminal cases related to elections.",
+      title: "Taskforce for Electoral Democracy",
+      subtitle: "Electoral Democracy Taskforce | India",
+      description: "The Electoral Democracy Taskforce will be formed across district court premises in India, inviting independent advocates, bar associations and law students. Inspired by the idea of safeguarding electoral democracy, its goal is to ensure every eligible voter can vote, the process remains fair and transparent, and election-related offences are acted upon promptly.",
       electoralDemocracy: "File Complaint",
       legalTaskforce: "Join Legal Team",
       registerComplaint: "Register Complaint",
@@ -77,9 +77,9 @@ export default function Home() {
       peopleStand: "People have already taken a stand!",
       willYou: "Will you be next?",
       language: "English",
-      heroTitle1: "StopVoteChori — Save Democracy in Bihar",
+      heroTitle1: "StopVoteChori — Save Democracy in India",
       heroParagraph:
-        "The 2020 election showed that even a margin of 12 votes can decide power. Today, youth, citizens and human-rights groups across the country have rallied behind this campaign. Politics increasingly stands accused of breaking rules, and citizens are often forced to prove they are 'voters'. This is the gravest crisis for our democracy.",
+        "Amid reports and fears of irregularities in elections across the country, defending the sanctity of the vote is a civic duty. This campaign brings together youth, citizens and human-rights groups nationwide to protect every vote and uphold the Constitution. In many places, citizens are being forced to prove they are 'voters'—a serious warning for our democracy.",
       heroTitle2: "StopVoteChori stands for —",
       heroBullets: [
         "People will protect every vote.",
@@ -252,7 +252,7 @@ export default function Home() {
               <div className="group cursor-pointer">
                 <div className="w-40 h-40 bg-[#AD1818] rounded-full flex items-center justify-center mb-4 transition-all duration-200 ease-out shadow-md group-hover:bg-[#8B1414] group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-105 cta-pulse">
                   {/* Chat/Message Icon */}
-                  <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-[88px] h-[88px] text-white transition-transform duration-200 group-hover:scale-110">
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="w-[80px] h-[80px] text-white transition-transform duration-200 group-hover:scale-110">
                     <path d="M8.5 14.5L4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H8.5z"/>
                     <path d="M9 10h6"/>
                     <path d="M9 13h4"/>

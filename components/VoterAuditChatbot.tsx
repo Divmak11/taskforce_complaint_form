@@ -64,6 +64,7 @@ export default function VoterAuditChatbot() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const initializeChat = () => {
+    setMessages([]); // Clear existing messages
     addMessage("नमस्ते! मैं वोटर रोल ऑडिट सहायक हूँ। मैं आपकी मतदाता सूची की विसंगतियों की रिपोर्ट करने में मदद करूंगा।", 'bot');
     setTimeout(() => {
       addMessage("शुरुआत करने के लिए, कृपया अपना मोबाइल नंबर दर्ज करें (10 अंक):", 'bot');
@@ -81,6 +82,7 @@ export default function VoterAuditChatbot() {
         const parsedUser = JSON.parse(user);
         setIsAuthenticated(true);
         setUserData(parsedUser);
+        setMessages([]); // Clear existing messages
         addMessage("आपका स्वागत है! आपने पहले से लॉगिन किया हुआ है।", 'bot');
         setTimeout(() => {
           addMessage("कृपया उस समस्या का विवरण दें जो आपने मतदाता सूची में देखी है।", 'bot');
@@ -592,30 +594,16 @@ export default function VoterAuditChatbot() {
     setUploadedImages([]);
     setShowImageUpload(false);
     setShowSuccess(false);
+    setIsAuthenticated(false);
     setCurrentStep('init');
-    localStorage.removeItem('registration_phone'); // Clear registration phone if exists
-
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-
-    if (token && user) {
-      try {
-        const parsedUser = JSON.parse(user);
-        setIsAuthenticated(true);
-        setUserData(parsedUser);
-        addMessage("आपका स्वागत है! आपने पहले से लॉगिन किया हुआ है।", 'bot');
-        setTimeout(() => {
-          addMessage("कृपया उस समस्या का विवरण दें जो आपने मतदाता सूची में देखी है।", 'bot');
-          setCurrentStep('description');
-        }, 1000);
-      } catch {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        initializeChat();
-      }
-    } else {
+    localStorage.removeItem('registration_phone');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    
+    // Reinitialize chat after clearing everything
+    setTimeout(() => {
       initializeChat();
-    }
+    }, 100);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
