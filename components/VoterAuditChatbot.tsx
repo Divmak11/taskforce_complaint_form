@@ -1,5 +1,7 @@
 "use client";
+
 import React, { useState, useRef, useEffect } from "react";
+import Image from 'next/image';
 import { indianStates, indianDistricts, AssemblySeatsDistrictWise } from '@/data/statesData';
 
 interface Message {
@@ -409,7 +411,9 @@ export default function VoterAuditChatbot() {
       }
     } catch (error) {
       console.error('Submission failed:', error);
-      if ((error as any).response?.status === 401) {
+      if (error && typeof error === 'object' && 'response' in error && 
+          typeof error.response === 'object' && error.response && 
+          'status' in error.response && error.response.status === 401) {
         typeMessage("सत्र समाप्त हो गया है। कृपया दोबारा लॉगिन करें।", 'bot');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -772,10 +776,13 @@ export default function VoterAuditChatbot() {
             <div className="grid grid-cols-3 gap-2 max-h-40 overflow-y-auto">
               {selectedImages.map((image) => (
                 <div key={image.id} className="relative">
-                  <img
+                  <Image
                     src={image.url}
                     alt={image.name}
+                    width={80}
+                    height={80}
                     className="w-full h-20 object-cover rounded-lg border-2 border-yellow-300 shadow-sm"
+                    unoptimized
                   />
                   <span className="absolute top-1 right-1 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full shadow">⏳</span>
                   <button
@@ -788,10 +795,13 @@ export default function VoterAuditChatbot() {
               ))}
               {uploadedImages.map((image) => (
                 <div key={image.id} className="relative">
-                  <img
+                  <Image
                     src={image.url}
                     alt={image.name}
+                    width={80}
+                    height={80}
                     className="w-full h-20 object-cover rounded-lg border-2 border-green-300 shadow-sm"
+                    unoptimized
                   />
                   <span className="absolute top-1 right-1 bg-green-500 text-white text-xs px-2 py-1 rounded-full shadow">✅</span>
                   <button
