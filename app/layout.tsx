@@ -30,8 +30,8 @@ const khand = localFont({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 const ogAbsolute = siteUrl
-  ? new URL("/og.png?v=3", siteUrl).toString()
-  : "/og.png?v=3";
+  ? new URL("/og.png?v=5", siteUrl).toString()
+  : "/og.png?v=5";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
@@ -49,9 +49,16 @@ export const metadata: Metadata = {
     description:
       "Campaign to protect India's electoral democracy. File a complaint. Join our Legal Team.",
     type: "website",
+    siteName: "#StopVoteChori in India",
+    locale: "en_US",
     images: [
-      // Single authoritative OG image (square 600x600, <300KB)
-      { url: ogAbsolute, width: 600, height: 600, alt: "#StopVoteChori in India" },
+      {
+        url: ogAbsolute,
+        width: 600,
+        height: 600,
+        alt: "#StopVoteChori in India",
+        type: "image/png",
+      },
     ],
   },
   twitter: {
