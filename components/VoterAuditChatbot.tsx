@@ -119,7 +119,7 @@ export default function VoterAuditChatbot() {
       if (!ctx) return null;
 
       // Load the certificate template using native HTML Image constructor
-      const templateImage = new (window as any).Image();
+      const templateImage = new (globalThis.Image || HTMLImageElement)();
       templateImage.crossOrigin = 'anonymous';
       
       return new Promise<string>((resolve, reject) => {
