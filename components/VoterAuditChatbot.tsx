@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from 'next/image';
+import logo from "../app/assets/logo.png";
 import { indianStates, indianDistricts, AssemblySeatsDistrictWise } from '@/data/statesData';
 
 interface Message {
@@ -60,7 +61,7 @@ export default function VoterAuditChatbot() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCreatingUser, setIsCreatingUser] = useState(false);
   const [certificateUrl, setCertificateUrl] = useState<string>('');
-  const [certificates, setCertificates] = useState<{url: string; name: string | undefined;}[]>([]);
+  const [certificates, setCertificates] = useState<{ url: string; name: string | undefined; }[]>([]);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -104,6 +105,96 @@ export default function VoterAuditChatbot() {
 
   const getText = (key: keyof typeof translations.hindi) => translations[language][key];
 
+  const validateToken = async (token: string) => {
+    try {
+      const response = await fetch('https://api.shaktiabhiyan.in/api/v1/voterAuditUser/validate-token', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.status === 'success') {
+        return { valid: true, user: data.data.user };
+      } else {
+        return { valid: false, expired: data.expired || false };
+      }
+    } catch (error) {
+      console.error('Token validation error:', error);
+      return { valid: false, expired: false };
+    }
+  };
+
+  const refreshToken = async (currentToken: string) => {
+    try {
+      const response = await fetch('https://api.shaktiabhiyan.in/api/v1/voterAuditUser/refresh-token', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${currentToken}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.status === 'success') {
+        return {
+          success: true,
+          token: data.token,
+          expiresAt: data.expiresAt,
+          user: data.data.user
+        };
+      } else {
+        return { success: false };
+      }
+    } catch (error) {
+      console.error('Token refresh error:', error);
+      return { success: false };
+    }
+  };
+
+  // Enhanced token check with auto-refresh
+  const checkAndRefreshToken = async () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      clearSession();
+      return false;
+    }
+    addMessage("Verifying.../पुष्टि हो रही है...", 'bot');
+
+    // setCurrentStep('tokenVerification');
+    // Validate current token
+    const validation = await validateToken(token);
+
+    if (validation.valid) {
+      return true;
+    }
+
+    // Try to refresh token if it exists but is invalid/expired
+    const refreshResult = await refreshToken(token);
+
+    if (refreshResult.success) {
+      localStorage.setItem('token', refreshResult.token);
+      localStorage.setItem('user', JSON.stringify(refreshResult.user));
+      return true;
+    }
+
+    // If refresh fails, clear session
+    clearSession();
+    return false;
+  };
+
+  const clearSession = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setIsAuthenticated(false);
+    setUserData({});
+  };
+
   const initializeChat = () => {
     setMessages([]); // Clear existing messages
     addMessage("Please select your preferred language / कृपया अपनी पसंदीदा भाषा चुनें:", 'bot', ['English', 'हिंदी']);
@@ -115,34 +206,34 @@ export default function VoterAuditChatbot() {
       // Create canvas
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
-      
+
       if (!ctx) return null;
 
       // Load the certificate template using native HTML Image constructor
       const templateImage = new (globalThis.Image || HTMLImageElement)();
       templateImage.crossOrigin = 'anonymous';
-      
+
       return new Promise<string>((resolve, reject) => {
         templateImage.onload = () => {
           // Set canvas size to match image
           canvas.width = templateImage.width;
           canvas.height = templateImage.height;
-          
+
           // Draw the certificate template
           ctx.drawImage(templateImage, 0, 0);
-          
+
           // Configure text styling for name
           ctx.fillStyle = '#000000'; // Black color
           ctx.font = 'bold 170px Arial';
           ctx.textAlign = 'center';
-          
+
           // Calculate position (25% from top)
           const nameX = canvas.width / 2;
           const nameY = canvas.height * 0.31;
-          
+
           // Add user name to certificate
           ctx.fillText(userName, nameX, nameY);
-          
+
           // Convert to blob and create URL
           canvas.toBlob((blob) => {
             if (blob) {
@@ -153,7 +244,7 @@ export default function VoterAuditChatbot() {
             }
           }, 'image/png', 0.9);
         };
-        
+
         templateImage.onerror = () => reject(new Error('Failed to load certificate template'));
         // Use PNG/JPG format instead of PDF for canvas compatibility
         templateImage.src = language === 'hindi' ? '/VoteChoriC-Hindi.jpg' : '/VoteChoriC-English.jpg';
@@ -165,30 +256,44 @@ export default function VoterAuditChatbot() {
   };
 
   useEffect(() => {
-    // Check if user is already logged in
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
+    const initializeAuthentication = async () => {
+      // Check if user is already logged in
+      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
 
-    if (token && user) {
-      try {
-        const parsedUser = JSON.parse(user);
-        setIsAuthenticated(true);
-        setUserData(parsedUser);
-        setMessages([]); // Clear existing messages
-        addMessage(getText('welcome'), 'bot');
-        setTimeout(() => {
-          addMessage(getText('enterDescription'), 'bot');
-          setCurrentStep('description');
-        }, 1000);
-      } catch {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+      if (token && user) {
+        try {
+          const isTokenValid = await checkAndRefreshToken();
+
+          if (isTokenValid) {
+            const parsedUser = JSON.parse(user);
+            setIsAuthenticated(true);
+            setUserData(parsedUser);
+            setMessages([]); // Clear existing messages
+            addMessage(getText('welcome'), 'bot');
+            setTimeout(() => {
+              addMessage(getText('enterDescription'), 'bot');
+              setCurrentStep('description');
+            }, 1000);
+          } else {
+            // Token invalid, start fresh
+            clearSession();
+            initializeChat();
+          }
+        } catch (error) {
+          console.error('Authentication initialization error:', error);
+          clearSession();
+          initializeChat();
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          initializeChat();
+        }
+      } else {
         initializeChat();
       }
-    } else {
-      initializeChat();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    };
+
+    initializeAuthentication();
   }, []);
 
   useEffect(() => {
@@ -198,9 +303,9 @@ export default function VoterAuditChatbot() {
   // Handle state selection and filter districts
   useEffect(() => {
     if (userData.state) {
-      const selectedState = indianStates.find((s: {name: string; key: string}) => s.name === userData.state);
+      const selectedState = indianStates.find((s: { name: string; key: string }) => s.name === userData.state);
       if (selectedState) {
-        const stateDistricts = indianDistricts.states.find((s: {key: string; districts: District[]}) => s.key === selectedState.key);
+        const stateDistricts = indianDistricts.states.find((s: { key: string; districts: District[] }) => s.key === selectedState.key);
         if (stateDistricts) {
           setDistricts(stateDistricts.districts);
         }
@@ -211,11 +316,11 @@ export default function VoterAuditChatbot() {
   // Handle district selection and filter assemblies
   useEffect(() => {
     if (userData.district && userData.state) {
-      const selectedState = indianStates.find((s: {name: string; key: string}) => s.name === userData.state);
+      const selectedState = indianStates.find((s: { name: string; key: string }) => s.name === userData.state);
       if (selectedState) {
-        const assemblyData = AssemblySeatsDistrictWise.state.find((s: {stateKey: string; districts?: Array<{districtName: string; constituencies: Assembly[]}>}) => s.stateKey === selectedState.key);
+        const assemblyData = AssemblySeatsDistrictWise.state.find((s: { stateKey: string; districts?: Array<{ districtName: string; constituencies: Assembly[] }> }) => s.stateKey === selectedState.key);
         if (assemblyData && assemblyData.districts) {
-          const selectedDistrict = assemblyData.districts.find((d: {districtName: string; constituencies: Assembly[]}) => d.districtName === userData.district);
+          const selectedDistrict = assemblyData.districts.find((d: { districtName: string; constituencies: Assembly[] }) => d.districtName === userData.district);
           if (selectedDistrict) {
             setAssemblies(selectedDistrict.constituencies);
           }
@@ -296,7 +401,7 @@ export default function VoterAuditChatbot() {
     }
   };
 
-  const createUser = async (userDataForCreation: {phone: string; name: string; state: string; district: string; assembly: string; boothNumber: string}) => {
+  const createUser = async (userDataForCreation: { phone: string; name: string; state: string; district: string; assembly: string; boothNumber: string }) => {
     try {
       setIsCreatingUser(true);
 
@@ -335,7 +440,7 @@ export default function VoterAuditChatbot() {
   const handleLanguageSelection = (selectedLanguage: string) => {
     const langCode = selectedLanguage === 'English' ? 'english' : 'hindi';
     setLanguage(langCode);
-    
+
     setTimeout(() => {
       addMessage(translations[langCode].greeting, 'bot');
       setTimeout(() => {
@@ -351,9 +456,9 @@ export default function VoterAuditChatbot() {
     typeMessage(language === 'hindi' ? "राज्य चुना गया। कृपया थोड़ा इंतजार करें..." : "State selected. Please wait...", 'bot');
 
     setTimeout(() => {
-      const selectedState = indianStates.find((s: {name: string; key: string}) => s.name === stateName);
+      const selectedState = indianStates.find((s: { name: string; key: string }) => s.name === stateName);
       if (selectedState) {
-        const stateDistricts = indianDistricts.states.find((s: {key: string; districts: District[]}) => s.key === selectedState.key);
+        const stateDistricts = indianDistricts.states.find((s: { key: string; districts: District[] }) => s.key === selectedState.key);
         if (stateDistricts && stateDistricts.districts.length > 0) {
           const districtOptions = stateDistricts.districts.map((d: District) => d.name);
           addMessage(getText('selectDistrict'), 'bot', districtOptions);
@@ -371,11 +476,11 @@ export default function VoterAuditChatbot() {
     typeMessage(language === 'hindi' ? "जिला चुना गया। विधानसभा क्षेत्र लोड हो रहे हैं..." : "District selected. Loading assembly constituencies...", 'bot');
 
     setTimeout(() => {
-      const selectedState = indianStates.find((s: {name: string; key: string}) => s.name === userData.state);
+      const selectedState = indianStates.find((s: { name: string; key: string }) => s.name === userData.state);
       if (selectedState) {
-        const assemblyData = AssemblySeatsDistrictWise.state.find((s: {stateKey: string; districts?: Array<{districtName: string; constituencies: Assembly[]}>}) => s.stateKey === selectedState.key);
+        const assemblyData = AssemblySeatsDistrictWise.state.find((s: { stateKey: string; districts?: Array<{ districtName: string; constituencies: Assembly[] }> }) => s.stateKey === selectedState.key);
         if (assemblyData && assemblyData.districts) {
-          const selectedDistrict = assemblyData.districts.find((d: {districtName: string; constituencies: Assembly[]}) => d.districtName === districtName);
+          const selectedDistrict = assemblyData.districts.find((d: { districtName: string; constituencies: Assembly[] }) => d.districtName === districtName);
           if (selectedDistrict && selectedDistrict.constituencies.length > 0) {
             const assemblyOptions = selectedDistrict.constituencies.map((a: Assembly) => a.name);
             addMessage(getText('selectAssembly'), 'bot', assemblyOptions);
@@ -508,12 +613,12 @@ export default function VoterAuditChatbot() {
         if (userData.name) {
           const certificateDataUrl = await generateCertificate(userData.name);
           if (certificateDataUrl) {
-            setCertificates(prev => [...prev, {url: certificateDataUrl, name: userData.name}]);
+            setCertificates(prev => [...prev, { url: certificateDataUrl, name: userData.name }]);
           }
         }
-        
+
         typeMessage(getText('thankYou'), 'bot');
-        
+
         // Show certificate after thank you message
         setTimeout(() => {
           if (certificates.length > 0 || userData.name) {
@@ -527,9 +632,9 @@ export default function VoterAuditChatbot() {
       }
     } catch (error) {
       console.error('Submission failed:', error);
-      if (error && typeof error === 'object' && 'response' in error && 
-          typeof error.response === 'object' && error.response && 
-          'status' in error.response && error.response.status === 401) {
+      if (error && typeof error === 'object' && 'response' in error &&
+        typeof error.response === 'object' && error.response &&
+        'status' in error.response && error.response.status === 401) {
         typeMessage(language === 'hindi' ? "सत्र समाप्त हो गया है। कृपया दोबारा लॉगिन करें।" : "Session expired. Please login again.", 'bot');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -591,14 +696,14 @@ export default function VoterAuditChatbot() {
         setUserData(prev => ({ ...prev, name: userMessage }));
         typeMessage(getText('selectState'), 'bot');
         setTimeout(() => {
-          const stateOptions = indianStates.map((state: {name: string; key: string}) => state.name);
+          const stateOptions = indianStates.map((state: { name: string; key: string }) => state.name);
           addMessage("", 'bot', stateOptions);
           setCurrentStep('state');
         }, 1000);
         break;
 
       case 'state':
-        if (!indianStates.find((s: {name: string; key: string}) => s.name === userMessage)) {
+        if (!indianStates.find((s: { name: string; key: string }) => s.name === userMessage)) {
           typeMessage(language === 'hindi' ? "कृपया दिए गए विकल्पों में से राज्य चुनें।" : "Please select a state from the given options.", 'bot');
           return;
         }
@@ -755,7 +860,7 @@ export default function VoterAuditChatbot() {
     localStorage.removeItem('registration_phone');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    
+
     // Reinitialize chat after clearing everything
     setTimeout(() => {
       initializeChat();
@@ -780,10 +885,8 @@ export default function VoterAuditChatbot() {
       <div className="relative z-10 bg-white bg-opacity-95 backdrop-blur-sm shadow-lg p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
-              <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
+            <div className="flex items-center">
+              <Image src={logo} alt="VoteChori logo" width={200} height={50} className="h-10 md:h-12 w-auto" />
             </div>
             <div>
               <h1 className="font-bold text-xl text-gray-900">
@@ -1035,15 +1138,15 @@ export default function VoterAuditChatbot() {
                 onChange={(e) => setCurrentInput(e.target.value)}
                 onKeyDown={handleKeyPress}
                 placeholder={
-                  currentStep === 'mobile' ? 
+                  currentStep === 'mobile' ?
                     (language === 'hindi' ? "मोबाइल नंबर दर्ज करें..." : "Enter mobile number...") :
-                  currentStep === 'name' ? 
-                    (language === 'hindi' ? "अपना नाम दर्ज करें..." : "Enter your name...") :
-                  currentStep === 'booth' ? 
-                    (language === 'hindi' ? "बूथ नंबर दर्ज करें..." : "Enter booth number...") :
-                  currentStep === 'description' ? 
-                    (language === 'hindi' ? "समस्या का विवरण दें..." : "Describe the problem...") :
-                    (language === 'hindi' ? "यहाँ टाइप करें..." : "Type here...")
+                    currentStep === 'name' ?
+                      (language === 'hindi' ? "अपना नाम दर्ज करें..." : "Enter your name...") :
+                      currentStep === 'booth' ?
+                        (language === 'hindi' ? "बूथ नंबर दर्ज करें..." : "Enter booth number...") :
+                        currentStep === 'description' ?
+                          (language === 'hindi' ? "समस्या का विवरण दें..." : "Describe the problem...") :
+                          (language === 'hindi' ? "यहाँ टाइप करें..." : "Type here...")
                 }
                 className="w-full px-4 py-3 bg-white bg-opacity-95 backdrop-blur-sm border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none shadow-lg text-gray-800 placeholder-gray-500"
                 rows={1}
