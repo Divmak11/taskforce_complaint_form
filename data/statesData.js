@@ -9680,630 +9680,546 @@ export const AssemblySeatsDistrictWise = {
             "id": 22,
             "state": "Maharashtra",
             "stateKey": "MH",
+            "hasAssembly": true,
             "totalSeats": 288,
-            "lokSabhaConstituencies": [
+            "districts": [
                 {
-                    "lokSabhaKey": "MHLS-1",
-                    "lokSabhaName": "Nandurbar",
-                    "totalSeats": 4,
+                    "districtKey": "MH-1",
+                    "districtName": "Ahmednagar",
+                    "totalSeats": 12,
                     "constituencies": [
-                        { "id": 1, "name": "Akkalkuwa", "districtKey": "MH-21" },
-                        { "id": 2, "name": "Shahada", "districtKey": "MH-21" },
-                        { "id": 3, "name": "Nandurbar", "districtKey": "MH-21" },
-                        { "id": 4, "name": "Navapur", "districtKey": "MH-21" }
+                        { "id": 216, "name": "Akole", "lokSabhaKey": "MHLS-43" },
+                        { "id": 217, "name": "Sangamner", "lokSabhaKey": "MHLS-43" },
+                        { "id": 218, "name": "Shirdi", "lokSabhaKey": "MHLS-43" },
+                        { "id": 219, "name": "Kopargaon", "lokSabhaKey": "MHLS-43" },
+                        { "id": 220, "name": "Shrirampur", "lokSabhaKey": "MHLS-43" },
+                        { "id": 221, "name": "Nevasa", "lokSabhaKey": "MHLS-43" },
+                        { "id": 222, "name": "Shevgaon", "lokSabhaKey": "MHLS-1" },
+                        { "id": 223, "name": "Rahuri", "lokSabhaKey": "MHLS-1" },
+                        { "id": 224, "name": "Parner", "lokSabhaKey": "MHLS-1" },
+                        { "id": 225, "name": "Ahmednagar City", "lokSabhaKey": "MHLS-1" },
+                        { "id": 226, "name": "Shrigonda", "lokSabhaKey": "MHLS-1" },
+                        { "id": 227, "name": "Karjat Jamkhed", "lokSabhaKey": "MHLS-1" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-2",
-                    "lokSabhaName": "Dhule",
+                    "districtKey": "MH-2",
+                    "districtName": "Akola",
+                    "totalSeats": 5,
+                    "constituencies": [
+                        { "id": 28, "name": "Akot", "lokSabhaKey": "MHLS-2" },
+                        { "id": 29, "name": "Balapur", "lokSabhaKey": "MHLS-2" },
+                        { "id": 30, "name": "Akola West", "lokSabhaKey": "MHLS-2" },
+                        { "id": 31, "name": "Akola East", "lokSabhaKey": "MHLS-2" },
+                        { "id": 32, "name": "Murtizapur", "lokSabhaKey": "MHLS-2" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-3",
+                    "districtName": "Amravati",
                     "totalSeats": 7,
                     "constituencies": [
-                        { "id": 5, "name": "Sakri", "districtKey": "MH-9" },
-                        { "id": 6, "name": "Dhule Rural", "districtKey": "MH-9" },
-                        { "id": 7, "name": "Dhule City", "districtKey": "MH-9" },
-                        { "id": 8, "name": "Sindkheda", "districtKey": "MH-9" },
-                        { "id": 9, "name": "Shirpur", "districtKey": "MH-9" },
-                        { "id": 114, "name": "Malegaon Central", "districtKey": "MH-22" },
-                        { "id": 115, "name": "Malegaon Outer", "districtKey": "MH-22" },
-                        { "id": 116, "name": "Baglan", "districtKey": "MH-22" }
+                        { "id": 36, "name": "Dhamangaon Railway", "lokSabhaKey": "MHLS-47" },
+                        { "id": 37, "name": "Badnera", "lokSabhaKey": "MHLS-3" },
+                        { "id": 38, "name": "Amravati", "lokSabhaKey": "MHLS-3" },
+                        { "id": 39, "name": "Teosa", "lokSabhaKey": "MHLS-3" },
+                        { "id": 40, "name": "Daryapur", "lokSabhaKey": "MHLS-3" },
+                        { "id": 41, "name": "Melghat", "lokSabhaKey": "MHLS-3" },
+                        { "id": 42, "name": "Achalpur", "lokSabhaKey": "MHLS-3" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-3",
-                    "lokSabhaName": "Jalgaon",
+                    "districtKey": "MH-4",
+                    "districtName": "Aurangabad",
+                    "totalSeats": 9,
+                    "constituencies": [
+                        { "id": 104, "name": "Sillod", "lokSabhaKey": "MHLS-17" },
+                        { "id": 105, "name": "Kannad", "lokSabhaKey": "MHLS-4" },
+                        { "id": 106, "name": "Phulambri", "lokSabhaKey": "MHLS-4" },
+                        { "id": 107, "name": "Aurangabad Central", "lokSabhaKey": "MHLS-4" },
+                        { "id": 108, "name": "Aurangabad West", "lokSabhaKey": "MHLS-4" },
+                        { "id": 109, "name": "Aurangabad East", "lokSabhaKey": "MHLS-4" },
+                        { "id": 110, "name": "Paithan", "lokSabhaKey": "MHLS-17" },
+                        { "id": 111, "name": "Gangapur", "lokSabhaKey": "MHLS-4" },
+                        { "id": 112, "name": "Vaijapur", "lokSabhaKey": "MHLS-4" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-5",
+                    "districtName": "Beed",
                     "totalSeats": 6,
                     "constituencies": [
-                        { "id": 13, "name": "Jalgaon City", "districtKey": "MH-13" },
-                        { "id": 14, "name": "Jalgaon Rural", "districtKey": "MH-13" },
-                        { "id": 15, "name": "Amalner", "districtKey": "MH-13" },
-                        { "id": 16, "name": "Erandol", "districtKey": "MH-13" },
-                        { "id": 17, "name": "Chalisgaon", "districtKey": "MH-13" },
-                        { "id": 18, "name": "Pachora", "districtKey": "MH-13" }
+                        { "id": 228, "name": "Georai", "lokSabhaKey": "MHLS-6" },
+                        { "id": 229, "name": "Majalgaon", "lokSabhaKey": "MHLS-6" },
+                        { "id": 230, "name": "Beed", "lokSabhaKey": "MHLS-6" },
+                        { "id": 231, "name": "Ashti", "lokSabhaKey": "MHLS-6" },
+                        { "id": 232, "name": "Kaij", "lokSabhaKey": "MHLS-6" },
+                        { "id": 233, "name": "Parli", "lokSabhaKey": "MHLS-6" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-4",
-                    "lokSabhaName": "Raver",
+                    "districtKey": "MH-6",
+                    "districtName": "Bhandara",
+                    "totalSeats": 3,
+                    "constituencies": [
+                        { "id": 60, "name": "Tumsar", "lokSabhaKey": "MHLS-7" },
+                        { "id": 61, "name": "Bhandara", "lokSabhaKey": "MHLS-7" },
+                        { "id": 62, "name": "Sakoli", "lokSabhaKey": "MHLS-7" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-7",
+                    "districtName": "Buldhana",
+                    "totalSeats": 7,
+                    "constituencies": [
+                        { "id": 21, "name": "Malkapur", "lokSabhaKey": "MHLS-40" },
+                        { "id": 22, "name": "Buldhana", "lokSabhaKey": "MHLS-9" },
+                        { "id": 23, "name": "Chikhali", "lokSabhaKey": "MHLS-9" },
+                        { "id": 24, "name": "Sindkhed Raja", "lokSabhaKey": "MHLS-9" },
+                        { "id": 25, "name": "Mehkar", "lokSabhaKey": "MHLS-9" },
+                        { "id": 26, "name": "Khamgaon", "lokSabhaKey": "MHLS-9" },
+                        { "id": 27, "name": "Jalgaon (Jamod)", "lokSabhaKey": "MHLS-9" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-8",
+                    "districtName": "Chandrapur",
                     "totalSeats": 6,
                     "constituencies": [
-                        { "id": 10, "name": "Chopda", "districtKey": "MH-13" },
-                        { "id": 11, "name": "Raver", "districtKey": "MH-13" },
-                        { "id": 12, "name": "Bhusawal", "districtKey": "MH-13" },
-                        { "id": 19, "name": "Jamner", "districtKey": "MH-13" },
-                        { "id": 20, "name": "Muktainagar", "districtKey": "MH-13" },
-                        { "id": 21, "name": "Malkapur", "districtKey": "MH-7" }
+                        { "id": 70, "name": "Rajura", "lokSabhaKey": "MHLS-10" },
+                        { "id": 71, "name": "Chandrapur", "lokSabhaKey": "MHLS-10" },
+                        { "id": 72, "name": "Ballarpur", "lokSabhaKey": "MHLS-10" },
+                        { "id": 73, "name": "Bramhapuri", "lokSabhaKey": "MHLS-13" },
+                        { "id": 74, "name": "Chimur", "lokSabhaKey": "MHLS-13" },
+                        { "id": 75, "name": "Warora", "lokSabhaKey": "MHLS-10" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-5",
-                    "lokSabhaName": "Buldhana",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 22, "name": "Buldhana", "districtKey": "MH-7" },
-                        { "id": 23, "name": "Chikhali", "districtKey": "MH-7" },
-                        { "id": 24, "name": "Sindkhed Raja", "districtKey": "MH-7" },
-                        { "id": 25, "name": "Mehkar", "districtKey": "MH-7" },
-                        { "id": 26, "name": "Khamgaon", "districtKey": "MH-7" },
-                        { "id": 27, "name": "Jalgaon (Jamod)", "districtKey": "MH-7" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-6",
-                    "lokSabhaName": "Akola",
+                    "districtKey": "MH-9",
+                    "districtName": "Dhule",
                     "totalSeats": 5,
                     "constituencies": [
-                        { "id": 28, "name": "Akot", "districtKey": "MH-2" },
-                        { "id": 29, "name": "Balapur", "districtKey": "MH-2" },
-                        { "id": 30, "name": "Akola West", "districtKey": "MH-2" },
-                        { "id": 31, "name": "Akola East", "districtKey": "MH-2" },
-                        { "id": 32, "name": "Murtizapur", "districtKey": "MH-2" },
-                        { "id": 33, "name": "Risod", "districtKey": "MH-35" }
+                        { "id": 5, "name": "Sakri", "lokSabhaKey": "MHLS-31" },
+                        { "id": 6, "name": "Dhule Rural", "lokSabhaKey": "MHLS-11" },
+                        { "id": 7, "name": "Dhule City", "lokSabhaKey": "MHLS-11" },
+                        { "id": 8, "name": "Sindkheda", "lokSabhaKey": "MHLS-11" },
+                        { "id": 9, "name": "Shirpur", "lokSabhaKey": "MHLS-31" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-7",
-                    "lokSabhaName": "Amravati",
-                    "totalSeats": 6,
+                    "districtKey": "MH-10",
+                    "districtName": "Gadchiroli",
+                    "totalSeats": 3,
                     "constituencies": [
-                        { "id": 37, "name": "Badnera", "districtKey": "MH-3" },
-                        { "id": 38, "name": "Amravati", "districtKey": "MH-3" },
-                        { "id": 39, "name": "Teosa", "districtKey": "MH-3" },
-                        { "id": 40, "name": "Daryapur", "districtKey": "MH-3" },
-                        { "id": 41, "name": "Melghat", "districtKey": "MH-3" },
-                        { "id": 42, "name": "Achalpur", "districtKey": "MH-3" }
+                        { "id": 67, "name": "Armori", "lokSabhaKey": "MHLS-13" },
+                        { "id": 68, "name": "Gadchiroli", "lokSabhaKey": "MHLS-13" },
+                        { "id": 69, "name": "Aheri", "lokSabhaKey": "MHLS-13" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-8",
-                    "lokSabhaName": "Wardha",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 36, "name": "Dhamangaon Railway", "districtKey": "MH-3" },
-                        { "id": 43, "name": "Morshi", "districtKey": "MH-3" },
-                        { "id": 44, "name": "Arvi", "districtKey": "MH-34" },
-                        { "id": 45, "name": "Deoli", "districtKey": "MH-34" },
-                        { "id": 46, "name": "Hinganghat", "districtKey": "MH-34" },
-                        { "id": 47, "name": "Wardha", "districtKey": "MH-34" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-9",
-                    "lokSabhaName": "Ramtek",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 48, "name": "Katol", "districtKey": "MH-19" },
-                        { "id": 49, "name": "Savner", "districtKey": "MH-19" },
-                        { "id": 50, "name": "Hingna", "districtKey": "MH-19" },
-                        { "id": 51, "name": "Umred", "districtKey": "MH-19" },
-                        { "id": 58, "name": "Kamthi", "districtKey": "MH-19" },
-                        { "id": 59, "name": "Ramtek", "districtKey": "MH-19" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-10",
-                    "lokSabhaName": "Nagpur",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 52, "name": "Nagpur South West", "districtKey": "MH-19" },
-                        { "id": 53, "name": "Nagpur South", "districtKey": "MH-19" },
-                        { "id": 54, "name": "Nagpur East", "districtKey": "MH-19" },
-                        { "id": 55, "name": "Nagpur Central", "districtKey": "MH-19" },
-                        { "id": 56, "name": "Nagpur West", "districtKey": "MH-19" },
-                        { "id": 57, "name": "Nagpur North", "districtKey": "MH-19" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-11",
-                    "lokSabhaName": "Bhandara-Gondiya",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 60, "name": "Tumsar", "districtKey": "MH-6" },
-                        { "id": 61, "name": "Bhandara", "districtKey": "MH-6" },
-                        { "id": 62, "name": "Sakoli", "districtKey": "MH-6" },
-                        { "id": 63, "name": "Arjuni-Morgaon", "districtKey": "MH-11" },
-                        { "id": 64, "name": "Tirora", "districtKey": "MH-11" },
-                        { "id": 65, "name": "Gondiya", "districtKey": "MH-11" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-12",
-                    "lokSabhaName": "Gadchiroli-Chimur",
-                    "totalSeats": 5,
-                    "constituencies": [
-                        { "id": 66, "name": "Amgaon", "districtKey": "MH-11" },
-                        { "id": 67, "name": "Armori", "districtKey": "MH-10" },
-                        { "id": 68, "name": "Gadchiroli", "districtKey": "MH-10" },
-                        { "id": 69, "name": "Aheri", "districtKey": "MH-10" },
-                        { "id": 73, "name": "Bramhapuri", "districtKey": "MH-8" },
-                        { "id": 74, "name": "Chimur", "districtKey": "MH-8" },
-                        { "id": 76, "name": "Wani", "districtKey": "MH-36" },
-                        { "id": 80, "name": "Arni", "districtKey": "MH-36" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-13",
-                    "lokSabhaName": "Chandrapur",
+                    "districtKey": "MH-11",
+                    "districtName": "Gondia",
                     "totalSeats": 4,
                     "constituencies": [
-                        { "id": 70, "name": "Rajura", "districtKey": "MH-8" },
-                        { "id": 71, "name": "Chandrapur", "districtKey": "MH-8" },
-                        { "id": 72, "name": "Ballarpur", "districtKey": "MH-8" },
-                        { "id": 75, "name": "Warora", "districtKey": "MH-8" }
+                        { "id": 63, "name": "Arjuni-Morgaon", "lokSabhaKey": "MHLS-7" },
+                        { "id": 64, "name": "Tirora", "lokSabhaKey": "MHLS-7" },
+                        { "id": 65, "name": "Gondiya", "lokSabhaKey": "MHLS-7" },
+                        { "id": 66, "name": "Amgaon", "lokSabhaKey": "MHLS-13" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-14",
-                    "lokSabhaName": "Yavatmal-Washim",
-                    "totalSeats": 6,
+                    "districtKey": "MH-12",
+                    "districtName": "Hingoli",
+                    "totalSeats": 3,
                     "constituencies": [
-                        { "id": 34, "name": "Washim", "districtKey": "MH-35" },
-                        { "id": 35, "name": "Karanja", "districtKey": "MH-35" },
-                        { "id": 77, "name": "Ralegaon", "districtKey": "MH-36" },
-                        { "id": 78, "name": "Yavatmal", "districtKey": "MH-36" },
-                        { "id": 79, "name": "Digras", "districtKey": "MH-36" },
-                        { "id": 81, "name": "Pusad", "districtKey": "MH-36" }
+                        { "id": 92, "name": "Basmath", "lokSabhaKey": "MHLS-15" },
+                        { "id": 93, "name": "Kalamnuri", "lokSabhaKey": "MHLS-15" },
+                        { "id": 94, "name": "Hingoli", "lokSabhaKey": "MHLS-15" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-15",
-                    "lokSabhaName": "Hingoli",
+                    "districtKey": "MH-13",
+                    "districtName": "Jalgaon",
+                    "totalSeats": 11,
+                    "constituencies": [
+                        { "id": 10, "name": "Chopda", "lokSabhaKey": "MHLS-40" },
+                        { "id": 11, "name": "Raver", "lokSabhaKey": "MHLS-40" },
+                        { "id": 12, "name": "Bhusawal", "lokSabhaKey": "MHLS-40" },
+                        { "id": 13, "name": "Jalgaon City", "lokSabhaKey": "MHLS-16" },
+                        { "id": 14, "name": "Jalgaon Rural", "lokSabhaKey": "MHLS-16" },
+                        { "id": 15, "name": "Amalner", "lokSabhaKey": "MHLS-16" },
+                        { "id": 16, "name": "Erandol", "lokSabhaKey": "MHLS-16" },
+                        { "id": 17, "name": "Chalisgaon", "lokSabhaKey": "MHLS-16" },
+                        { "id": 18, "name": "Pachora", "lokSabhaKey": "MHLS-16" },
+                        { "id": 19, "name": "Jamner", "lokSabhaKey": "MHLS-40" },
+                        { "id": 20, "name": "Muktainagar", "lokSabhaKey": "MHLS-40" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-14",
+                    "districtName": "Jalna",
                     "totalSeats": 5,
                     "constituencies": [
-                        { "id": 82, "name": "Umarkhed", "districtKey": "MH-36" },
-                        { "id": 83, "name": "Kinwat", "districtKey": "MH-20" },
-                        { "id": 84, "name": "Hadgaon", "districtKey": "MH-20" },
-                        { "id": 92, "name": "Basmath", "districtKey": "MH-12" },
-                        { "id": 93, "name": "Kalamnuri", "districtKey": "MH-12" },
-                        { "id": 94, "name": "Hingoli", "districtKey": "MH-12" }
+                        { "id": 99, "name": "Partur", "lokSabhaKey": "MHLS-35" },
+                        { "id": 100, "name": "Ghansawangi", "lokSabhaKey": "MHLS-35" },
+                        { "id": 101, "name": "Jalna", "lokSabhaKey": "MHLS-17" },
+                        { "id": 102, "name": "Badnapur", "lokSabhaKey": "MHLS-17" },
+                        { "id": 103, "name": "Bhokardan", "lokSabhaKey": "MHLS-17" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-16",
-                    "lokSabhaName": "Nanded",
-                    "totalSeats": 6,
+                    "districtKey": "MH-15",
+                    "districtName": "Kolhapur",
+                    "totalSeats": 10,
                     "constituencies": [
-                        { "id": 85, "name": "Bhokar", "districtKey": "MH-20" },
-                        { "id": 86, "name": "Nanded North", "districtKey": "MH-20" },
-                        { "id": 87, "name": "Nanded South", "districtKey": "MH-20" },
-                        { "id": 89, "name": "Naigaon", "districtKey": "MH-20" },
-                        { "id": 90, "name": "Deglur", "districtKey": "MH-20" },
-                        { "id": 91, "name": "Mukhed", "districtKey": "MH-20" }
+                        { "id": 271, "name": "Chandgad", "lokSabhaKey": "MHLS-19" },
+                        { "id": 272, "name": "Radhanagari", "lokSabhaKey": "MHLS-19" },
+                        { "id": 273, "name": "Kagal", "lokSabhaKey": "MHLS-19" },
+                        { "id": 274, "name": "Kolhapur South", "lokSabhaKey": "MHLS-19" },
+                        { "id": 275, "name": "Karvir", "lokSabhaKey": "MHLS-19" },
+                        { "id": 276, "name": "Kolhapur North", "lokSabhaKey": "MHLS-19" },
+                        { "id": 277, "name": "Shahuwadi", "lokSabhaKey": "MHLS-14" },
+                        { "id": 278, "name": "Hatkanangle", "lokSabhaKey": "MHLS-14" },
+                        { "id": 279, "name": "Ichalkaranji", "lokSabhaKey": "MHLS-14" },
+                        { "id": 280, "name": "Shirol", "lokSabhaKey": "MHLS-14" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-17",
-                    "lokSabhaName": "Parbhani",
-                    "totalSeats": 6,
+                    "districtKey": "MH-16",
+                    "districtName": "Latur",
+                    "totalSeats": 5,
                     "constituencies": [
-                        { "id": 95, "name": "Jintur", "districtKey": "MH-25" },
-                        { "id": 96, "name": "Parbhani", "districtKey": "MH-25" },
-                        { "id": 97, "name": "Gangakhed", "districtKey": "MH-25" },
-                        { "id": 98, "name": "Pathri", "districtKey": "MH-25" },
-                        { "id": 99, "name": "Partur", "districtKey": "MH-14" },
-                        { "id": 100, "name": "Ghansawangi", "districtKey": "MH-14" }
+                        { "id": 234, "name": "Latur Rural", "lokSabhaKey": "MHLS-20" },
+                        { "id": 235, "name": "Latur City", "lokSabhaKey": "MHLS-20" },
+                        { "id": 236, "name": "Ahmedpur", "lokSabhaKey": "MHLS-20" },
+                        { "id": 237, "name": "Udgir", "lokSabhaKey": "MHLS-20" },
+                        { "id": 238, "name": "Nilanga", "lokSabhaKey": "MHLS-20" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-18",
-                    "lokSabhaName": "Jalna",
+                    "districtKey": "MH-17",
+                    "districtName": "Mumbai City",
+                    "totalSeats": 10,
+                    "constituencies": [
+                        { "id": 178, "name": "Dharavi", "lokSabhaKey": "MHLS-28" },
+                        { "id": 179, "name": "Sion Koliwada", "lokSabhaKey": "MHLS-28" },
+                        { "id": 180, "name": "Wadala", "lokSabhaKey": "MHLS-28" },
+                        { "id": 181, "name": "Mahim", "lokSabhaKey": "MHLS-28" },
+                        { "id": 182, "name": "Worli", "lokSabhaKey": "MHLS-27" },
+                        { "id": 183, "name": "Shivadi", "lokSabhaKey": "MHLS-27" },
+                        { "id": 184, "name": "Byculla", "lokSabhaKey": "MHLS-27" },
+                        { "id": 185, "name": "Malabar Hill", "lokSabhaKey": "MHLS-27" },
+                        { "id": 186, "name": "Mumbadevi", "lokSabhaKey": "MHLS-27" },
+                        { "id": 187, "name": "Colaba", "lokSabhaKey": "MHLS-27" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-18",
+                    "districtName": "Mumbai Suburban",
+                    "totalSeats": 26,
+                    "constituencies": [
+                        { "id": 152, "name": "Borivali", "lokSabhaKey": "MHLS-23" },
+                        { "id": 153, "name": "Dahisar", "lokSabhaKey": "MHLS-23" },
+                        { "id": 154, "name": "Magathane", "lokSabhaKey": "MHLS-23" },
+                        { "id": 155, "name": "Mulund", "lokSabhaKey": "MHLS-25" },
+                        { "id": 156, "name": "Vikhroli", "lokSabhaKey": "MHLS-25" },
+                        { "id": 157, "name": "Bhandup West", "lokSabhaKey": "MHLS-25" },
+                        { "id": 158, "name": "Jogeshwari East", "lokSabhaKey": "MHLS-26" },
+                        { "id": 159, "name": "Dindoshi", "lokSabhaKey": "MHLS-26" },
+                        { "id": 160, "name": "Kandivli East", "lokSabhaKey": "MHLS-23" },
+                        { "id": 161, "name": "Charkop", "lokSabhaKey": "MHLS-23" },
+                        { "id": 162, "name": "Malad West", "lokSabhaKey": "MHLS-23" },
+                        { "id": 163, "name": "Goregaon", "lokSabhaKey": "MHLS-26" },
+                        { "id": 164, "name": "Versova", "lokSabhaKey": "MHLS-26" },
+                        { "id": 165, "name": "Andheri West", "lokSabhaKey": "MHLS-26" },
+                        { "id": 166, "name": "Andheri East", "lokSabhaKey": "MHLS-26" },
+                        { "id": 167, "name": "Vile Parle", "lokSabhaKey": "MHLS-24" },
+                        { "id": 168, "name": "Chandivali", "lokSabhaKey": "MHLS-24" },
+                        { "id": 169, "name": "Ghatkopar West", "lokSabhaKey": "MHLS-25" },
+                        { "id": 170, "name": "Ghatkopar East", "lokSabhaKey": "MHLS-25" },
+                        { "id": 171, "name": "Mankhurd Shivaji Nagar", "lokSabhaKey": "MHLS-25" },
+                        { "id": 172, "name": "Anushakti Nagar", "lokSabhaKey": "MHLS-28" },
+                        { "id": 173, "name": "Chembur", "lokSabhaKey": "MHLS-28" },
+                        { "id": 174, "name": "Kurla", "lokSabhaKey": "MHLS-24" },
+                        { "id": 175, "name": "Kalina", "lokSabhaKey": "MHLS-24" },
+                        { "id": 176, "name": "Vandre East", "lokSabhaKey": "MHLS-24" },
+                        { "id": 177, "name": "Vandre West", "lokSabhaKey": "MHLS-24" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-19",
+                    "districtName": "Nagpur",
+                    "totalSeats": 12,
+                    "constituencies": [
+                        { "id": 48, "name": "Katol", "lokSabhaKey": "MHLS-38" },
+                        { "id": 49, "name": "Savner", "lokSabhaKey": "MHLS-38" },
+                        { "id": 50, "name": "Hingna", "lokSabhaKey": "MHLS-38" },
+                        { "id": 51, "name": "Umred", "lokSabhaKey": "MHLS-38" },
+                        { "id": 52, "name": "Nagpur South West", "lokSabhaKey": "MHLS-29" },
+                        { "id": 53, "name": "Nagpur South", "lokSabhaKey": "MHLS-29" },
+                        { "id": 54, "name": "Nagpur East", "lokSabhaKey": "MHLS-29" },
+                        { "id": 55, "name": "Nagpur Central", "lokSabhaKey": "MHLS-29" },
+                        { "id": 56, "name": "Nagpur West", "lokSabhaKey": "MHLS-29" },
+                        { "id": 57, "name": "Nagpur North", "lokSabhaKey": "MHLS-29" },
+                        { "id": 58, "name": "Kamthi", "lokSabhaKey": "MHLS-38" },
+                        { "id": 59, "name": "Ramtek", "lokSabhaKey": "MHLS-38" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-20",
+                    "districtName": "Nanded",
+                    "totalSeats": 9,
+                    "constituencies": [
+                        { "id": 83, "name": "Kinwat", "lokSabhaKey": "MHLS-15" },
+                        { "id": 84, "name": "Hadgaon", "lokSabhaKey": "MHLS-15" },
+                        { "id": 85, "name": "Bhokar", "lokSabhaKey": "MHLS-30" },
+                        { "id": 86, "name": "Nanded North", "lokSabhaKey": "MHLS-30" },
+                        { "id": 87, "name": "Nanded South", "lokSabhaKey": "MHLS-30" },
+                        { "id": 88, "name": "Loha", "lokSabhaKey": "MHLS-20" },
+                        { "id": 89, "name": "Naigaon", "lokSabhaKey": "MHLS-30" },
+                        { "id": 90, "name": "Deglur", "lokSabhaKey": "MHLS-30" },
+                        { "id": 91, "name": "Mukhed", "lokSabhaKey": "MHLS-30" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-21",
+                    "districtName": "Nandurbar",
                     "totalSeats": 4,
                     "constituencies": [
-                        { "id": 101, "name": "Jalna", "districtKey": "MH-14" },
-                        { "id": 102, "name": "Badnapur", "districtKey": "MH-14" },
-                        { "id": 103, "name": "Bhokardan", "districtKey": "MH-14" },
-                        { "id": 104, "name": "Sillod", "districtKey": "MH-4" },
-                        { "id": 110, "name": "Paithan", "districtKey": "MH-4" }
+                        { "id": 1, "name": "Akkalkuwa", "lokSabhaKey": "MHLS-31" },
+                        { "id": 2, "name": "Shahada", "lokSabhaKey": "MHLS-31" },
+                        { "id": 3, "name": "Nandurbar", "lokSabhaKey": "MHLS-31" },
+                        { "id": 4, "name": "Navapur", "lokSabhaKey": "MHLS-31" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-19",
-                    "lokSabhaName": "Aurangabad",
+                    "districtKey": "MH-22",
+                    "districtName": "Nashik",
+                    "totalSeats": 15,
+                    "constituencies": [
+                        { "id": 113, "name": "Nandgaon", "lokSabhaKey": "MHLS-12" },
+                        { "id": 114, "name": "Malegaon Central", "lokSabhaKey": "MHLS-11" },
+                        { "id": 115, "name": "Malegaon Outer", "lokSabhaKey": "MHLS-11" },
+                        { "id": 116, "name": "Baglan", "lokSabhaKey": "MHLS-11" },
+                        { "id": 117, "name": "Kalwan", "lokSabhaKey": "MHLS-12" },
+                        { "id": 118, "name": "Chandwad", "lokSabhaKey": "MHLS-12" },
+                        { "id": 119, "name": "Yevla", "lokSabhaKey": "MHLS-12" },
+                        { "id": 120, "name": "Sinnar", "lokSabhaKey": "MHLS-32" },
+                        { "id": 121, "name": "Niphad", "lokSabhaKey": "MHLS-12" },
+                        { "id": 122, "name": "Dindori", "lokSabhaKey": "MHLS-12" },
+                        { "id": 123, "name": "Nashik East", "lokSabhaKey": "MHLS-32" },
+                        { "id": 124, "name": "Nashik Central", "lokSabhaKey": "MHLS-32" },
+                        { "id": 125, "name": "Nashik West", "lokSabhaKey": "MHLS-32" },
+                        { "id": 126, "name": "Deolali", "lokSabhaKey": "MHLS-32" },
+                        { "id": 127, "name": "Igatpuri", "lokSabhaKey": "MHLS-32" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-23",
+                    "districtName": "Osmanabad",
+                    "totalSeats": 4,
+                    "constituencies": [
+                        { "id": 240, "name": "Umarga", "lokSabhaKey": "MHLS-33" },
+                        { "id": 241, "name": "Tuljapur", "lokSabhaKey": "MHLS-33" },
+                        { "id": 242, "name": "Osmanabad", "lokSabhaKey": "MHLS-33" },
+                        { "id": 243, "name": "Paranda", "lokSabhaKey": "MHLS-33" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-24",
+                    "districtName": "Palghar",
                     "totalSeats": 6,
                     "constituencies": [
-                        { "id": 105, "name": "Kannad", "districtKey": "MH-4" },
-                        { "id": 106, "name": "Phulambri", "districtKey": "MH-4" },
-                        { "id": 107, "name": "Aurangabad Central", "districtKey": "MH-4" },
-                        { "id": 108, "name": "Aurangabad West", "districtKey": "MH-4" },
-                        { "id": 109, "name": "Aurangabad East", "districtKey": "MH-4" },
-                        { "id": 111, "name": "Gangapur", "districtKey": "MH-4" },
-                        { "id": 112, "name": "Vaijapur", "districtKey": "MH-4" }
+                        { "id": 128, "name": "Dahanu", "lokSabhaKey": "MHLS-34" },
+                        { "id": 129, "name": "Vikramgad", "lokSabhaKey": "MHLS-34" },
+                        { "id": 130, "name": "Palghar", "lokSabhaKey": "MHLS-34" },
+                        { "id": 131, "name": "Boisar", "lokSabhaKey": "MHLS-34" },
+                        { "id": 132, "name": "Nallasopara", "lokSabhaKey": "MHLS-34" },
+                        { "id": 133, "name": "Vasai", "lokSabhaKey": "MHLS-34" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-20",
-                    "lokSabhaName": "Dindori",
-                    "totalSeats": 6,
+                    "districtKey": "MH-25",
+                    "districtName": "Parbhani",
+                    "totalSeats": 4,
                     "constituencies": [
-                        { "id": 113, "name": "Nandgaon", "districtKey": "MH-22" },
-                        { "id": 117, "name": "Kalwan", "districtKey": "MH-22" },
-                        { "id": 118, "name": "Chandwad", "districtKey": "MH-22" },
-                        { "id": 119, "name": "Yevla", "districtKey": "MH-22" },
-                        { "id": 121, "name": "Niphad", "districtKey": "MH-22" },
-                        { "id": 122, "name": "Dindori", "districtKey": "MH-22" }
+                        { "id": 95, "name": "Jintur", "lokSabhaKey": "MHLS-35" },
+                        { "id": 96, "name": "Parbhani", "lokSabhaKey": "MHLS-35" },
+                        { "id": 97, "name": "Gangakhed", "lokSabhaKey": "MHLS-35" },
+                        { "id": 98, "name": "Pathri", "lokSabhaKey": "MHLS-35" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-21",
-                    "lokSabhaName": "Nashik",
-                    "totalSeats": 6,
+                    "districtKey": "MH-26",
+                    "districtName": "Pune",
+                    "totalSeats": 21,
                     "constituencies": [
-                        { "id": 120, "name": "Sinnar", "districtKey": "MH-22" },
-                        { "id": 123, "name": "Nashik East", "districtKey": "MH-22" },
-                        { "id": 124, "name": "Nashik Central", "districtKey": "MH-22" },
-                        { "id": 125, "name": "Nashik West", "districtKey": "MH-22" },
-                        { "id": 126, "name": "Deolali", "districtKey": "MH-22" },
-                        { "id": 127, "name": "Igatpuri", "districtKey": "MH-22" }
+                        { "id": 195, "name": "Junnar", "lokSabhaKey": "MHLS-44" },
+                        { "id": 196, "name": "Ambegaon", "lokSabhaKey": "MHLS-44" },
+                        { "id": 197, "name": "Khed Alandi", "lokSabhaKey": "MHLS-44" },
+                        { "id": 198, "name": "Shirur", "lokSabhaKey": "MHLS-44" },
+                        { "id": 199, "name": "Daund", "lokSabhaKey": "MHLS-5" },
+                        { "id": 200, "name": "Indapur", "lokSabhaKey": "MHLS-5" },
+                        { "id": 201, "name": "Baramati", "lokSabhaKey": "MHLS-5" },
+                        { "id": 202, "name": "Purandar", "lokSabhaKey": "MHLS-5" },
+                        { "id": 203, "name": "Bhor", "lokSabhaKey": "MHLS-5" },
+                        { "id": 204, "name": "Maval", "lokSabhaKey": "MHLS-22" },
+                        { "id": 205, "name": "Chinchwad", "lokSabhaKey": "MHLS-22" },
+                        { "id": 206, "name": "Pimpri", "lokSabhaKey": "MHLS-22" },
+                        { "id": 207, "name": "Bhosari", "lokSabhaKey": "MHLS-44" },
+                        { "id": 208, "name": "Vadgaon Sheri", "lokSabhaKey": "MHLS-36" },
+                        { "id": 209, "name": "Shivajinagar", "lokSabhaKey": "MHLS-36" },
+                        { "id": 210, "name": "Kothrud", "lokSabhaKey": "MHLS-36" },
+                        { "id": 211, "name": "Khadakwasala", "lokSabhaKey": "MHLS-5" },
+                        { "id": 212, "name": "Parvati", "lokSabhaKey": "MHLS-36" },
+                        { "id": 213, "name": "Hadapsar", "lokSabhaKey": "MHLS-44" },
+                        { "id": 214, "name": "Pune Cantonment", "lokSabhaKey": "MHLS-36" },
+                        { "id": 215, "name": "Kasba Peth", "lokSabhaKey": "MHLS-36" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-22",
-                    "lokSabhaName": "Palghar",
-                    "totalSeats": 6,
+                    "districtKey": "MH-27",
+                    "districtName": "Raigad",
+                    "totalSeats": 7,
                     "constituencies": [
-                        { "id": 128, "name": "Dahanu", "districtKey": "MH-24" },
-                        { "id": 129, "name": "Vikramgad", "districtKey": "MH-24" },
-                        { "id": 130, "name": "Palghar", "districtKey": "MH-24" },
-                        { "id": 131, "name": "Boisar", "districtKey": "MH-24" },
-                        { "id": 132, "name": "Nalasopara", "districtKey": "MH-24" },
-                        { "id": 133, "name": "Vasai", "districtKey": "MH-24" }
+                        { "id": 188, "name": "Panvel", "lokSabhaKey": "MHLS-22" },
+                        { "id": 189, "name": "Karjat", "lokSabhaKey": "MHLS-22" },
+                        { "id": 190, "name": "Uran", "lokSabhaKey": "MHLS-22" },
+                        { "id": 191, "name": "Pen", "lokSabhaKey": "MHLS-37" },
+                        { "id": 192, "name": "Alibag", "lokSabhaKey": "MHLS-37" },
+                        { "id": 193, "name": "Shrivardhan", "lokSabhaKey": "MHLS-37" },
+                        { "id": 194, "name": "Mahad", "lokSabhaKey": "MHLS-37" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-23",
-                    "lokSabhaName": "Bhiwandi",
-                    "totalSeats": 6,
+                    "districtKey": "MH-28",
+                    "districtName": "Ratnagiri",
+                    "totalSeats": 5,
                     "constituencies": [
-                        { "id": 134, "name": "Bhiwandi Rural", "districtKey": "MH-33" },
-                        { "id": 135, "name": "Shahapur", "districtKey": "MH-33" },
-                        { "id": 136, "name": "Bhiwandi West", "districtKey": "MH-33" },
-                        { "id": 137, "name": "Bhiwandi East", "districtKey": "MH-33" },
-                        { "id": 138, "name": "Kalyan West", "districtKey": "MH-33" },
-                        { "id": 139, "name": "Murbad", "districtKey": "MH-33" }
+                        { "id": 263, "name": "Dapoli", "lokSabhaKey": "MHLS-37" },
+                        { "id": 264, "name": "Guhagar", "lokSabhaKey": "MHLS-37" },
+                        { "id": 265, "name": "Chiplun", "lokSabhaKey": "MHLS-39" },
+                        { "id": 266, "name": "Ratnagiri", "lokSabhaKey": "MHLS-39" },
+                        { "id": 267, "name": "Rajapur", "lokSabhaKey": "MHLS-39" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-24",
-                    "lokSabhaName": "Kalyan",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 140, "name": "Ambernath", "districtKey": "MH-33" },
-                        { "id": 141, "name": "Ulhasnagar", "districtKey": "MH-33" },
-                        { "id": 142, "name": "Kalyan East", "districtKey": "MH-33" },
-                        { "id": 143, "name": "Dombivali", "districtKey": "MH-33" },
-                        { "id": 144, "name": "Kalyan Rural", "districtKey": "MH-33" },
-                        { "id": 149, "name": "Mumbra-Kalwa", "districtKey": "MH-33" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-25",
-                    "lokSabhaName": "Thane",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 145, "name": "Mira Bhayandar", "districtKey": "MH-33" },
-                        { "id": 146, "name": "Ovala-Majiwada", "districtKey": "MH-33" },
-                        { "id": 147, "name": "Kopri-Pachpakhadi", "districtKey": "MH-33" },
-                        { "id": 148, "name": "Thane", "districtKey": "MH-33" },
-                        { "id": 150, "name": "Airoli", "districtKey": "MH-33" },
-                        { "id": 151, "name": "Belapur", "districtKey": "MH-33" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-26",
-                    "lokSabhaName": "Mumbai North",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 152, "name": "Borivali", "districtKey": "MH-18" },
-                        { "id": 153, "name": "Dahisar", "districtKey": "MH-18" },
-                        { "id": 154, "name": "Magathane", "districtKey": "MH-18" },
-                        { "id": 160, "name": "Kandivali East", "districtKey": "MH-18" },
-                        { "id": 161, "name": "Charkop", "districtKey": "MH-18" },
-                        { "id": 162, "name": "Malad West", "districtKey": "MH-18" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-27",
-                    "lokSabhaName": "Mumbai North West",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 158, "name": "Jogeshwari East", "districtKey": "MH-18" },
-                        { "id": 159, "name": "Dindoshi", "districtKey": "MH-18" },
-                        { "id": 163, "name": "Goregaon", "districtKey": "MH-18" },
-                        { "id": 164, "name": "Versova", "districtKey": "MH-18" },
-                        { "id": 165, "name": "Andheri West", "districtKey": "MH-18" },
-                        { "id": 166, "name": "Andheri East", "districtKey": "MH-18" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-28",
-                    "lokSabhaName": "Mumbai North East",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 155, "name": "Mulund", "districtKey": "MH-18" },
-                        { "id": 156, "name": "Vikhroli", "districtKey": "MH-18" },
-                        { "id": 157, "name": "Bhandup West", "districtKey": "MH-18" },
-                        { "id": 169, "name": "Ghatkopar West", "districtKey": "MH-18" },
-                        { "id": 170, "name": "Ghatkopar East", "districtKey": "MH-18" },
-                        { "id": 171, "name": "Mankhurd Shivaji Nagar", "districtKey": "MH-18" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-29",
-                    "lokSabhaName": "Mumbai North Central",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 167, "name": "Vile Parle", "districtKey": "MH-18" },
-                        { "id": 168, "name": "Chandivali", "districtKey": "MH-18" },
-                        { "id": 174, "name": "Kurla", "districtKey": "MH-18" },
-                        { "id": 175, "name": "Kalina", "districtKey": "MH-18" },
-                        { "id": 176, "name": "Vandre East", "districtKey": "MH-18" },
-                        { "id": 177, "name": "Vandre West", "districtKey": "MH-18" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-30",
-                    "lokSabhaName": "Mumbai South Central",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 172, "name": "Anushakti Nagar", "districtKey": "MH-18" },
-                        { "id": 173, "name": "Chembur", "districtKey": "MH-18" },
-                        { "id": 178, "name": "Dharavi", "districtKey": "MH-17" },
-                        { "id": 179, "name": "Sion Koliwada", "districtKey": "MH-17" },
-                        { "id": 180, "name": "Wadala", "districtKey": "MH-17" },
-                        { "id": 181, "name": "Mahim", "districtKey": "MH-17" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-31",
-                    "lokSabhaName": "Mumbai South",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 182, "name": "Worli", "districtKey": "MH-17" },
-                        { "id": 183, "name": "Shivadi", "districtKey": "MH-17" },
-                        { "id": 184, "name": "Byculla", "districtKey": "MH-17" },
-                        { "id": 185, "name": "Malabar Hill", "districtKey": "MH-17" },
-                        { "id": 186, "name": "Mumbadevi", "districtKey": "MH-17" },
-                        { "id": 187, "name": "Colaba", "districtKey": "MH-17" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-32",
-                    "lokSabhaName": "Raigad",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 191, "name": "Pen", "districtKey": "MH-27" },
-                        { "id": 192, "name": "Alibag", "districtKey": "MH-27" },
-                        { "id": 193, "name": "Shrivardhan", "districtKey": "MH-27" },
-                        { "id": 194, "name": "Mahad", "districtKey": "MH-27" },
-                        { "id": 263, "name": "Dapoli", "districtKey": "MH-28" },
-                        { "id": 264, "name": "Guhagar", "districtKey": "MH-28" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-33",
-                    "lokSabhaName": "Maval",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 188, "name": "Panvel", "districtKey": "MH-27" },
-                        { "id": 189, "name": "Karjat", "districtKey": "MH-27" },
-                        { "id": 190, "name": "Uran", "districtKey": "MH-27" },
-                        { "id": 204, "name": "Maval", "districtKey": "MH-26" },
-                        { "id": 205, "name": "Chinchwad", "districtKey": "MH-26" },
-                        { "id": 206, "name": "Pimpri", "districtKey": "MH-26" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-34",
-                    "lokSabhaName": "Pune",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 207, "name": "Bhosari", "districtKey": "MH-26" },
-                        { "id": 208, "name": "Vadgaon Sheri", "districtKey": "MH-26" },
-                        { "id": 209, "name": "Shivajinagar", "districtKey": "MH-26" },
-                        { "id": 210, "name": "Kothrud", "districtKey": "MH-26" },
-                        { "id": 212, "name": "Parvati", "districtKey": "MH-26" },
-                        { "id": 214, "name": "Pune Cantonment", "districtKey": "MH-26" },
-                        { "id": 215, "name": "Kasba Peth", "districtKey": "MH-26" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-35",
-                    "lokSabhaName": "Baramati",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 199, "name": "Daund", "districtKey": "MH-26" },
-                        { "id": 200, "name": "Indapur", "districtKey": "MH-26" },
-                        { "id": 201, "name": "Baramati", "districtKey": "MH-26" },
-                        { "id": 202, "name": "Purandar", "districtKey": "MH-26" },
-                        { "id": 203, "name": "Bhor", "districtKey": "MH-26" },
-                        { "id": 211, "name": "Khadakwasala", "districtKey": "MH-26" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-36",
-                    "lokSabhaName": "Shirur",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 195, "name": "Junnar", "districtKey": "MH-26" },
-                        { "id": 196, "name": "Ambegaon", "districtKey": "MH-26" },
-                        { "id": 197, "name": "Khed Alandi", "districtKey": "MH-26" },
-                        { "id": 198, "name": "Shirur", "districtKey": "MH-26" },
-                        { "id": 213, "name": "Hadapsar", "districtKey": "MH-26" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-37",
-                    "lokSabhaName": "Ahmednagar",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 222, "name": "Shevgaon", "districtKey": "MH-1" },
-                        { "id": 223, "name": "Rahuri", "districtKey": "MH-1" },
-                        { "id": 224, "name": "Parner", "districtKey": "MH-1" },
-                        { "id": 225, "name": "Ahmednagar City", "districtKey": "MH-1" },
-                        { "id": 226, "name": "Shrigonda", "districtKey": "MH-1" },
-                        { "id": 227, "name": "Karjat Jamkhed", "districtKey": "MH-1" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-38",
-                    "lokSabhaName": "Shirdi",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 216, "name": "Akole", "districtKey": "MH-1" },
-                        { "id": 217, "name": "Sangamner", "districtKey": "MH-1" },
-                        { "id": 218, "name": "Shirdi", "districtKey": "MH-1" },
-                        { "id": 219, "name": "Kopargaon", "districtKey": "MH-1" },
-                        { "id": 220, "name": "Shrirampur", "districtKey": "MH-1" },
-                        { "id": 221, "name": "Nevasa", "districtKey": "MH-1" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-39",
-                    "lokSabhaName": "Beed",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 228, "name": "Georai", "districtKey": "MH-5" },
-                        { "id": 229, "name": "Majalgaon", "districtKey": "MH-5" },
-                        { "id": 230, "name": "Beed", "districtKey": "MH-5" },
-                        { "id": 231, "name": "Ashti", "districtKey": "MH-5" },
-                        { "id": 232, "name": "Kaij", "districtKey": "MH-5" },
-                        { "id": 233, "name": "Parli", "districtKey": "MH-5" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-40",
-                    "lokSabhaName": "Osmanabad",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 239, "name": "Ausa", "districtKey": "MH-16" },
-                        { "id": 240, "name": "Umarga", "districtKey": "MH-23" },
-                        { "id": 241, "name": "Tuljapur", "districtKey": "MH-23" },
-                        { "id": 242, "name": "Osmanabad", "districtKey": "MH-23" },
-                        { "id": 243, "name": "Paranda", "districtKey": "MH-23" },
-                        { "id": 246, "name": "Barshi", "districtKey": "MH-32" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-41",
-                    "lokSabhaName": "Latur",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 88, "name": "Loha", "districtKey": "MH-20" },
-                        { "id": 234, "name": "Latur Rural", "districtKey": "MH-16" },
-                        { "id": 235, "name": "Latur City", "districtKey": "MH-16" },
-                        { "id": 236, "name": "Ahmedpur", "districtKey": "MH-16" },
-                        { "id": 237, "name": "Udgir", "districtKey": "MH-16" },
-                        { "id": 238, "name": "Nilanga", "districtKey": "MH-16" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-42",
-                    "lokSabhaName": "Solapur",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 247, "name": "Mohol", "districtKey": "MH-32" },
-                        { "id": 248, "name": "Solapur City North", "districtKey": "MH-32" },
-                        { "id": 249, "name": "Solapur City Central", "districtKey": "MH-32" },
-                        { "id": 250, "name": "Akkalkot", "districtKey": "MH-32" },
-                        { "id": 251, "name": "Solapur South", "districtKey": "MH-32" },
-                        { "id": 252, "name": "Pandharpur", "districtKey": "MH-32" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-43",
-                    "lokSabhaName": "Madha",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 244, "name": "Karmala", "districtKey": "MH-32" },
-                        { "id": 245, "name": "Madha", "districtKey": "MH-32" },
-                        { "id": 253, "name": "Sangola", "districtKey": "MH-32" },
-                        { "id": 254, "name": "Malshiras", "districtKey": "MH-32" },
-                        { "id": 255, "name": "Phaltan", "districtKey": "MH-30" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-44",
-                    "lokSabhaName": "Sangli",
-                    "totalSeats": 6,
-                    "constituencies": [
-                        { "id": 281, "name": "Miraj", "districtKey": "MH-29" },
-                        { "id": 282, "name": "Sangli", "districtKey": "MH-29" },
-                        { "id": 285, "name": "Palus-Kadegaon", "districtKey": "MH-29" },
-                        { "id": 286, "name": "Khanapur", "districtKey": "MH-29" },
-                        { "id": 287, "name": "Tasgaon-Kavathe Mahankal", "districtKey": "MH-29" },
-                        { "id": 288, "name": "Jat", "districtKey": "MH-29" }
-                    ]
-                },
-                {
-                    "lokSabhaKey": "MHLS-45",
-                    "lokSabhaName": "Satara",
+                    "districtKey": "MH-29",
+                    "districtName": "Sangli",
                     "totalSeats": 8,
                     "constituencies": [
-                        { "id": 256, "name": "Wai", "districtKey": "MH-30" },
-                        { "id": 257, "name": "Koregaon", "districtKey": "MH-30" },
-                        { "id": 258, "name": "Man", "districtKey": "MH-30" },
-                        { "id": 259, "name": "Karad North", "districtKey": "MH-30" },
-                        { "id": 260, "name": "Karad South", "districtKey": "MH-30" },
-                        { "id": 261, "name": "Patan", "districtKey": "MH-30" },
-                        { "id": 262, "name": "Satara", "districtKey": "MH-30" }
+                        { "id": 281, "name": "Miraj", "lokSabhaKey": "MHLS-42" },
+                        { "id": 282, "name": "Sangli", "lokSabhaKey": "MHLS-42" },
+                        { "id": 283, "name": "Islampur", "lokSabhaKey": "MHLS-14" },
+                        { "id": 284, "name": "Shirala", "lokSabhaKey": "MHLS-14" },
+                        { "id": 285, "name": "Palus-Kadegaon", "lokSabhaKey": "MHLS-42" },
+                        { "id": 286, "name": "Khanapur", "lokSabhaKey": "MHLS-42" },
+                        { "id": 287, "name": "Tasgaon-Kavathe Mahankal", "lokSabhaKey": "MHLS-42" },
+                        { "id": 288, "name": "Jat", "lokSabhaKey": "MHLS-42" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-46",
-                    "lokSabhaName": "Ratnagiri-Sindhudurg",
-                    "totalSeats": 6,
+                    "districtKey": "MH-30",
+                    "districtName": "Satara",
+                    "totalSeats": 8,
                     "constituencies": [
-                        { "id": 265, "name": "Chiplun", "districtKey": "MH-28" },
-                        { "id": 266, "name": "Ratnagiri", "districtKey": "MH-28" },
-                        { "id": 267, "name": "Rajapur", "districtKey": "MH-28" },
-                        { "id": 268, "name": "Kankavli", "districtKey": "MH-31" },
-                        { "id": 269, "name": "Kudal", "districtKey": "MH-31" },
-                        { "id": 270, "name": "Sawantwadi", "districtKey": "MH-31" }
+                        { "id": 255, "name": "Phaltan", "lokSabhaKey": "MHLS-21" },
+                        { "id": 256, "name": "Wai", "lokSabhaKey": "MHLS-41" },
+                        { "id": 257, "name": "Koregaon", "lokSabhaKey": "MHLS-41" },
+                        { "id": 258, "name": "Man", "lokSabhaKey": "MHLS-41" },
+                        { "id": 259, "name": "Karad North", "lokSabhaKey": "MHLS-41" },
+                        { "id": 260, "name": "Karad South", "lokSabhaKey": "MHLS-41" },
+                        { "id": 261, "name": "Patan", "lokSabhaKey": "MHLS-41" },
+                        { "id": 262, "name": "Satara", "lokSabhaKey": "MHLS-41" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-47",
-                    "lokSabhaName": "Kolhapur",
-                    "totalSeats": 6,
+                    "districtKey": "MH-31",
+                    "districtName": "Sindhudurg",
+                    "totalSeats": 3,
                     "constituencies": [
-                        { "id": 271, "name": "Chandgad", "districtKey": "MH-15" },
-                        { "id": 272, "name": "Radhanagari", "districtKey": "MH-15" },
-                        { "id": 273, "name": "Kagal", "districtKey": "MH-15" },
-                        { "id": 274, "name": "Kolhapur South", "districtKey": "MH-15" },
-                        { "id": 275, "name": "Karvir", "districtKey": "MH-15" },
-                        { "id": 276, "name": "Kolhapur North", "districtKey": "MH-15" }
+                        { "id": 268, "name": "Kankavli", "lokSabhaKey": "MHLS-39" },
+                        { "id": 269, "name": "Kudal", "lokSabhaKey": "MHLS-39" },
+                        { "id": 270, "name": "Sawantwadi", "lokSabhaKey": "MHLS-39" }
                     ]
                 },
                 {
-                    "lokSabhaKey": "MHLS-48",
-                    "lokSabhaName": "Hatkanangle",
-                    "totalSeats": 6,
+                    "districtKey": "MH-32",
+                    "districtName": "Solapur",
+                    "totalSeats": 11,
                     "constituencies": [
-                        { "id": 277, "name": "Shahuwadi", "districtKey": "MH-15" },
-                        { "id": 278, "name": "Hatkanangle", "districtKey": "MH-15" },
-                        { "id": 279, "name": "Ichalkaranji", "districtKey": "MH-15" },
-                        { "id": 280, "name": "Shirol", "districtKey": "MH-15" },
-                        { "id": 283, "name": "Islampur", "districtKey": "MH-29" },
-                        { "id": 284, "name": "Shirala", "districtKey": "MH-29" }
+                        { "id": 244, "name": "Karmala", "lokSabhaKey": "MHLS-21" },
+                        { "id": 245, "name": "Madha", "lokSabhaKey": "MHLS-21" },
+                        { "id": 246, "name": "Barshi", "lokSabhaKey": "MHLS-33" },
+                        { "id": 247, "name": "Mohol", "lokSabhaKey": "MHLS-45" },
+                        { "id": 248, "name": "Solapur City North", "lokSabhaKey": "MHLS-45" },
+                        { "id": 249, "name": "Solapur City Central", "lokSabhaKey": "MHLS-45" },
+                        { "id": 250, "name": "Akkalkot", "lokSabhaKey": "MHLS-45" },
+                        { "id": 251, "name": "Solapur South", "lokSabhaKey": "MHLS-45" },
+                        { "id": 252, "name": "Pandharpur", "lokSabhaKey": "MHLS-45" },
+                        { "id": 253, "name": "Sangola", "lokSabhaKey": "MHLS-21" },
+                        { "id": 254, "name": "Malshiras", "lokSabhaKey": "MHLS-21" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-33",
+                    "districtName": "Thane",
+                    "totalSeats": 18,
+                    "constituencies": [
+                        { "id": 134, "name": "Bhiwandi Rural", "lokSabhaKey": "MHLS-8" },
+                        { "id": 135, "name": "Shahapur", "lokSabhaKey": "MHLS-8" },
+                        { "id": 136, "name": "Bhiwandi West", "lokSabhaKey": "MHLS-8" },
+                        { "id": 137, "name": "Bhiwandi East", "lokSabhaKey": "MHLS-8" },
+                        { "id": 138, "name": "Kalyan West", "lokSabhaKey": "MHLS-8" },
+                        { "id": 139, "name": "Murbad", "lokSabhaKey": "MHLS-8" },
+                        { "id": 140, "name": "Ambernath", "lokSabhaKey": "MHLS-18" },
+                        { "id": 141, "name": "Ulhasnagar", "lokSabhaKey": "MHLS-18" },
+                        { "id": 142, "name": "Kalyan East", "lokSabhaKey": "MHLS-18" },
+                        { "id": 143, "name": "Dombivali", "lokSabhaKey": "MHLS-18" },
+                        { "id": 144, "name": "Kalyan Rural", "lokSabhaKey": "MHLS-18" },
+                        { "id": 145, "name": "Mira Bhayandar", "lokSabhaKey": "MHLS-46" },
+                        { "id": 146, "name": "Ovala-Majiwada", "lokSabhaKey": "MHLS-46" },
+                        { "id": 147, "name": "Kopri-Pachpakhadi", "lokSabhaKey": "MHLS-46" },
+                        { "id": 148, "name": "Thane", "lokSabhaKey": "MHLS-46" },
+                        { "id": 149, "name": "Mumbra-Kalwa", "lokSabhaKey": "MHLS-18" },
+                        { "id": 150, "name": "Airoli", "lokSabhaKey": "MHLS-46" },
+                        { "id": 151, "name": "Belapur", "lokSabhaKey": "MHLS-46" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-34",
+                    "districtName": "Wardha",
+                    "totalSeats": 5,
+                    "constituencies": [
+                        { "id": 43, "name": "Morshi", "lokSabhaKey": "MHLS-47" },
+                        { "id": 44, "name": "Arvi", "lokSabhaKey": "MHLS-47" },
+                        { "id": 45, "name": "Deoli", "lokSabhaKey": "MHLS-47" },
+                        { "id": 46, "name": "Hinganghat", "lokSabhaKey": "MHLS-47" },
+                        { "id": 47, "name": "Wardha", "lokSabhaKey": "MHLS-47" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-35",
+                    "districtName": "Washim",
+                    "totalSeats": 3,
+                    "constituencies": [
+                        { "id": 33, "name": "Risod", "lokSabhaKey": "MHLS-2" },
+                        { "id": 34, "name": "Washim", "lokSabhaKey": "MHLS-48" },
+                        { "id": 35, "name": "Karanja", "lokSabhaKey": "MHLS-48" }
+                    ]
+                },
+                {
+                    "districtKey": "MH-36",
+                    "districtName": "Yavatmal",
+                    "totalSeats": 7,
+                    "constituencies": [
+                        { "id": 76, "name": "Wani", "lokSabhaKey": "MHLS-10" },
+                        { "id": 77, "name": "Ralegaon", "lokSabhaKey": "MHLS-48" },
+                        { "id": 78, "name": "Yavatmal", "lokSabhaKey": "MHLS-48" },
+                        { "id": 79, "name": "Digras", "lokSabhaKey": "MHLS-48" },
+                        { "id": 80, "name": "Arni", "lokSabhaKey": "MHLS-10" },
+                        { "id": 81, "name": "Pusad", "lokSabhaKey": "MHLS-48" },
+                        { "id": 82, "name": "Umarkhed", "lokSabhaKey": "MHLS-15" }
                     ]
                 }
             ]
