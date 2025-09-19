@@ -6273,6 +6273,22 @@ export const AssemblySeatsDistrictWise = {
                         { "id": 129, "name": "Mahnar", "lokSabhaKey": "BRLS-11" },
                         { "id": 130, "name": "Patepur", "lokSabhaKey": "BRLS-38" }
                     ]
+                },
+                {
+                    "districtKey": "BR-38",
+                    "districtName": "West Champaran",
+                    "totalSeats": 9,
+                    "constituencies": [
+                        { "id": 123, "name": "Valmiki Nagar", "lokSabhaKey": "BRLS-40" },
+                        { "id": 124, "name": "Ramnagar", "lokSabhaKey": "BRLS-40" },
+                        { "id": 125, "name": "Narkatiaganj", "lokSabhaKey": "BRLS-40" },
+                        { "id": 126, "name": "Bagaha", "lokSabhaKey": "BRLS-40" },
+                        { "id": 127, "name": "Lauriya", "lokSabhaKey": "BRLS-40" },
+                        { "id": 128, "name": "Nautan", "lokSabhaKey": "BRLS-26" },
+                        { "id": 129, "name": "Chanpatia", "lokSabhaKey": "BRLS-26" },
+                        { "id": 130, "name": "Bettiah", "lokSabhaKey": "BRLS-26" },
+                        { "id": 131, "name": "	Sikta", "lokSabhaKey": "BRLS-40" }
+                    ]
                 }
             ]
         },
