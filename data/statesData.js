@@ -8630,7 +8630,7 @@ export const AssemblySeatsDistrictWise = {
                 },
                 {
                     "districtKey": "KA-28",
-                    "districtName": "Uttara Kannada",
+                    "districtName": "Uttara Kannada (Karwar)",
                     "totalSeats": 6,
                     "constituencies": [
                         { "id": 76, "name": "Haliyal", "lokSabhaKey": "KALS-26" },
