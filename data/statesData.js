@@ -1444,7 +1444,7 @@ export const indianDistricts = {
                 { "id": 19, "key": "KA-19", "name": "Kolar" },
                 { "id": 20, "key": "KA-20", "name": "Koppal" },
                 { "id": 21, "key": "KA-21", "name": "Mandya" },
-                { "id": 22, "key": "KA-22", "name": "Mysuru (Mysore)" },
+                { "id": 22, "key": "KA-22", "name": "Mysore" },
                 { "id": 23, "key": "KA-23", "name": "Raichur" },
                 { "id": 24, "key": "KA-24", "name": "Ramanagara" },
                 { "id": 25, "key": "KA-25", "name": "Shivamogga (Shimoga)" },
